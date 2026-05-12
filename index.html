@@ -216,14 +216,16 @@
     .date-card a { display: block; padding: 12px 0; border-top: 1px solid rgba(255,255,255,.1); color: var(--ink); font-weight: 850; }
     .date-card a:first-of-type { border-top: 0; }
     .date-card span { display: block; color: var(--muted); font-size: 13px; font-weight: 500; margin-top: 3px; }
-    .date-toggle {
+    .date-toggle,
+    .section-toggle {
       border: 1px solid rgba(244,199,107,.24);
       border-radius: var(--radius);
       background: linear-gradient(180deg, rgba(244,199,107,.09), rgba(255,255,255,.035));
       overflow: hidden;
       box-shadow: 0 18px 62px rgba(0,0,0,.24);
     }
-    .date-toggle summary {
+    .date-toggle summary,
+    .section-toggle summary {
       cursor: pointer;
       list-style: none;
       padding: 20px 22px;
@@ -232,13 +234,17 @@
       align-items: center;
       gap: 18px;
     }
-    .date-toggle summary::-webkit-details-marker { display: none; }
+    .date-toggle summary::-webkit-details-marker,
+    .section-toggle summary::-webkit-details-marker { display: none; }
     .summary-copy { display: grid; gap: 5px; min-width: 0; }
     .summary-copy strong { display: block; font-size: clamp(18px, 2vw, 22px); line-height: 1.12; letter-spacing: -.03em; }
     .summary-copy span { display: block; color: var(--muted); font-size: 14px; line-height: 1.45; }
     .chevron { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 999px; background: rgba(255,255,255,.08); color: var(--gold); transition: transform .18s ease; }
-    .date-toggle[open] .chevron { transform: rotate(180deg); }
+    .date-toggle[open] .chevron,
+    .section-toggle[open] .chevron { transform: rotate(180deg); }
     .date-toggle .date-lens { padding: 0 20px 20px; }
+    .section-toggle .gallery { padding: 0 20px 20px; }
+    .section-toggle .route-panel { margin: 0 20px 20px !important; }
 
     footer { padding: 34px 0 46px; border-top: 1px solid var(--line); color: var(--soft); font-size: 14px; }
 
@@ -247,8 +253,11 @@
       .hero { grid-template-columns: 1fr; }
       .gallery { grid-template-columns: 1fr; }
       .date-lens { grid-template-columns: 1fr; }
-      .date-toggle summary { padding: 18px; grid-template-columns: minmax(0, 1fr) 34px; gap: 12px; }
+      .date-toggle summary,
+      .section-toggle summary { padding: 18px; grid-template-columns: minmax(0, 1fr) 34px; gap: 12px; }
       .date-toggle .date-lens { padding: 0 14px 14px; }
+      .section-toggle .gallery { padding: 0 14px 14px; }
+      .section-toggle .route-panel { margin: 0 14px 14px !important; }
       .chevron { width: 34px; height: 34px; }
       .artifact.featured { grid-column: span 1; }
       .board-grid { grid-template-columns: 1fr; }
@@ -338,13 +347,22 @@
         <div><div class="section-kicker">03 · Interactive apps</div><h2 id="apps-title">Small tools you can actually use</h2></div>
         <p>Browser-native applets and visualizations with clean public routes.</p>
       </div>
-      <div class="gallery">
-        <a class="artifact" href="/apps/" style="--accent:var(--gold)"><div class="thumb dashboard"></div><div class="body"><div class="meta"><span class="tag">Hub</span><span class="route">/apps/</span></div><h3>Interactive apps hub</h3><p>The live hub for HTML apps and Life OS visualizations.</p><span class="open">Open →</span></div></a>
-        <a class="artifact featured" href="/apps/interactive-life-dashboard/" style="--accent:var(--teal)"><div class="thumb dashboard"></div><div class="body"><div class="meta"><span class="tag">Dashboard</span><span class="route">/apps/interactive-life-dashboard/</span></div><h3>Interactive Life Dashboard</h3><p>A visual dashboard pattern for personal operating context.</p><span class="open">Open →</span></div></a>
-        <a class="artifact" href="/apps/life-compass/" style="--accent:var(--blue)"><div class="thumb"></div><div class="body"><div class="meta"><span class="tag">Compass</span><span class="route">/apps/life-compass/</span></div><h3>Life Compass</h3><p>Directional thinking in a compact browser surface.</p><span class="open">Open →</span></div></a>
-        <a class="artifact" href="/apps/growth-app/" style="--accent:var(--green)"><div class="thumb timeline"></div><div class="body"><div class="meta"><span class="tag">Growth</span><span class="route">/apps/growth-app/</span></div><h3>Growth App</h3><p>A small public-safe growth and reflection artifact.</p><span class="open">Open →</span></div></a>
-        <a class="artifact" href="/apps/life-journey-visualization/" style="--accent:var(--rose)"><div class="thumb timeline"></div><div class="body"><div class="meta"><span class="tag">Journey</span><span class="route">/apps/life-journey-visualization/</span></div><h3>Life Journey Visualizations</h3><p>A visual map of life journey patterns and narrative movement.</p><span class="open">Open →</span></div></a>
-      </div>
+      <details class="section-toggle">
+        <summary>
+          <span class="summary-copy">
+            <strong>Show interactive apps</strong>
+            <span>Browser-native tools and visualizations, collapsed by default so the page reads faster.</span>
+          </span>
+          <span class="chevron" aria-hidden="true">⌄</span>
+        </summary>
+        <div class="gallery">
+          <a class="artifact" href="/apps/" style="--accent:var(--gold)"><div class="thumb dashboard"></div><div class="body"><div class="meta"><span class="tag">Hub</span><span class="route">/apps/</span></div><h3>Interactive apps hub</h3><p>The live hub for HTML apps and Life OS visualizations.</p><span class="open">Open →</span></div></a>
+          <a class="artifact featured" href="/apps/interactive-life-dashboard/" style="--accent:var(--teal)"><div class="thumb dashboard"></div><div class="body"><div class="meta"><span class="tag">Dashboard</span><span class="route">/apps/interactive-life-dashboard/</span></div><h3>Interactive Life Dashboard</h3><p>A visual dashboard pattern for personal operating context.</p><span class="open">Open →</span></div></a>
+          <a class="artifact" href="/apps/life-compass/" style="--accent:var(--blue)"><div class="thumb"></div><div class="body"><div class="meta"><span class="tag">Compass</span><span class="route">/apps/life-compass/</span></div><h3>Life Compass</h3><p>Directional thinking in a compact browser surface.</p><span class="open">Open →</span></div></a>
+          <a class="artifact" href="/apps/growth-app/" style="--accent:var(--green)"><div class="thumb timeline"></div><div class="body"><div class="meta"><span class="tag">Growth</span><span class="route">/apps/growth-app/</span></div><h3>Growth App</h3><p>A small public-safe growth and reflection artifact.</p><span class="open">Open →</span></div></a>
+          <a class="artifact" href="/apps/life-journey-visualization/" style="--accent:var(--rose)"><div class="thumb timeline"></div><div class="body"><div class="meta"><span class="tag">Journey</span><span class="route">/apps/life-journey-visualization/</span></div><h3>Life Journey Visualizations</h3><p>A visual map of life journey patterns and narrative movement.</p><span class="open">Open →</span></div></a>
+        </div>
+      </details>
     </section>
 
     <section class="section" id="dates" aria-labelledby="dates-title">
@@ -389,15 +407,24 @@
         <div><div class="section-kicker">05 · Systems</div><h2 id="systems-title">Hermes as an operating layer</h2></div>
         <p>Pages about proof, routing, artifact publishing, and how the library stays public-safe.</p>
       </div>
-      <div class="gallery">
-        <a class="artifact featured" href="/query-patterns/" style="--accent:var(--blue)"><div class="thumb dashboard"></div><div class="body"><div class="meta"><span class="tag">Hermes ops</span><span class="route">/query-patterns/</span></div><h3>Query pattern analysis</h3><p>How Abba uses Hermes as an operating layer for action, proof, memory, and low-noise routing.</p><span class="open">Open →</span></div></a>
-        <a class="artifact" href="/atlas/" style="--accent:var(--gold)"><div class="thumb"></div><div class="body"><div class="meta"><span class="tag">Atlas</span><span class="route">/atlas/</span></div><h3>Migrated atlas copy</h3><p>The compatibility atlas from earlier publishing work.</p><span class="open">Open →</span></div></a>
-        <div class="artifact" style="--accent:var(--gold)"><div class="body"><div class="meta"><span class="tag">Safety</span><span class="route">public-safe</span></div><h3>Public-safety rule</h3><p>GitHub Pages is public. This repo contains scrubbed HTML pages and summarized descriptions only. Raw notes, logs, transcripts, account data, and internal paths stay out.</p><span class="open">Canonical home: abbabk.github.io</span></div></div>
-      </div>
-      <div class="route-panel" style="margin-top:16px">
-        <strong>Clean routes, not random slugs.</strong>
-        <div class="route-strip"><code>/mai-tsara/</code><code>/life-os/</code><code>/achievements/</code><code>/apps/</code><code>/query-patterns/</code><code>/night-freedom/</code></div>
-      </div>
+      <details class="section-toggle">
+        <summary>
+          <span class="summary-copy">
+            <strong>Show systems cards</strong>
+            <span>Hermes operating-layer pages, atlas route, and public-safety notes hidden until needed.</span>
+          </span>
+          <span class="chevron" aria-hidden="true">⌄</span>
+        </summary>
+        <div class="gallery">
+          <a class="artifact featured" href="/query-patterns/" style="--accent:var(--blue)"><div class="thumb dashboard"></div><div class="body"><div class="meta"><span class="tag">Hermes ops</span><span class="route">/query-patterns/</span></div><h3>Query pattern analysis</h3><p>How Abba uses Hermes as an operating layer for action, proof, memory, and low-noise routing.</p><span class="open">Open →</span></div></a>
+          <a class="artifact" href="/atlas/" style="--accent:var(--gold)"><div class="thumb"></div><div class="body"><div class="meta"><span class="tag">Atlas</span><span class="route">/atlas/</span></div><h3>Migrated atlas copy</h3><p>The compatibility atlas from earlier publishing work.</p><span class="open">Open →</span></div></a>
+          <div class="artifact" style="--accent:var(--gold)"><div class="body"><div class="meta"><span class="tag">Safety</span><span class="route">public-safe</span></div><h3>Public-safety rule</h3><p>GitHub Pages is public. This repo contains scrubbed HTML pages and summarized descriptions only. Raw notes, logs, transcripts, account data, and internal paths stay out.</p><span class="open">Canonical home: abbabk.github.io</span></div></div>
+        </div>
+        <div class="route-panel" style="margin-top:16px">
+          <strong>Clean routes, not random slugs.</strong>
+          <div class="route-strip"><code>/mai-tsara/</code><code>/life-os/</code><code>/achievements/</code><code>/apps/</code><code>/query-patterns/</code><code>/night-freedom/</code></div>
+        </div>
+      </details>
     </section>
   </main>
 
