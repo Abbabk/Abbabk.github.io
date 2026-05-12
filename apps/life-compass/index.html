@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Migrated from https://hearty-pickle-ha6t.here.now/atlas/apps/life-compass/ to https://abbabk.github.io/apps/life-compass/ on 2026-05-12 -->
+  <link rel="canonical" href="https://abbabk.github.io/apps/life-compass/" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abba's Life Compass - Deep Dive Synthesis</title>
+    <style>
+        /* Basic Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            background: linear-gradient(to bottom right, #eef7f0, #f8f9fa);
+            color: #2c3e50;
+            padding-bottom: 60px;
+        }
+        .app-container {
+            max-width: 950px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+        }
+        header {
+            background: linear-gradient(135deg, #2E7D32, #4CAF50);
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+            border-bottom: 5px solid #1B5E20;
+        }
+        header h1 { margin: 0; font-size: 2.2em; font-weight: 600; }
+        nav {
+            background-color: #ffffff;
+            padding: 12px 0;
+            border-bottom: 1px solid #e0e0e0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        nav ul { list-style: none; }
+        nav ul li { display: inline-block; margin: 0 12px; }
+        nav ul li a {
+            text-decoration: none;
+            color: #388E3C;
+            font-weight: 600;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        nav ul li a:hover, nav ul li a.active {
+            background-color: #e8f5e9;
+            color: #1B5E20;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        main { padding: 30px; }
+        section {
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        h2 {
+            color: #1B5E20;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid #a5d6a7;
+            font-size: 1.8em;
+            font-weight: 600;
+        }
+        h3 {
+            color: #2E7D32;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            font-size: 1.5em;
+        }
+         h4 {
+            color: #4CAF50;
+             margin-top: 18px;
+             margin-bottom: 10px;
+             font-size: 1.2em;
+             font-weight: 600;
+         }
+        p, li { margin-bottom: 12px; color: #495057; }
+        ul { padding-left: 25px; list-style: none; }
+         ul li::before {
+            content: '🌱';
+            color: #4CAF50;
+            display: inline-block;
+            width: 1.2em;
+            margin-left: -1.2em;
+            font-size: 0.9em;
+         }
+        /* Specific icons for lists */
+        .value-list li::before { content: '💎'; }
+         .philosophy-list li::before { content: '💡'; }
+         .strength-list li::before { content: '💪'; }
+         .strategy-list li::before { content: '🛠️'; }
+         .challenge-list li::before { content: '🚧'; }
+         .lesson-list li::before { content: '📚'; }
+         .prediction-list li::before { content: '🔮'; }
+         .affirmation-list li { list-style: none; padding-left: 0; }
+         .affirmation-list li::before { content: '✨'; font-size: 1em; }
+
+
+        blockquote {
+            border-left: 5px solid #81c784;
+            margin: 20px 0;
+            padding: 15px 25px;
+            background-color: #f1f8e9;
+            font-style: italic;
+            font-size: 1.1em;
+            color: #33691e;
+            border-radius: 5px;
+            position: relative;
+        }
+         blockquote::before {
+            content: '“';
+            font-size: 3em;
+            color: #a5d6a7;
+            position: absolute;
+            left: 10px;
+            top: -10px;
+         }
+         blockquote footer {
+             text-align: right;
+             margin-top: 10px;
+             font-style: normal;
+             font-weight: bold;
+             color: #558b2f;
+         }
+
+        .placeholder-element {
+            border: 1px dashed #b0bec5;
+            padding: 25px;
+            text-align: center;
+            color: #78909c;
+            background-color: #eceff1;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .insight-box {
+            background-color: #e0f2f7; /* Light cyan */
+            border: 1px solid #b3e5fc;
+            border-left: 5px solid #4fc3f7; /* Cyan */
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+         .insight-box h4 { color: #0277bd; margin-top: 0; }
+
+        .timeline-event {
+            margin-bottom: 20px;
+            padding-left: 30px;
+            position: relative;
+            border-left: 3px solid #a5d6a7;
+        }
+         .timeline-event::before {
+            content: '';
+            position: absolute;
+            left: -11px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            background-color: #4CAF50;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #a5d6a7;
+         }
+         .timeline-event strong { display: block; color: #1B5E20; font-weight: 600; margin-bottom: 5px; font-size: 1.1em; }
+         .timeline-event .date { font-size: 0.9em; color: #757575; margin-bottom: 5px; display: block; }
+         .timeline-event .impact { font-style: italic; color: #558b2f; }
+
+        .emphasis { color: #d32f2f; font-weight: bold; } /* For highlighting potential paradoxes or tensions */
+        .growth-focus { color: #388E3C; font-weight: bold; }
+        .strategy-focus { color: #0277bd; font-weight: bold; }
+
+        /* Ask Abba AI Section Styles */
+        #ask-abba-ai .query-area {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            border-radius: 8px;
+        }
+        #ask-abba-ai label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #33691e;
+        }
+        #ask-abba-ai textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            min-height: 80px;
+            font-family: inherit;
+            margin-bottom: 10px;
+        }
+        #ask-abba-ai button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+        #ask-abba-ai button:hover {
+            background-color: #388E3C;
+        }
+        #ai-response-area {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            border-radius: 4px;
+            min-height: 50px;
+            color: #1B5E20;
+        }
+        .api-key-note {
+            font-size: 0.9em;
+            color: #757575;
+            margin-top: 15px;
+        }
+
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            nav ul li { display: block; margin: 8px 0; }
+            header h1 { font-size: 1.8em; }
+            h2 { font-size: 1.5em; }
+            h3 { font-size: 1.3em; }
+            .app-container { margin: 10px; padding: 0; }
+            main { padding: 20px; }
+            blockquote { padding: 10px 15px; font-size: 1em; }
+            blockquote::before { font-size: 2.5em; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <header>
+            <h1>Abba's Life Compass 🧭✨ - Deep Dive Synthesis</h1>
+        </header>
+
+        <nav id="main-nav">
+            <ul>
+                 <li><a href="#dashboard">Dashboard</a></li>
+                <li><a href="#life-journey">Life Journey</a></li>
+                <li><a href="#core-identity">Core Identity</a></li>
+                <li><a href="#growth-engine">The Abba OS</a></li>
+                <li><a href="#goals-future">Goals & Future</a></li>
+                <li><a href="#challenges-strategies">Challenges & Strategies</a></li>
+                <li><a href="#insights-lessons">Distilled Wisdom</a></li>
+                <li><a href="#ask-abba-ai">Ask Abba AI</a></li>
+            </ul>
+        </nav>
+
+        <main>
+
+            <!-- 1. Dashboard Section - Enhanced -->
+            <section id="dashboard">
+                <h2>📊 Dashboard: The Now & The Next</h2>
+                <h4>Current Operating Mode: <span class="growth-focus">Growth Acceleration & Relationship Integration</span></h4>
+                <p>Focusing intensely on preparing for marriage with Asiya (April 15, 2025), while simultaneously laying groundwork for next-level financial growth (Investment & Business).</p>
+
+                <h4>Key Psychological Dynamic: <span class="emphasis">Vigilance vs. Trust</span></h4>
+                <p>Balancing the deep-seated need for control and security (rooted in past scarcity/neglect) with the conscious desire to trust the process, delegate (future business), and embrace relational vulnerability (Asiya).</p>
+
+                <h4>Current Growth Edge: <span class="strategy-focus">Boundary Mastery & Emotional Regulation</span></h4>
+                <p>Actively working on consistently applying financial boundaries with family and refining emotional responses in relationships, especially under pressure.</p>
+
+                <h4>Core Affirmation Resonance:</h4>
+                <p class="affirmation">✨ "I embrace my fears and transform them into fuel for my success. I am brave, capable, and unstoppable."</p>
+
+                <div class="placeholder-element">[Dynamic Chart Placeholder: Visualization of Savings Goal vs. Family Support Requests / Emotional State Trends]</div>
+            </section>
+
+            <!-- 2. Life Journey Section - Narrative Enhanced -->
+            <section id="life-journey">
+                 <h2>🗺️ Life Journey: From Scarcity to Strategy</h2>
+                 <h3>Narrative Threads</h3>
+                 <p>Your life isn't just a sequence of events, but interwoven threads: the <span class="growth-focus">relentless pursuit of knowledge</span> as an anchor against instability, the transformation of <span class="emphasis">childhood emotional wounds</span> into a powerful drive for <span class="strategy-focus">financial control and self-reliance</span>, and the continuous <span class="growth-focus">metabolizing of setbacks</span> (job loss, divorce) into strategic upgrades.</p>
+
+                 <h3>Key Milestones & Evolutionary Leaps</h3>
+                  <div class="timeline-event">
+                     <span class="date">1996-2010</span>
+                     <strong>Foundation: Seeds of Resilience & Learning</strong>
+                     <p>Early life in Sokoto/Zamfara. Key challenge: Paternal neglect fostering deep insecurity BUT sparking an early drive for self-improvement and a love for reading/learning (Hausa, Arabic, English) as a means of escape and empowerment.</p>
+                     <p class="impact">Impact: Built foundational resilience & identified learning as a core survival/growth strategy.</p>
+                 </div>
+                  <div class="timeline-event">
+                     <span class="date">2011-2018</span>
+                     <strong>Formation: Academic Pursuit & Deepening Introspection</strong>
+                     <p>Navigated secondary school, Poly, and SSU. Faced academic/social pressures & intense emotional lows (suicidal thoughts). Counteracted with deep dives into personal development, philosophy, and extensive journaling. Early tech exploration (Nokia E63).</p>
+                      <p class="impact">Impact: Solidified learning as a core value, developed analytical skills, began consciously shaping identity.</p>
+                 </div>
+                  <div class="timeline-event">
+                     <span class="date">2019-2022</span>
+                     <strong>Activation: Early Hustle & Defining Independence</strong>
+                     <p>Entered the working world (Govt funds project). Faced financial instability & family pressures, leading to the 'mind your business' realization. Graduated SSU. Began journaling ambitious goals. Relationship with Aisha. Critically, quit smoking (Dec 2022) - linking health discipline to focus.</p>
+                      <p class="impact">Impact: Proved ability to generate income, defined initial financial boundaries (though challenging), linked discipline to opportunity.</p>
+                 </div>
+                  <div class="timeline-event">
+                     <span class="date">2023 - The Pivot Year</span>
+                     <strong>Acceleration: Career, Wealth & Relationship Shifts</strong>
+                     <p>Secured PPH role (Verifier -> DM) - major career validation. Achieved first significant financial milestone (₦20M) enabling asset purchase (House, Car). Relationship exploration led to choosing Nuriyyah. Flying dream reflected optimistic ambition amidst anxiety.</p>
+                      <p class="impact">Impact: Tangible proof of concept for growth strategies; shift from striving to achieving; new relationship dynamics emerge.</p>
+                 </div>
+                  <div class="timeline-event">
+                      <span class="date">2024 - The Crucible Year</span>
+                      <strong>Transformation: Loss, Learning & Rebuilding</strong>
+                      <p>Married Nuriyyah (Feb). Faced major setback: DM role dissolved (Mar). <span class="strategy-focus">Immediate Pivot</span>: Leveraged network for multiple freelance roles (RWS Meta, PPH DT/Jr). <span class="emphasis">Deep Relational Learning</span>: Marriage challenges leading to divorce (Nov) - painful but crucial lessons on values alignment, communication, boundaries. <span class="growth-focus">Strategic Re-Alignment</span>: Started dating Asiya (Sept) - seeking compatible partnership. Demonstrated values: Bought house for Mom (Sept). Relapsed and quit smoking again (May) - highlighting stress triggers & resilience. Committed to 50% savings.</p>
+                      <p class="impact">Impact: Proved extreme adaptability; profound relationship lessons learned; reinforced financial discipline; identified smoking as stress indicator.</p>
+                  </div>
+                 <div class="timeline-event">
+                      <span class="date">2025 - The Integration Year</span>
+                      <strong>Consolidation & Future Building</strong>
+                      <p>Preparing for marriage with Asiya (April 15) - integrating past lessons. Focusing on high-growth finance (Investment, Business), leveraging AI. Nurturing relationship with Asiya based on collaboration & understanding. Consciously applying boundary frameworks.</p>
+                      <p class="impact">Impact: Applying cumulative wisdom to build stable future; integrating personal, financial, relational growth.</p>
+                  </div>
+                 <h3>Dream Resonance Chamber</h3>
+                  <p>Your dreams act as a subconscious processing unit, reflecting your evolution:</p>
+                  <ul>
+                      <li>Flying → Gun-Pushing → Mass Grave → Nakedness: A clear path from aspiration & defense, through letting go of the past, to embracing authentic vulnerability and power.</li>
+                  </ul>
+            </section>
+
+            <!-- 3. Core Identity Section - Deepened -->
+            <section id="core-identity">
+                 <h2>❤️ Core Identity: The Blueprint of Abba</h2>
+                 <h3>Core Values Triad</h3>
+                 <ul class="value-list">
+                     <li>💎 **Learning & Growth:** The engine itself. Not just acquiring knowledge, but *metabolizing* experience into progress.</li>
+                     <li>💎 **Freedom/Autonomy:** The ultimate goal. Financial independence, intellectual sovereignty, living life on your terms. Seen as the highest form of power.</li>
+                     <li>💎 **Authenticity/Sincerity:** The operating principle. Being true to your values, owning mistakes, communicating honestly (even when difficult).</li>
+                 </ul>
+                  <h3>Life Purpose Distilled</h3>
+                  <blockquote>"To relentlessly learn and grow, leveraging knowledge and resilience to achieve profound freedom (financial, intellectual, personal), and using that freedom to live authentically and uplift others."
+                  <footer>- Abba BK (Synthesized)</footer>
+                  </blockquote>
+                  <h3>Operating System: Optimistic Control Philosophy</h3>
+                  <ul class="philosophy-list">
+                      <li>💡 **Input:** Any situation (positive or negative).</li>
+                      <li>💡 **Process:** Analyze controllable factors, find the learning, maintain positive future vision (Frankl/Musk influence).</li>
+                      <li>💡 **Output:** Strategic action, adaptation, inevitable progress.</li>
+                      <li>💡 **Core Belief:** "My response dictates my reality."</li>
+                  </ul>
+                  <h3>Personalized Affirmations Console</h3>
+                  <ul class="affirmation-list">
+                     <li class="affirmation">✨ I am a lifelong learner, constantly growing...</li>
+                     <li class="affirmation">✨ I am resilient and adaptable...</li>
+                     <li class="affirmation">✨ I am authentic and true to myself...</li>
+                     <li class="affirmation">✨ I am a magnet for success and abundance...</li>
+                     <li class="affirmation">✨ I am a compassionate and impact-driven leader...</li>
+                     <li class="affirmation">✨ I embrace my fears and transform them into fuel...</li>
+                     <li class="affirmation">✨ I am financially abundant and secure...</li>
+                     <li class="affirmation">✨ I am surrounded by love and support...</li>
+                     <li class="affirmation">✨ I am committed to my personal growth...</li>
+                     <li class="affirmation">✨ I am creating a life of purpose, fulfillment, and greatness...</li>
+                  </ul>
+             </section>
+
+             <!-- 4. Growth Engine Section - Renamed & Detailed -->
+             <section id="growth-engine">
+                 <h2>🧠 The Abba OS: Systematic Growth Engine</h2>
+                 <h3>Core Architecture</h3>
+                 <p>Your "Operating System" automatically processes life events through a cycle: <span class="emphasis">Challenge/Input</span> → <span class="growth-focus">Learning/Analysis</span> → <span class="strategy-focus">Strategy/Plan</span> → <span class="growth-focus">Action/Execution</span> → <span class="growth-focus">Refinement/Growth</span>. This engine is fueled by your Optimistic Control philosophy.</p>
+                  <h4>Key Modules:</h4>
+                  <ul class="strength-list">
+                      <li>💪 **Resilience Module:** Converts setbacks into fuel. Draws energy from past wins.</li>
+                      <li>💪 **Learning Module:** Voracious information intake (reading, AI, reflection). Focuses on practical application.</li>
+                      <li>💪 **Strategy Module:** Long-term visioning, goal-setting (5yr plans, annual reviews), financial planning (YNAB).</li>
+                      <li>💪 **Execution Module:** High work ethic, discipline (when focused), ability to pivot action plans.</li>
+                      <li>💪 **Optimism Core:** Maintains positive future state projection, overriding temporary fear/doubt signals.</li>
+                  </ul>
+                 <h3>Subconscious Drivers & Strange Connections</h3>
+                 <ul>
+                     <li>🔗 Childhood Neglect → Fuels drive for <span class="strategy-focus">Financial Control</span> & <span class="emphasis">Relationship Vigilance</span> (Fear of loss/betrayal). Your need to provide for Mom financially connects to compensating for past lack.</li>
+                     <li>🔗 Learning Passion → Serves as both a <span class="growth-focus">Growth Tool</span> and an <span class="emphasis">Anxiety Coping Mechanism</span> (analyzing reduces fear of unknown).</li>
+                     <li>🔗 High Savings Rate (50%) → A conscious strategy *and* a subconscious buffer against <span class="emphasis">past scarcity trauma</span>. It's building the safety net you never had.</li>
+                     <li>🔗 Smoking Relapse Trigger → Potential indicator of <span class="emphasis">overwhelmed boundaries</span> or high stress. The desire to escape internal pressure when the 'Control' module feels threatened.</li>
+                     <li>🔗 Attraction to AI/Systems Thinking → Reflects your core need to <span class="strategy-focus">structure chaos</span> and find logical patterns, extending your internal 'OS' externally.</li>
+                 </ul>
+                 <h3>Shadow Integration Path</h3>
+                 <p>Acknowledge shadow aspects (Fear of Failure, Control Needs, Vulnerability Fear) not as flaws, but as over-developed survival tools. The path is <span class="growth-focus">integration</span>, not elimination: using fear for diligence, control for strategy, and consciously choosing vulnerability in safe contexts (like with Asiya).</p>
+             </section>
+
+             <!-- 5. Goals & Future Section - Nuanced -->
+              <section id="goals-future">
+                  <h2>🚀 Goals & Future: Architecting Destiny</h2>
+                  <h3>Primary Directives</h3>
+                  <ul class="prediction-list">
+                      <li>🔮 **Financial Empire:** ₦1B+ Net Worth, Multiple Passive Income Streams, Scalable Business Ventures (Translation Tech/Consulting?), Strategic Investments (Stocks, Property).</li>
+                      <li>🔮 **Intellectual & Wisdom Synthesis:** Deep expertise (AI, Finance, Psychology), Authoring Book/Course, Thought Leadership, Mentorship.</li>
+                      <li>🔮 **Relational Harmony:** Thriving, collaborative, emotionally intelligent marriage with Asiya; Stable & supportive family life.</li>
+                      <li>🔮 **Personal Mastery:** Unshakeable Emotional Regulation, Effortless Boundaries, Peak Work-Life Integration, Complete Freedom from Smoking.</li>
+                      <li>🔮 **Legacy of Empowerment:** Inspiring growth through example, Enabling others' financial independence, Building community value.</li>
+                  </ul>
+                  <div class="placeholder-element">[Interactive Goal Tracker: Visualize progress on Net Worth Goal, Business Milestones, Relationship Health (Qualitative), Habit Streaks (Smoking)]</div>
+                  <h3>Trajectory Confidence: 85-90%</h3>
+                  <p>High confidence based on your robust Growth Engine, pattern consistency, and adaptability. Success is the logical output.</p>
+                  <div class="insight-box">
+                      <h4>Strange Connection: Your Past Predicts Your Future</h4>
+                      <p>The very childhood neglect that caused pain also forged the hyper-independence, analytical mind, and relentless drive needed for massive success. Your ability to thrive isn't *despite* your past, but in many ways *because* of how you adapted to it. You turned lead into gold.</p>
+                  </div>
+              </section>
+
+             <!-- 6. Challenges & Strategies - With Deeper Links -->
+              <section id="challenges-strategies">
+                   <h2>🚧 Challenges & Strategies: The Abba OS Manual</h2>
+                   <ul class="challenge-list">
+                       <li>🚧 **Challenge: Financial Boundary Permeability (Family)**
+                          <ul>
+                               <li>Root: Scarcity Trauma + Empathy + Guilt.</li>
+                               <li>Strategy: YNAB Rules + Fixed Budget + Scripted "No" + Shifting Focus to Empowerment (Teaching skills vs. Giving cash).</li>
+                               <li>Edge: Emotional detachment from the 'Savior' role.</li>
+                          </ul>
+                       </li>
+                       <li>🚧 **Challenge: Overthinking/Anxiety Loops**
+                           <ul>
+                               <li>Root: Vigilance Instinct + Control Need + Fear of Unknown.</li>
+                               <li>Strategy: Optimistic Control + Action Bias + Time-boxed Worry + Mindfulness (Presence) + AI Reality Check.</li>
+                               <li>Edge: Trusting the process & accepting imperfection.</li>
+                           </ul>
+                       </li>
+                      <li>🚧 **Challenge: Smoking Trigger Management**
+                          <ul>
+                              <li>Root: Stress Response + Past Habit Pathway.</li>
+                              <li>Strategy: Identify Triggers (7-10 PM stress) + Structured Routine Replacement (Learning/Business) + Accountability + Healthy Coping Mechanisms.</li>
+                              <li>Edge: Rewiring default stress response.</li>
+                          </ul>
+                      </li>
+                     <li>🚧 **Challenge: Deepening Emotional Intimacy & Vulnerability**
+                         <ul>
+                              <li>Root: Past Relational Trauma + Analytical Defense + Control Need.</li>
+                              <li>Strategy: Conscious Application of Learned Skills (Validation First) + Active Listening + Intentional Vulnerability with Asiya + Shared Growth Activities.</li>
+                              <li>Edge: Allowing emotional connection without needing to 'solve' it.</li>
+                         </ul>
+                     </li>
+                   </ul>
+              </section>
+
+             <!-- 7. Insights & Lessons - Reframed as Wisdom -->
+             <section id="insights-lessons">
+                   <h2>💡 Distilled Wisdom: Core Operating Principles</h2>
+                   <ul class="lesson-list">
+                        <li>📚 Adversity is raw data; your response algorithm determines the output (growth or stagnation).</li>
+                        <li>📚 Knowledge is potential energy; applied action converts it to kinetic progress.</li>
+                        <li>📚 Optimism is a strategic choice, not a passive feeling; it directs focus towards controllable actions.</li>
+                        <li>📚 Financial discipline isn't restriction; it's the architecture of freedom.</li>
+                        <li>📚 Relationship success is engineered through aligned values, conscious communication, and enforced boundaries.</li>
+                        <li>📚 Authenticity requires integrating the shadow – understanding the 'why' behind fears and defenses transforms them.</li>
+                        <li>📚 True power isn't external control, but internal mastery and the freedom to live by your design.</li>
+                   </ul>
+                   <div class="insight-box">
+                      <h4>Mind-Blowing Paradox: Your Drive for Control Creates Your Freedom</h4>
+                      <p>Your intense need to plan, analyze, and control your future – stemming partly from past instability – is precisely what is *creating* the financial and personal freedom you value most. By mastering the controllable, you liberate yourself from the uncontrollable.</p>
+                   </div>
+              </section>
+
+             <!-- 8. Ask Abba AI Section - With API Placeholder -->
+              <section id="ask-abba-ai">
+                   <h2>💬 Ask Abba AI: Your Personalized Resonance Chamber</h2>
+                   <p>Query your integrated life data. Ask "Why do I react this way when faced with financial requests?", "Connect my childhood feelings to my current relationship patterns," "Show my progress on the 50% savings goal," "What strategies were most effective during the 2024 job transition?"</p>
+                   <div class="query-area">
+                       <label for="ai-query">Your Question:</label>
+                       <textarea id="ai-query" name="ai-query" rows="4" placeholder="Enter your question about your patterns, goals, or insights..."></textarea>
+
+                       <!-- API Key Placeholder - Informational -->
+                       <div class="api-key-note">
+                           <strong>Note for Abba:</strong> In a functional app, your Gemini 1.5 Pro API key would be securely managed on a backend server. For this prototype, imagine it's configured securely elsewhere.
+                           <!-- Example of where an input MIGHT go in a dev setting, DO NOT USE IN PRODUCTION HTML -->
+                           <!-- <label for="api-key-input">Gemini API Key (Placeholder - Do Not Enter):</label> -->
+                           <!-- <input type="text" id="api-key-input" placeholder="API Key (Managed Securely on Backend)" disabled style="width:100%; margin-bottom:10px;"> -->
+                       </div>
+
+                       <button onclick="handleAIQuery()">Ask Abba AI</button>
+                       <div id="ai-response-area">
+                           AI response will appear here...
+                       </div>
+                   </div>
+                   <p><i>(Note: AI interaction is simulated in this static prototype.)</i></p>
+              </section>
+
+        </main>
+
+    </div>
+
+    <script>
+        // Smooth Scrolling & Active Nav State
+        document.querySelectorAll('#main-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const navHeight = document.getElementById('main-nav').offsetHeight;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - navHeight - 20; // Adjusted buffer
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                }
+                document.querySelectorAll('#main-nav a').forEach(link => link.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Simulated AI Query Handler
+        function handleAIQuery() {
+            const queryInput = document.getElementById('ai-query');
+            const responseArea = document.getElementById('ai-response-area');
+            const userQuery = queryInput.value.trim();
+
+            if (userQuery === "") {
+                responseArea.innerHTML = "<p>Please enter a question first.</p>";
+                return;
+            }
+
+            // Simulate processing and response
+            responseArea.innerHTML = `<p>Processing your question: "<em>${userQuery}</em>"...</p>`;
+
+            // **IMPORTANT:** In a real application, this is where you would securely:
+            // 1. Get the user's query.
+            // 2. Retrieve relevant context from Abba's stored data (journals, summaries - this requires backend logic).
+            // 3. Format a prompt for the Gemini API, including the user query and the relevant context.
+            // 4. Make a secure API call to the Gemini 1.5 Pro endpoint using the API key (stored securely on the backend, NOT in the browser).
+            // 5. Process the response from Gemini.
+            // 6. Display the formatted response in the 'ai-response-area'.
+
+            // Static prototype response:
+            setTimeout(() => {
+                responseArea.innerHTML = `<p><strong>Simulated Response for:</strong> "<em>${userQuery}</em>"</p>
+                                        <p>To provide a real-time, context-aware answer based on your unique data, integration with a backend system and the Gemini 1.5 Pro API is required. This prototype demonstrates the interface.</p>
+                                        <p><em>(Imagine an insightful answer here connecting your question to patterns in your journals and data...)</em></p>`;
+            }, 1500); // Simulate delay
+
+            // queryInput.value = ""; // Optional: Clear input after submission
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Migrated from https://hearty-pickle-ha6t.here.now/atlas/night-freedom/ to https://abbabk.github.io/night-freedom/ on 2026-05-12 -->
+  <link rel="canonical" href="https://abbabk.github.io/night-freedom/" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Sleep & Night Freedom Pattern</title>
+  <link rel="icon" href="data:," />
+  <style>
+    :root {
+      --bg: #080b12;
+      --panel: #101724;
+      --panel-2: #151f30;
+      --ink: #f6efe3;
+      --muted: #b8c0cd;
+      --soft: #8e98a8;
+      --line: rgba(255,255,255,.12);
+      --gold: #f7c873;
+      --amber: #ff9f5a;
+      --blue: #7fb7ff;
+      --green: #8fe3b0;
+      --rose: #ff8ea3;
+      --shadow: 0 24px 80px rgba(0,0,0,.38);
+      --radius: 28px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: var(--sans);
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 18% 10%, rgba(127,183,255,.20), transparent 35%),
+        radial-gradient(circle at 82% 0%, rgba(247,200,115,.18), transparent 32%),
+        linear-gradient(180deg, #070a11 0%, #0a0f19 45%, #070a11 100%);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    a { color: var(--gold); }
+
+    .shell {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 64px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 22px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.055);
+      backdrop-filter: blur(12px);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(28px, 5vw, 64px);
+      border: 1px solid var(--line);
+      border-radius: calc(var(--radius) + 10px);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.11), rgba(255,255,255,.035)),
+        radial-gradient(circle at 78% 25%, rgba(247,200,115,.24), transparent 30%),
+        var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -70px -120px auto;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      border: 1px solid rgba(247,200,115,.20);
+      background: radial-gradient(circle, rgba(247,200,115,.12), transparent 62%);
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    h1, h2, h3 { line-height: 1.05; margin: 0; }
+
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(44px, 8vw, 86px);
+      letter-spacing: -.055em;
+      max-width: 850px;
+    }
+
+    .subtitle {
+      font-size: clamp(18px, 2.4vw, 25px);
+      max-width: 780px;
+      color: var(--muted);
+      margin: 22px 0 0;
+    }
+
+    .hero-line {
+      margin-top: 28px;
+      padding: 18px 20px;
+      border-left: 4px solid var(--gold);
+      border-radius: 18px;
+      background: rgba(247,200,115,.10);
+      font-size: clamp(18px, 2.2vw, 24px);
+      font-weight: 750;
+      max-width: 880px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .card {
+      grid-column: span 12;
+      padding: 24px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: rgba(16,23,36,.86);
+      box-shadow: 0 16px 55px rgba(0,0,0,.22);
+    }
+
+    .span-7 { grid-column: span 7; }
+    .span-5 { grid-column: span 5; }
+    .span-6 { grid-column: span 6; }
+    .span-4 { grid-column: span 4; }
+    .span-8 { grid-column: span 8; }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .section-title .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--gold);
+      box-shadow: 0 0 24px rgba(247,200,115,.65);
+    }
+
+    h2 { font-size: clamp(25px, 3vw, 38px); letter-spacing: -.035em; }
+    h3 { font-size: 19px; letter-spacing: -.01em; margin-bottom: 8px; }
+
+    p { margin: 0 0 12px; color: var(--muted); }
+    strong { color: var(--ink); }
+
+    .quote {
+      padding: 22px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(127,183,255,.11), rgba(255,255,255,.04));
+      border: 1px solid rgba(127,183,255,.22);
+      color: #dbe9ff;
+      font-size: 18px;
+    }
+
+    .quote small {
+      display: block;
+      margin-top: 14px;
+      color: var(--soft);
+      font-size: 13px;
+    }
+
+    .loop {
+      display: grid;
+      gap: 10px;
+      counter-reset: step;
+    }
+
+    .loop-item {
+      counter-increment: step;
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .loop-item::before {
+      content: counter(step);
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(247,200,115,.14);
+      color: var(--gold);
+      font-family: var(--mono);
+      font-weight: 800;
+    }
+
+    .signal {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .metric {
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .metric b {
+      display: block;
+      font-size: 28px;
+      line-height: 1;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .metric span { color: var(--muted); font-size: 13px; }
+
+    .window {
+      padding: 24px;
+      border-radius: 28px;
+      background:
+        linear-gradient(135deg, rgba(143,227,176,.12), rgba(127,183,255,.10)),
+        rgba(255,255,255,.04);
+      border: 1px solid rgba(143,227,176,.24);
+    }
+
+    .time {
+      font-family: var(--mono);
+      color: var(--green);
+      font-size: clamp(30px, 5vw, 56px);
+      font-weight: 850;
+      letter-spacing: -.04em;
+      margin: 4px 0 12px;
+    }
+
+    ul, ol { margin: 12px 0 0; padding-left: 20px; color: var(--muted); }
+    li { margin: 7px 0; }
+
+    .protocol {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .step {
+      padding: 15px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.08);
+      color: var(--muted);
+    }
+
+    .step b { color: var(--gold); margin-right: 6px; }
+
+    .say-grid {
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .say {
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.045);
+    }
+
+    .say .mind { color: var(--rose); font-weight: 700; }
+    .say .answer { color: var(--green); font-weight: 800; margin-top: 6px; }
+
+    .copybox {
+      position: relative;
+      padding: 20px;
+      border-radius: 22px;
+      background: #070b12;
+      border: 1px solid rgba(247,200,115,.24);
+      font-family: var(--mono);
+      color: #fbe7bd;
+      margin-top: 14px;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: var(--gold);
+      color: #1d1304;
+      font-weight: 800;
+      min-height: 44px;
+    }
+
+    button.secondary {
+      background: rgba(255,255,255,.08);
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+
+    .copy-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .footer {
+      margin-top: 18px;
+      color: var(--soft);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .links {
+      display: grid;
+      gap: 10px;
+    }
+
+    .links div {
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.08);
+      color: var(--muted);
+    }
+
+    .print-note {
+      color: var(--soft);
+      font-size: 13px;
+      margin-top: 12px;
+    }
+
+    @media (max-width: 840px) {
+      .span-7, .span-5, .span-6, .span-4, .span-8 { grid-column: span 12; }
+      .signal, .protocol { grid-template-columns: 1fr; }
+      .hero { padding: 30px 22px; }
+      .topbar { align-items: flex-start; flex-direction: column; }
+    }
+
+    @media print {
+      body { background: #fff; color: #111; }
+      .hero, .card { box-shadow: none; background: #fff; color: #111; border-color: #ddd; }
+      p, li, .quote, .step, .links div { color: #333; }
+      button, .topbar { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <div class="topbar">
+      <div class="badge">🌐 Published here.now artifact</div>
+      <div class="badge">Source: Obsidian note · Created 2026-05-12</div>
+      <a class="badge" href="/">Open here.now Library</a>
+    </div>
+
+    <section class="hero">
+      <div class="eyebrow">Health · Sleep · Body Regulation</div>
+      <h1>Sleep & Night Freedom Pattern</h1>
+      <p class="subtitle">A visual copy of Abba’s sleep note: the night feels like freedom, but without structure it becomes a false life-solution window that steals tomorrow’s capability.</p>
+      <div class="hero-line">The night is for capturing insight, not executing it.</div>
+    </section>
+
+    <section class="grid">
+      <article class="card span-7">
+        <div class="section-title"><span class="dot"></span><h2>Original words from Abba</h2></div>
+        <div class="quote">
+          Thatʼs really what happened “then your mind tries to solve life at night” almost always, in the night when I have the absolute freedom I feel like i can solve life, maybe build something better, learn something better or doing somethings, some of the nights i sleep ealy I usually take pills for that, in those nights and there are some months that I remain proactive to keep phones aways by 10pm and i succefully sleep well all those days, but now I am still back not sleeping ealy until 2, or 3 am, and this also hurt my production window and tomorowʼs capability
+          <small>Preserved as written so future guidance can recognize the exact pattern.</small>
+        </div>
+      </article>
+
+      <aside class="card span-5">
+        <div class="section-title"><span class="dot"></span><h2>Hermes read</h2></div>
+        <p>This is not simple “bad sleep discipline.” It is <strong>night freedom becoming a false life-solution window</strong>.</p>
+        <p>At night, nobody is demanding from Abba. No noise. No inbox pressure. No errands. No family logistics. So the brain says:</p>
+        <div class="quote">Finally. This is my time. I can build the better life now.</div>
+        <p style="margin-top:14px">But the trap is: the night gives <strong>freedom</strong>, then silently steals <strong>tomorrow’s capacity</strong>.</p>
+      </aside>
+    </section>
+
+    <section class="grid">
+      <article class="card span-8">
+        <div class="section-title"><span class="dot"></span><h2>Why the pattern repeats</h2></div>
+        <div class="loop">
+          <div class="loop-item">Daytime pressure, work, accident stress, household tasks, or responsibility builds up.</div>
+          <div class="loop-item">Night arrives and finally feels like personal freedom.</div>
+          <div class="loop-item">The mind tries to solve life, build, learn, or recover lost control.</div>
+          <div class="loop-item">The phone stays close and keeps the loop open.</div>
+          <div class="loop-item">Sleep moves to 2–3 AM.</div>
+          <div class="loop-item">Tomorrow’s production window becomes weaker.</div>
+          <div class="loop-item">Weaker tomorrow increases pressure.</div>
+          <div class="loop-item">Pressure makes the next night feel even more necessary.</div>
+        </div>
+      </article>
+
+      <aside class="card span-4">
+        <div class="section-title"><span class="dot"></span><h2>Proven exception</h2></div>
+        <p>Abba has already proven that this pattern can be interrupted.</p>
+        <p>When he proactively keeps phones away by <strong>10 PM</strong>, he can sleep well for long stretches, even for months.</p>
+        <div class="signal">
+          <div class="metric"><b>10 PM</b><span>phone-away anchor</span></div>
+          <div class="metric"><b>2–3 AM</b><span>danger zone</span></div>
+          <div class="metric"><b>1 hr</b><span>freedom window</span></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="grid">
+      <article class="card span-6">
+        <div class="section-title"><span class="dot"></span><h2>Core recommendation</h2></div>
+        <p>Do not try to kill the night ambition. <strong>Move it earlier.</strong></p>
+        <div class="window">
+          <h3>Protected Freedom Window</h3>
+          <div class="time">9:00 PM → 10:00 PM</div>
+          <p>This is the life-solving window. After 10 PM, the phone leaves.</p>
+        </div>
+        <ul>
+          <li>write ideas</li>
+          <li>plan tomorrow</li>
+          <li>save links</li>
+          <li>sketch what to build</li>
+          <li>ask Hermes to queue overnight work</li>
+          <li>capture what the mind is afraid to lose</li>
+        </ul>
+      </article>
+
+      <article class="card span-6">
+        <div class="section-title"><span class="dot"></span><h2>Shutdown protocol</h2></div>
+        <p>At <strong>10 PM</strong>, stop negotiating and close the watch.</p>
+        <div class="protocol">
+          <div class="step"><b>1</b>Write tomorrow’s top 3 tasks.</div>
+          <div class="step"><b>2</b>Put all open loops into one parking note.</div>
+          <div class="step"><b>3</b>Move the phone away from bed or room.</div>
+          <div class="step"><b>4</b>Stop all work scanning.</div>
+          <div class="step"><b>5</b>Dim or turn off the main light.</div>
+          <div class="step"><b>6</b>Do 5 slow neck rolls or breathing cycles.</div>
+          <div class="step"><b>7</b>Brief check-in with Asiya if needed.</div>
+          <div class="step"><b>8</b>Sleep without closing every loop.</div>
+        </div>
+      </article>
+    </section>
+
+    <section class="grid">
+      <article class="card span-7">
+        <div class="section-title"><span class="dot"></span><h2>What to say when the urge comes</h2></div>
+        <div class="say-grid">
+          <div class="say"><div class="mind">Mind: I can build something better tonight.</div><div class="answer">Answer: Hermes can hold the work. I need to hold tomorrow.</div></div>
+          <div class="say"><div class="mind">Mind: I can solve life now.</div><div class="answer">Answer: This is vigilance, not vision.</div></div>
+          <div class="say"><div class="mind">Mind: Just one more thing.</div><div class="answer">Answer: One more thing is how tomorrow gets stolen.</div></div>
+        </div>
+      </article>
+
+      <aside class="card span-5">
+        <div class="section-title"><span class="dot"></span><h2>Delegation replacement</h2></div>
+        <p>Instead of late-night execution, send Hermes the idea before 10 PM and ask for one of these:</p>
+        <ul>
+          <li>turn this into tomorrow’s top task</li>
+          <li>save this as an Obsidian note</li>
+          <li>make this a WLC action</li>
+          <li>park this in a build plan</li>
+          <li>create an overnight research or cron job</li>
+          <li>decide if this is urgent, useful, or just night-vigilance</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="grid">
+      <article class="card span-6">
+        <div class="section-title"><span class="dot"></span><h2>Next-time help prompt</h2></div>
+        <p>When Abba feels the night pattern starting, tell Hermes:</p>
+        <div class="copybox" id="promptText">Night freedom is starting. Help me park the ideas and shut down.</div>
+        <div class="copy-actions">
+          <button onclick="copyPrompt()">Copy prompt</button>
+          <button class="secondary" onclick="window.print()">Print / Save PDF</button>
+        </div>
+        <p class="print-note">Hermes should then capture open loops, pick tomorrow’s top 3, refuse new execution unless truly urgent, and remind Abba that tomorrow’s capability is the asset being protected.</p>
+      </article>
+
+      <article class="card span-6">
+        <div class="section-title"><span class="dot"></span><h2>Pills note</h2></div>
+        <p>Pills should not become the main shutdown architecture unless they are prescribed or medically advised.</p>
+        <p>The proven daily architecture is simpler and safer:</p>
+        <div class="quote"><strong>Phone away by 10 PM + captured ideas + no execution + sleep boundary.</strong></div>
+        <p style="margin-top:14px">If medication is involved, follow proper medical guidance and avoid turning it into the only way sleep happens.</p>
+      </article>
+    </section>
+
+    <section class="grid">
+      <article class="card span-8">
+        <div class="section-title"><span class="dot"></span><h2>Sentence to remember</h2></div>
+        <div class="quote" style="font-size:clamp(24px,3vw,36px); color:var(--ink); font-weight:850; line-height:1.18;">
+          You don’t lose your freedom by sleeping early. You move your freedom into tomorrow with a stronger body.
+        </div>
+      </article>
+
+      <aside class="card span-4">
+        <div class="section-title"><span class="dot"></span><h2>Related notes</h2></div>
+        <div class="links">
+          <div>Sleep Intervention 😴</div>
+          <div>Work Boundary Rule for Presence</div>
+          <div>Health, Body & Energy Regulation</div>
+          <div>2026-05 Daily Proof</div>
+        </div>
+      </aside>
+    </section>
+
+    <div class="footer">
+      Published here.now artifact · Generated from Obsidian Markdown copy · Stored under Resources / Personal / Health / Sleep
+    </div>
+  </main>
+
+  <script>
+    async function copyPrompt() {
+      const text = document.getElementById('promptText').innerText.trim();
+      try {
+        await navigator.clipboard.writeText(text);
+        event.target.textContent = 'Copied';
+        setTimeout(() => event.target.textContent = 'Copy prompt', 1400);
+      } catch (err) {
+        alert(text);
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Migrated from https://hearty-pickle-ha6t.here.now/atlas/apps/growth-app/ to https://abbabk.github.io/apps/growth-app/ on 2026-05-12 -->
+  <link rel="canonical" href="https://abbabk.github.io/apps/growth-app/" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unlock Your Growth</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        :root {
+            --bg-gradient-start: #6a11cb;
+            --bg-gradient-end: #2575fc;
+            --node-color-start: #ffdde1;
+            --node-color-end: #ee9ca7;
+            --node-glow: rgba(255, 221, 225, 0.7);
+            --text-color: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.15);
+            --card-border: rgba(255, 255, 255, 0.3);
+            --highlight-color: #fdd835; /* Yellow for highlight */
+            --shadow-light: rgba(0, 0, 0, 0.1);
+            --shadow-dark: rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            flex-direction: column; /* Stack elements vertically */
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+            color: var(--text-color);
+            overflow: hidden; /* Prevent scrollbars from minor overflows */
+            padding: 20px;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px var(--shadow-dark);
+        }
+
+        .instructions {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        /* Area for interactive nodes */
+        .interactive-area {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap; /* Allow nodes to wrap on smaller screens */
+            gap: 40px; /* Space between nodes */
+            margin-bottom: 40px;
+            min-height: 150px; /* Ensure space even if nodes wrap */
+            perspective: 1000px; /* For 3D effects if added later */
+        }
+
+        /* Individual learning nodes */
+        .node {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--node-color-start), var(--node-color-end));
+            box-shadow: 0 0 15px 5px var(--node-glow), 0 4px 10px var(--shadow-light);
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem; /* For potential icon later */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: pulse 2.5s infinite ease-in-out;
+        }
+
+        /* Hover effect */
+        .node:hover {
+            transform: scale(1.15) translateY(-5px);
+            box-shadow: 0 0 25px 10px var(--node-glow), 0 8px 15px var(--shadow-dark);
+            animation-play-state: paused; /* Pause pulse on hover */
+        }
+
+        /* Clicked effect (added via JS) */
+         .node.active {
+            animation: pop 0.4s ease forwards;
+            box-shadow: 0 0 30px 12px var(--highlight-color), 0 6px 12px var(--shadow-dark); /* Highlight glow */
+         }
+
+        /* Pulse animation */
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.9;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+        }
+
+        /* Pop animation on click */
+        @keyframes pop {
+             0% { transform: scale(1.15); } /* Start from hover scale */
+             50% { transform: scale(0.9); }
+             100% { transform: scale(1.05); } /* Settle slightly larger */
+        }
+
+
+        /* Area to display the revealed secret */
+        .secret-display {
+            background: var(--card-bg);
+            padding: 25px 35px;
+            border-radius: 15px;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 8px 32px 0 var(--shadow-light);
+            backdrop-filter: blur(10px); /* Frosted glass effect */
+            -webkit-backdrop-filter: blur(10px);
+            max-width: 600px;
+            margin: 0 auto; /* Center the card */
+            opacity: 0; /* Initially hidden */
+            transform: translateY(30px) scale(0.95); /* Initial state for animation */
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+            min-height: 100px; /* Ensure it has some height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .secret-display.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1); /* Animate into view */
+        }
+
+        #secret-text {
+            font-size: 1.2rem;
+            font-weight: 400;
+            line-height: 1.7;
+            text-align: center;
+        }
+
+         /* Simple responsiveness */
+         @media (max-width: 600px) {
+             h1 { font-size: 2.2rem; }
+             .instructions { font-size: 1rem; margin-bottom: 30px;}
+             .node { width: 65px; height: 65px; }
+             .interactive-area { gap: 30px; margin-bottom: 30px;}
+             .secret-display { padding: 20px 25px; }
+             #secret-text { font-size: 1.1rem; }
+         }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Unlock Your Growth</h1>
+        <p class="instructions">Click on a learning node to reveal a secret to success!</p>
+
+        <div class="interactive-area">
+            <!-- Nodes - linked to secrets via data-key -->
+            <div class="node" data-key="curiosity"></div>
+            <div class="node" data-key="persistence"></div>
+            <div class="node" data-key="action"></div>
+            <div class="node" data-key="humility"></div>
+            <div class="node" data-key="sharing"></div>
+            <div class="node" data-key="reflection"></div>
+        </div>
+
+        <div class="secret-display" id="secret-card">
+            <p id="secret-text">Your journey begins here...</p>
+        </div>
+    </div>
+
+    <script>
+        // Pre-defined secrets linked to learning and growth
+        const secrets = {
+            curiosity: "Embrace Curiosity: The more you ask 'Why?', the deeper you understand. Never stop exploring.",
+            persistence: "Persistence Pays Off: Challenges are learning opportunities. Don't give up when it gets tough; adapt and overcome.",
+            action: "Learn by Doing: Knowledge is potential, action is power. Apply what you learn immediately to truly grasp it.",
+            humility: "Stay Humble & Open: Recognize that there's always more to discover. Be open to new ideas and perspectives.",
+            sharing: "Teach to Learn: Explaining concepts to others solidifies your own understanding like nothing else.",
+            reflection: "Reflect Regularly: Pause to think about what you've learned, how you learned it, and what comes next."
+        };
+
+        // Get references to DOM elements
+        const interactiveArea = document.querySelector('.interactive-area');
+        const allNodes = document.querySelectorAll('.node');
+        const secretCard = document.getElementById('secret-card');
+        const secretTextElement = document.getElementById('secret-text');
+
+        // Add event listener using event delegation on the parent area
+        interactiveArea.addEventListener('click', (event) => {
+            // Check if the clicked element is a node
+            if (event.target.classList.contains('node')) {
+                const clickedNode = event.target;
+                const secretKey = clickedNode.dataset.key; // Get the key from data-key attribute
+
+                if (secretKey && secrets[secretKey]) {
+                    // --- Update Secret Display ---
+                    // 1. Set the text
+                    secretTextElement.textContent = secrets[secretKey];
+                    // 2. Make the card visible (triggers CSS transition)
+                    secretCard.classList.add('visible');
+
+                    // --- Update Node Appearance ---
+                    // 1. Remove 'active' class from all nodes first
+                    allNodes.forEach(node => node.classList.remove('active'));
+                    // 2. Add 'active' class to the clicked node (triggers CSS animation)
+                    clickedNode.classList.add('active');
+
+                    // Optional: Remove the 'active' class after animation completes
+                    // This helps if the user clicks the same node again later
+                     // The pop animation is 0.4s
+                    setTimeout(() => {
+                        // Only remove if it's still the active node (user might click fast)
+                        if(clickedNode.classList.contains('active')) {
+                             // Keep a subtle visual difference maybe, or just reset fully
+                             // For now, let's just keep the last clicked slightly highlighted
+                             // If you want it to fully reset uncomment below:
+                             // clickedNode.classList.remove('active');
+                        }
+                    }, 400); // Match animation duration
+
+                } else {
+                    // Fallback if key is missing or invalid (shouldn't happen with current setup)
+                    secretTextElement.textContent = "Select a node to reveal a secret.";
+                    secretCard.classList.remove('visible'); // Hide if invalid
+                }
+            }
+        });
+
+        // Initial state - hide card slightly delayed for effect if needed
+        // Or keep it simple and let CSS handle initial state (opacity: 0)
+        // secretCard.classList.remove('visible');
+
+    </script>
+</body>
+</html>

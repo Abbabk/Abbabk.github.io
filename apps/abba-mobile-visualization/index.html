@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Migrated from https://hearty-pickle-ha6t.here.now/atlas/apps/abba-mobile-visualization/ to https://abbabk.github.io/apps/abba-mobile-visualization/ on 2026-05-12 -->
+  <link rel="canonical" href="https://abbabk.github.io/apps/abba-mobile-visualization/" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abba's Life Journey Visualization</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Custom styles can be added here if needed, but prefer Tailwind classes */
+        body {
+            font-family: 'Inter', sans-serif; /* Using Inter font from Tailwind's default */
+        }
+        /* Ensure canvas elements are responsive */
+        canvas {
+            max-width: 100%;
+            height: auto;
+        }
+        /* Style for table header */
+        th {
+            background-color: #4a5568; /* Tailwind gray-700 */
+            color: white;
+        }
+        /* Add alternating row colors for better readability */
+        #statsTable tr:nth-child(even) {
+            background-color: #f7fafc; /* Tailwind gray-100 */
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-4 md:p-8">
+
+    <h1 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-8">Abba's Life Journey (2019-2024)</h1>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white p-4 md:p-6 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold text-center text-gray-700 mb-4">Trend Over Time</h2>
+            <canvas id="lineChart"></canvas>
+        </div>
+
+        <div class="bg-white p-4 md:p-6 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold text-center text-gray-700 mb-4">Yearly Comparison</h2>
+            <canvas id="barChart"></canvas>
+        </div>
+
+        <div class="bg-white p-4 md:p-6 rounded-lg shadow-md lg:col-span-2">
+             <h2 class="text-xl font-semibold text-center text-gray-700 mb-4">Cumulative Growth</h2>
+             <canvas id="areaChart"></canvas>
+        </div>
+    </div>
+
+    <div id="stats" class="bg-white p-4 md:p-6 rounded-lg shadow-md overflow-x-auto">
+        <h2 class="text-xl font-semibold text-center text-gray-700 mb-4">Statistical Analysis (% Growth)</h2>
+        <div class="overflow-x-auto">
+             <table id="statsTable" class="w-full min-w-[600px] border-collapse text-sm md:text-base">
+                 <thead>
+                     <tr>
+                         <th class="border border-gray-300 px-3 py-2 text-left">Metric</th>
+                         <th class="border border-gray-300 px-3 py-2">2019-20</th>
+                         <th class="border border-gray-300 px-3 py-2">2020-21</th>
+                         <th class="border border-gray-300 px-3 py-2">2021-22</th>
+                         <th class="border border-gray-300 px-3 py-2">2022-23</th>
+                         <th class="border border-gray-300 px-3 py-2">2023-24</th>
+                         <th class="border border-gray-300 px-3 py-2">Avg. Growth</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                     </tbody>
+             </table>
+        </div>
+    </div>
+
+    <script>
+        // --- Data Setup ---
+        const years = [2019, 2020, 2021, 2022, 2023, 2024];
+        // Your life journey data points (example values)
+        const data = {
+            financial: [10, 15, 20, 25, 80, 90],    // Example: Financial growth score/index
+            learning: [20, 30, 50, 70, 85, 95],     // Example: Learning efficiency/knowledge score
+            career: [10, 20, 30, 50, 80, 90],       // Example: Career progress score/level
+            personal: [15, 25, 40, 60, 75, 85]      // Example: Personal development score
+        };
+
+        // --- Statistical Calculations ---
+        const stats = {
+            financial: [],
+            learning: [],
+            career: [],
+            personal: []
+        };
+        const avgGrowth = {};
+
+        // Calculate year-over-year percentage growth for each metric
+        for (let metric in data) {
+            stats[metric] = []; // Initialize array for the metric's growth percentages
+            for (let i = 1; i < data[metric].length; i++) {
+                const prevValue = data[metric][i-1];
+                const currentValue = data[metric][i];
+                // Handle potential division by zero or starting from zero
+                const change = (prevValue === 0)
+                    ? (currentValue === 0 ? 0 : Infinity) // Or handle as 100% if starting from 0 to non-zero
+                    : ((currentValue - prevValue) / prevValue * 100);
+                stats[metric].push(change.toFixed(1)); // Store formatted percentage change
+            }
+            // Calculate the average growth percentage for the metric
+            const validGrowthRates = stats[metric].filter(rate => isFinite(rate)).map(rate => parseFloat(rate));
+            avgGrowth[metric] = validGrowthRates.length > 0
+                ? (validGrowthRates.reduce((a, b) => a + b, 0) / validGrowthRates.length).toFixed(1)
+                : 'N/A'; // Handle case with no valid growth rates
+        }
+
+        // --- Populate Statistics Table ---
+        const tableBody = document.querySelector('#statsTable tbody');
+        tableBody.innerHTML = ''; // Clear existing rows if any
+
+        for (let metric in stats) {
+            const row = tableBody.insertRow();
+            // Metric Name Cell
+            const metricCell = row.insertCell();
+            metricCell.textContent = metric.charAt(0).toUpperCase() + metric.slice(1); // Capitalize metric name
+            metricCell.classList.add('border', 'border-gray-300', 'px-3', 'py-2', 'font-medium', 'text-gray-700');
+
+            // Yearly Growth Cells
+            stats[metric].forEach(change => {
+                const cell = row.insertCell();
+                cell.textContent = isFinite(change) ? change + '%' : 'N/A'; // Display growth or N/A
+                cell.classList.add('border', 'border-gray-300', 'px-3', 'py-2', 'text-center');
+            });
+
+            // Average Growth Cell
+            const avgCell = row.insertCell();
+            avgCell.textContent = avgGrowth[metric] + (avgGrowth[metric] !== 'N/A' ? '%' : ''); // Add % if it's a number
+            avgCell.classList.add('border', 'border-gray-300', 'px-3', 'py-2', 'text-center', 'font-semibold');
+        }
+
+        // --- Chart.js Configurations ---
+        const chartOptions = {
+            responsive: true, // Make charts responsive
+            maintainAspectRatio: false, // Allow charts to adjust aspect ratio
+            plugins: {
+                legend: {
+                    position: 'top', // Position legend at the top
+                },
+                title: {
+                    display: false // We have titles in the card headers already
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true // Start Y-axis at 0
+                }
+            }
+        };
+
+        const lineChartColors = {
+            financial: '#ef4444', // red-500
+            learning: '#3b82f6', // blue-500
+            career: '#f59e0b', // amber-500
+            personal: '#10b981' // emerald-500
+        };
+
+        const barChartColors = {
+            financial: 'rgba(239, 68, 68, 0.7)', // red-500 with opacity
+            learning: 'rgba(59, 130, 246, 0.7)', // blue-500 with opacity
+            career: 'rgba(245, 158, 11, 0.7)', // amber-500 with opacity
+            personal: 'rgba(16, 185, 129, 0.7)' // emerald-500 with opacity
+        };
+
+         const areaChartColors = {
+            financial: { border: '#ef4444', background: 'rgba(239, 68, 68, 0.2)' },
+            learning: { border: '#3b82f6', background: 'rgba(59, 130, 246, 0.2)' },
+            career: { border: '#f59e0b', background: 'rgba(245, 158, 11, 0.2)' },
+            personal: { border: '#10b981', background: 'rgba(16, 185, 129, 0.2)' }
+        };
+
+
+        // --- Initialize Charts ---
+
+        // Line Chart Instance
+        new Chart(document.getElementById('lineChart'), {
+            type: 'line',
+            data: {
+                labels: years,
+                datasets: Object.keys(data).map(metric => ({
+                    label: metric.charAt(0).toUpperCase() + metric.slice(1),
+                    data: data[metric],
+                    borderColor: lineChartColors[metric],
+                    tension: 0.1, // Slight curve to lines
+                    fill: false
+                }))
+            },
+            options: { ...chartOptions } // Use common options
+        });
+
+        // Bar Chart Instance
+        new Chart(document.getElementById('barChart'), {
+            type: 'bar',
+            data: {
+                labels: years,
+                datasets: Object.keys(data).map(metric => ({
+                    label: metric.charAt(0).toUpperCase() + metric.slice(1),
+                    data: data[metric],
+                    backgroundColor: barChartColors[metric]
+                }))
+            },
+            options: { ...chartOptions } // Use common options
+        });
+
+        // Area Chart Instance
+        new Chart(document.getElementById('areaChart'), {
+            type: 'line', // Area charts are a type of line chart with fill enabled
+            data: {
+                labels: years,
+                datasets: Object.keys(data).map(metric => ({
+                    label: metric.charAt(0).toUpperCase() + metric.slice(1),
+                    data: data[metric],
+                    borderColor: areaChartColors[metric].border,
+                    backgroundColor: areaChartColors[metric].background,
+                    tension: 0.1,
+                    fill: true // Fill the area under the line
+                }))
+            },
+            options: { ...chartOptions } // Use common options
+        });
+    </script>
+</body>
+</html>

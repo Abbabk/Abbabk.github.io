@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Migrated from https://hearty-pickle-ha6t.here.now/atlas/query-patterns/ to https://abbabk.github.io/query-patterns/ on 2026-05-12 -->
+  <link rel="canonical" href="https://abbabk.github.io/query-patterns/" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Abba Query Pattern Analysis — 2026-05-12</title>
+<link rel="icon" href="data:," />
+<style>
+:root {
+  --bg:#0b0f14; --panel:#111822; --panel2:#15202d; --text:#edf4ff; --muted:#99a8ba;
+  --line:#243244; --accent:#70e1bd; --accent2:#8ea7ff; --warn:#f7c76a; --pink:#ff8db3;
+  --shadow: 0 20px 60px rgba(0,0,0,.35);
+}
+* { box-sizing:border-box; }
+body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Arial,sans-serif; background:radial-gradient(circle at top left, rgba(112,225,189,.16), transparent 32rem), radial-gradient(circle at 85% 5%, rgba(142,167,255,.18), transparent 28rem), var(--bg); color:var(--text); line-height:1.65; }
+a { color:var(--accent); }
+.layout { display:grid; grid-template-columns: 280px minmax(0,1fr); gap:28px; max-width:1380px; margin:0 auto; padding:28px; }
+aside { position:sticky; top:20px; align-self:start; background:rgba(17,24,34,.82); border:1px solid var(--line); border-radius:24px; padding:18px; box-shadow:var(--shadow); backdrop-filter: blur(14px); max-height:calc(100vh - 40px); overflow:auto; }
+main { min-width:0; }
+.badge { display:inline-flex; gap:8px; align-items:center; padding:7px 10px; border-radius:999px; border:1px solid rgba(112,225,189,.35); background:rgba(112,225,189,.08); color:var(--accent); font-weight:700; font-size:12px; letter-spacing:.04em; text-transform:uppercase; }
+.hero { background:linear-gradient(135deg, rgba(21,32,45,.94), rgba(17,24,34,.86)); border:1px solid var(--line); border-radius:30px; padding:36px; box-shadow:var(--shadow); overflow:hidden; position:relative; }
+.hero:after { content:""; position:absolute; right:-80px; top:-90px; width:260px; height:260px; border-radius:50%; background:rgba(112,225,189,.10); filter:blur(2px); }
+h1 { font-size:clamp(34px, 5vw, 64px); line-height:1.02; margin:18px 0 14px; letter-spacing:-.055em; }
+.subtitle { color:var(--muted); font-size:18px; max-width:850px; margin:0 0 22px; }
+.actions { display:flex; gap:10px; flex-wrap:wrap; margin-top:22px; }
+button,.button { appearance:none; border:1px solid var(--line); background:#172232; color:var(--text); border-radius:14px; padding:10px 14px; font-weight:700; cursor:pointer; text-decoration:none; }
+button:hover,.button:hover { border-color:var(--accent); }
+.metrics { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:14px; margin:22px 0; }
+.metric { background:rgba(17,24,34,.82); border:1px solid var(--line); border-radius:20px; padding:18px; }
+.metric span { color:var(--muted); display:block; font-size:13px; }
+.metric strong { display:block; font-size:30px; line-height:1.1; margin:8px 0; letter-spacing:-.03em; }
+.metric small { color:#b7c4d6; }
+.grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin:22px 0; }
+.panel { background:rgba(17,24,34,.78); border:1px solid var(--line); border-radius:24px; padding:22px; box-shadow:0 10px 30px rgba(0,0,0,.18); }
+.panel h2 { margin-top:0; }
+.bar-row { margin:14px 0; }
+.bar-label { display:flex; justify-content:space-between; gap:14px; font-size:14px; color:#dbe7f7; }
+.bar-label b { color:var(--accent); }
+.bar-track { height:10px; background:#0c121a; border:1px solid #243244; border-radius:999px; overflow:hidden; margin-top:6px; }
+.bar-fill { height:100%; background:linear-gradient(90deg,var(--accent),var(--accent2)); border-radius:999px; }
+.nav-title { color:var(--muted); font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:.08em; margin:12px 0; }
+nav a { display:block; color:#c8d5e7; text-decoration:none; padding:7px 8px; border-radius:10px; font-size:14px; }
+nav a:hover { background:#172232; color:white; }
+.content { background:rgba(17,24,34,.72); border:1px solid var(--line); border-radius:30px; padding:34px; margin-top:24px; box-shadow:var(--shadow); }
+.content h1 { display:none; }
+.content h2 { margin-top:42px; padding-top:18px; border-top:1px solid var(--line); font-size:28px; letter-spacing:-.03em; }
+.content h2:first-of-type { margin-top:0; border-top:0; padding-top:0; }
+.content h3 { color:#dce8f8; margin-top:28px; }
+p { color:#d5dfec; }
+ul { padding-left:1.2rem; }
+li { margin:7px 0; color:#d5dfec; }
+strong { color:#fff; }
+blockquote { margin:18px 0; padding:18px 20px; border-left:4px solid var(--accent); background:rgba(112,225,189,.08); border-radius:0 16px 16px 0; color:#eefbf7; font-size:18px; }
+code { background:#0a1119; border:1px solid #263449; padding:2px 5px; border-radius:7px; color:#bfe7ff; }
+.callout { border:1px solid rgba(247,199,106,.35); background:rgba(247,199,106,.08); color:#ffe6a8; border-radius:20px; padding:16px 18px; margin-top:18px; }
+.footer { color:var(--muted); font-size:13px; margin:28px 0 0; }
+@media (max-width: 980px) { .layout { grid-template-columns:1fr; padding:16px; } aside { position:relative; top:auto; max-height:none; } .metrics,.grid { grid-template-columns:1fr; } .hero,.content { padding:24px; } }
+@media print { body { background:#fff; color:#111; } aside,.actions { display:none; } .layout { display:block; max-width:none; padding:0; } .hero,.content,.panel,.metric { box-shadow:none; border-color:#ddd; background:#fff; color:#111; } p,li,.subtitle,.metric small,.metric span { color:#333; } strong,h1,h2,h3 { color:#111; } }
+</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+  <span class="badge">Private / Local</span>
+  <div class="nav-title">Artifact</div>
+  <p><a href="/" style="font-size:14px;">Open here.now Library</a></p>
+  <p style="color:var(--muted); font-size:14px; margin-top:0;">HTML copy of the Obsidian report. Aggregate-only, no raw message dump.</p>
+  <div class="nav-title">Jump to</div>
+  <nav><a href="#executive-verdict">Executive verdict</a><a href="#source-and-limits">Source and limits</a><a href="#high-level-metrics">High-level metrics</a><a href="#dominant-domains">Dominant domains</a><a href="#dominant-intents">Dominant intents</a><a href="#control-signals">Control signals</a><a href="#friction-map">Friction map</a><a href="#weekly-drift">Weekly drift</a><a href="#abba-s-implicit-product-requirements-for-hermes">Abba’s implicit product requirements for Hermes</a><a href="#the-deepest-pattern">The deepest pattern</a><a href="#risk-where-hermes-can-still-fail-abba">Risk: where Hermes can still fail Abba</a><a href="#recommended-routing-rules">Recommended routing rules</a><a href="#what-hermes-should-do-differently-because-of-this-report">What Hermes should do differently because of this report</a><a href="#useful-future-analyses">Useful future analyses</a><a href="#bottom-line">Bottom line</a></nav>
+</aside>
+<main>
+<section class="hero">
+  <span class="badge">Source-backed report</span>
+  <h1>Abba Query Pattern Analysis</h1>
+  <p class="subtitle">A visual HTML artifact generated from the Obsidian report. It shows how Abba uses Hermes as an operating layer: local-first, proof-carrying, lane-aware, and low-noise.</p>
+  <div class="actions">
+    <button onclick="window.print()">Print / Save PDF</button>
+    <button onclick="navigator.clipboard.writeText(document.getElementById('copyPrompt').textContent).then(()=>alert('Prompt copied'))">Copy next analysis prompt</button>
+  </div>
+  <div id="copyPrompt" hidden>Analyze Abba&#x27;s Hermes-facing queries using the local Discrawl archive. Keep it aggregate-only: no raw private message dump. Produce domain counts, intent counts, friction clusters, routing lessons, risks, and operating rules for Hermes. Preserve source limits and separate Discrawl, QMD/Obsidian, Mai Tsara, YNAB, and browser lanes.</div>
+</section>
+<section class="metrics"><article class="metric"><span>Messages analyzed</span><strong>3,391</strong><small>Abba-authored Discord messages</small></article>
+<article class="metric"><span>Active days</span><strong>52</strong><small>days with Hermes-facing queries</small></article>
+<article class="metric"><span>Question-mark messages</span><strong>1,272</strong><small>explicit question-shaped asks</small></article>
+<article class="metric"><span>Median length</span><strong>12 words</strong><small>short command style dominates</small></article>
+<article class="metric"><span>Long queries</span><strong>324</strong><small>50+ word complex instructions</small></article>
+<article class="metric"><span>Source span</span><strong>Mar 21 → May 12</strong><small>2026 Discrawl archive window</small></article></section>
+<section class="grid">
+  <div class="panel"><h2>Dominant domains</h2><div class="bar-row"><div class="bar-label"><span>Hermes core and toolchain</span><b>1053</b></div><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div></div>
+<div class="bar-row"><div class="bar-label"><span>Obsidian and durable memory</span><b>380</b></div><div class="bar-track"><div class="bar-fill" style="width:36%"></div></div></div>
+<div class="bar-row"><div class="bar-label"><span>Email and briefings</span><b>296</b></div><div class="bar-track"><div class="bar-fill" style="width:28%"></div></div></div>
+<div class="bar-row"><div class="bar-label"><span>Mac/local system and storage</span><b>259</b></div><div class="bar-track"><div class="bar-fill" style="width:25%"></div></div></div>
+<div class="bar-row"><div class="bar-label"><span>Money, career, opportunities</span><b>205</b></div><div class="bar-track"><div class="bar-fill" style="width:19%"></div></div></div>
+<div class="bar-row"><div class="bar-label"><span>Work execution: fbCAT, Canva, RWS, Hausa</span><b>203</b></div><div class="bar-track"><div class="bar-fill" style="width:19%"></div></div></div>
+<div class="bar-row"><div class="bar-label"><span>Life analysis, identity, family</span><b>194</b></div><div class="bar-track"><div class="bar-fill" style="width:18%"></div></div></div>
+<div class="bar-row"><div class="bar-label"><span>Mai Tsara and Life Dashboard</span><b>161</b></div><div class="bar-track"><div class="bar-fill" style="width:15%"></div></div></div></div>
+  <div class="panel"><h2>Friction clusters</h2><div class="bar-row"><div class="bar-label"><span>search and memory retrieval gaps</span><b>357</b></div><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div></div>
+<div class="bar-row"><div class="bar-label"><span>proof and false-success prevention</span><b>354</b></div><div class="bar-track"><div class="bar-fill" style="width:99%"></div></div></div>
+<div class="bar-row"><div class="bar-label"><span>tool overlap / install decisions</span><b>335</b></div><div class="bar-track"><div class="bar-fill" style="width:94%"></div></div></div>
+<div class="bar-row"><div class="bar-label"><span>communication routing and alert noise</span><b>321</b></div><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div></div>
+<div class="bar-row"><div class="bar-label"><span>config/restart/live-state uncertainty</span><b>259</b></div><div class="bar-track"><div class="bar-fill" style="width:73%"></div></div></div>
+<div class="bar-row"><div class="bar-label"><span>work localization review precision</span><b>207</b></div><div class="bar-track"><div class="bar-fill" style="width:58%"></div></div></div>
+<div class="bar-row"><div class="bar-label"><span>life-context grounding</span><b>176</b></div><div class="bar-track"><div class="bar-fill" style="width:49%"></div></div></div>
+<div class="bar-row"><div class="bar-label"><span>money/work proof and ROI</span><b>129</b></div><div class="bar-track"><div class="bar-fill" style="width:36%"></div></div></div></div>
+</section>
+<section class="panel callout"><strong>Core reading:</strong> Abba does not use Hermes like a chatbot. He uses Hermes as an operating layer: inspect, act, verify, remember, route, and protect the system from clutter.</section>
+<article class="content"><h1 id="abba-query-pattern-analysis-2026-05-12">Abba Query Pattern Analysis — 2026-05-12</h1>
+<h2 id="executive-verdict">Executive verdict</h2>
+<p>Abba does not use Hermes like a chatbot. Abba uses Hermes as an <strong>operating layer</strong>: a local-first executor, memory scout, proof collector, workflow debugger, and life-system bridge.</p>
+<p>The repeated query shape is not “answer this.” It is closer to:</p>
+<blockquote>Understand the context, act safely, prove the result, reduce future mental load, and do not create clutter.</blockquote>
+<p>That is the design center Hermes should optimize for.</p>
+<h2 id="source-and-limits">Source and limits</h2>
+<p>This report analyzes Abba-authored messages from the local Discrawl archive.</p>
+<ul>
+<li><strong>Source DB:</strong> <code>/Users/abbakanwa/Library/Application Support/discrawl/discrawl.db</code></li>
+<li><strong>User messages analyzed:</strong> 3391</li>
+<li><strong>Date range:</strong> 2026-03-21T12:51:11.057Z → 2026-05-12T00:34:21.646Z</li>
+<li><strong>Active days:</strong> 52</li>
+<li><strong>Channels included:</strong> Hermes Ops, Obsidian Notes, Mail Briefing, fbCAT Translator, Hermes Alerts</li>
+<li><strong>Excluded by default:</strong> Telegram, non-archived Discord history, browser form inputs, Mai Tsara private rows, Obsidian note bodies, Gmail, and raw terminal logs</li>
+</ul>
+<p>This is therefore a strong analysis of <strong>Hermes-facing Discord work</strong>, not a complete analysis of every private thought or every message Abba has ever sent.</p>
+<h2 id="high-level-metrics">High-level metrics</h2>
+<ul>
+<li><strong>Messages:</strong> 3391</li>
+<li><strong>Messages with question marks:</strong> 1272</li>
+<li><strong>Average length:</strong> 21.55 words</li>
+<li><strong>Median length:</strong> 12 words</li>
+<li><strong>Short commands, ≤8 words:</strong> 1272</li>
+<li><strong>Long queries, ≥50 words:</strong> 324</li>
+</ul>
+<p>Channel distribution:</p>
+<ul>
+<li><strong>🤖-hermes-ops:</strong> 2600 messages</li>
+<li><strong>✍️-obsidian-notes-📝:</strong> 622 messages</li>
+<li><strong>📩-mail-briefing:</strong> 85 messages</li>
+<li><strong>fbcat-translator:</strong> 66 messages</li>
+<li><strong>🔔-hermes-alerts:</strong> 18 messages</li>
+</ul>
+<h2 id="dominant-domains">Dominant domains</h2>
+<ul>
+<li><strong>Hermes core and toolchain:</strong> 1053</li>
+<li><strong>Obsidian and durable memory:</strong> 380</li>
+<li><strong>Email and briefings:</strong> 296</li>
+<li><strong>Mac/local system and storage:</strong> 259</li>
+<li><strong>Money, career, opportunities:</strong> 205</li>
+<li><strong>Work execution: fbCAT, Canva, RWS, Hausa:</strong> 203</li>
+<li><strong>Life analysis, identity, family:</strong> 194</li>
+<li><strong>Mai Tsara and Life Dashboard:</strong> 161</li>
+</ul>
+<p>Interpretation:</p>
+<ul>
+<li><strong>Hermes core/toolchain dominates.</strong> Abba is not merely using Hermes; he is continuously shaping the assistant, its tools, its memory, and its operating boundaries.</li>
+<li><strong>Obsidian and memory are the durable canon lane.</strong> Query patterns show repeated concern with retrieval, indexing, duplicate control, source grounding, and long-term structure.</li>
+<li><strong>Email/briefings and work ops are practical ROI lanes.</strong> Abba repeatedly asks Hermes to convert communication and task surfaces into clean operational output.</li>
+<li><strong>Mai Tsara is rising.</strong> It appears later but with strategic importance: the Life Dashboard is becoming the live-state layer beside Obsidian.</li>
+<li><strong>Mac/local system queries are infrastructure maintenance.</strong> Storage, Spotlight, caches, local tools, and browser lanes matter because the Mac is the workstation for the whole system.</li>
+</ul>
+<h2 id="dominant-intents">Dominant intents</h2>
+<ul>
+<li><strong>ask/status check:</strong> 2281</li>
+<li><strong>execute/proceed:</strong> 577</li>
+<li><strong>build/configure:</strong> 539</li>
+<li><strong>safety/privacy/control:</strong> 333</li>
+<li><strong>verify/prove:</strong> 312</li>
+<li><strong>save/write/record:</strong> 265</li>
+<li><strong>fix/debug:</strong> 240</li>
+<li><strong>analyze/summarize:</strong> 186</li>
+<li><strong>search/find/recall:</strong> 156</li>
+</ul>
+<p>Interpretation:</p>
+<ul>
+<li>Abba often asks for <strong>state and capability checks</strong> before action.</li>
+<li>A large share of messages are <strong>execution commands</strong>, especially “proceed,” “run,” “finish,” and “next stage.”</li>
+<li>The strongest non-obvious intent is <strong>verification</strong>. Abba repeatedly asks not just whether something is possible, but whether it is truly working.</li>
+<li>“Search/find/recall” and “save/write/record” show that Hermes is expected to close the loop between action and durable memory.</li>
+</ul>
+<h2 id="control-signals">Control signals</h2>
+<ul>
+<li><strong>autonomy pressure:</strong> 342</li>
+<li><strong>source-grounding:</strong> 299</li>
+<li><strong>proof-before-claim:</strong> 225</li>
+<li><strong>privacy / safety:</strong> 127</li>
+<li><strong>local-first / cost-conscious:</strong> 116</li>
+<li><strong>anti-clutter / anti-noise:</strong> 83</li>
+</ul>
+<p>Meaning:</p>
+<ul>
+<li><strong>Autonomy pressure:</strong> Abba wants Hermes to move without unnecessary hand-holding once scope is clear.</li>
+<li><strong>Source-grounding:</strong> Answers should name where knowledge came from.</li>
+<li><strong>Proof-before-claim:</strong> “Done” is not accepted from intention or button clicks.</li>
+<li><strong>Privacy/safety:</strong> More power is acceptable only when boundaries are explicit.</li>
+<li><strong>Anti-clutter:</strong> Search systems must stay separated unless there is a deliberate bridge.</li>
+</ul>
+<p>This is the core operating law:</p>
+<blockquote>Be bold internally, cautious externally, and always leave proof.</blockquote>
+<h2 id="friction-map">Friction map</h2>
+<p>Most repeated friction clusters:</p>
+<ul>
+<li><strong>search and memory retrieval gaps:</strong> 357</li>
+<li><strong>proof and false-success prevention:</strong> 354</li>
+<li><strong>tool overlap / install decisions:</strong> 335</li>
+<li><strong>communication routing and alert noise:</strong> 321</li>
+<li><strong>config/restart/live-state uncertainty:</strong> 259</li>
+<li><strong>work localization review precision:</strong> 207</li>
+<li><strong>life-context grounding:</strong> 176</li>
+<li><strong>money/work proof and ROI:</strong> 129</li>
+</ul>
+<h3 id="1-search-and-memory-retrieval-gaps">1. Search and memory retrieval gaps</h3>
+<p>Abba repeatedly asks Hermes to locate context, source previous decisions, find notes, inspect indexes, and distinguish live facts from durable canon.</p>
+<p>Design lesson:</p>
+<ul>
+<li>Discrawl should be used for Discord ops history.</li>
+<li>QMD/Obsidian should stay the durable personal/document canon.</li>
+<li>Mai Tsara should be first for live personal app facts.</li>
+<li>Hermes should say which lane it used before giving a grounded answer.</li>
+</ul>
+<h3 id="2-proof-and-false-success-prevention">2. Proof and false-success prevention</h3>
+<p>A recurring pattern is Abba correcting or pre-empting weak completion claims. He wants live verification, readback, final-state screenshots, health checks, and counts.</p>
+<p>Design lesson:</p>
+<ul>
+<li>Every operational task should finish with a compact proof line.</li>
+<li>For browser/app work, proof means visible final state.</li>
+<li>For files, proof means readback.</li>
+<li>For cron/config, proof means status/listing after change.</li>
+</ul>
+<h3 id="3-tool-overlap-and-install-decisions">3. Tool overlap and install decisions</h3>
+<p>Abba frequently evaluates whether a repo/tool is useful before installing or wiring it. The concern is not novelty; it is whether the tool adds capability without maintenance burden.</p>
+<p>Design lesson:</p>
+<ul>
+<li>Default pattern: inspect first, then install CLI-only, then smoke test, then decide whether to wire into Hermes.</li>
+<li>Avoid daemons/extensions/plugins until repeated use proves the need.</li>
+<li>Prefer local-first CLIs over broad always-on integrations.</li>
+</ul>
+<h3 id="4-communication-routing-and-alert-noise">4. Communication routing and alert noise</h3>
+<p>Discord, Telegram, cron, morning briefings, alerts, and channel routing show up repeatedly. The issue is not only delivery; it is <strong>where attention should land</strong>.</p>
+<p>Design lesson:</p>
+<ul>
+<li>Human-facing cron output should route to the approvals/ops lane.</li>
+<li>Chat should stay for direct work and fixes.</li>
+<li>Noisy telemetry should become silent ledgers plus exception alerts.</li>
+</ul>
+<h3 id="5-config-restart-and-live-state-uncertainty">5. Config, restart, and live-state uncertainty</h3>
+<p>Many queries ask what is currently running, what model/reasoning is active, whether config changed, and whether services are actually live.</p>
+<p>Design lesson:</p>
+<ul>
+<li>Hermes should prefer live config/status checks over memory.</li>
+<li>Anything involving “current,” “running,” “installed,” or “enabled” requires a tool check.</li>
+<li>Config changes need readback and, when relevant, service status proof.</li>
+</ul>
+<h2 id="weekly-drift">Weekly drift</h2>
+<ul>
+<li><strong>2026-W12:</strong> Hermes core and toolchain (30), Email and briefings (19), Work execution: fbCAT, Canva, RWS, Hausa (11)</li>
+<li><strong>2026-W13:</strong> Hermes core and toolchain (85), Email and briefings (32), Work execution: fbCAT, Canva, RWS, Hausa (16)</li>
+<li><strong>2026-W14:</strong> Hermes core and toolchain (84), Email and briefings (16), Mac/local system and storage (13)</li>
+<li><strong>2026-W15:</strong> Hermes core and toolchain (125), Mac/local system and storage (29), Email and briefings (22)</li>
+<li><strong>2026-W16:</strong> Hermes core and toolchain (181), Email and briefings (93), Obsidian and durable memory (83)</li>
+<li><strong>2026-W17:</strong> Hermes core and toolchain (225), Obsidian and durable memory (110), Email and briefings (63)</li>
+<li><strong>2026-W18:</strong> Hermes core and toolchain (159), Work execution: fbCAT, Canva, RWS, Hausa (78), Obsidian and durable memory (69)</li>
+<li><strong>2026-W19:</strong> Hermes core and toolchain (120), Mai Tsara and Life Dashboard (92), Life analysis, identity, family (53)</li>
+<li><strong>2026-W20:</strong> Hermes core and toolchain (44), Obsidian and durable memory (20), Life analysis, identity, family (19)</li>
+</ul>
+<p>Interpretation:</p>
+<ul>
+<li><strong>Week 12–15:</strong> Hermes/tooling and work execution dominate. This is the operator-building phase.</li>
+<li><strong>Week 16–18:</strong> Obsidian, money, and work ops rise. The system shifts from basic capability to memory, ROI, and workflow consolidation.</li>
+<li><strong>Week 19 onward:</strong> Mai Tsara rises sharply. The Life Dashboard becomes a live personal-state source rather than a side project.</li>
+<li>Through every week, Hermes/tooling remains the backbone. Abba keeps improving the operator while using it.</li>
+</ul>
+<h2 id="abba-s-implicit-product-requirements-for-hermes">Abba’s implicit product requirements for Hermes</h2>
+<p>From the queries, Hermes should behave as:</p>
+<p>1. <strong>A local-first operator</strong> - Prefer local tools, logged-in browser lanes, SQLite archives, QMD, and direct file reads. - Avoid cloud/API lanes unless the task requires them.</p>
+<p>2. <strong>A proof-first executor</strong> - Do the task. - Verify the result. - Report only the evidence that matters.</p>
+<p>3. <strong>A lane-aware memory system</strong> - Discord ops history belongs in Discrawl. - Personal canon belongs in Obsidian/QMD. - Live life facts belong in Mai Tsara. - Money behavior belongs in YNAB plus notes when needed. - Do not collapse all search surfaces into one noisy soup.</p>
+<p>4. <strong>A work-income machine</strong> - fbCAT, Canva, RWS, Gmail, and opportunity monitoring are not random tasks. They are income and trust infrastructure. - Accuracy matters because wrong comments, stale task states, or missed work have real cost.</p>
+<p>5. <strong>A life-systems analyst</strong> - For personal questions, Abba expects pattern recognition with source grounding. - The right answer is usually not a raw log summary; it is anchor → surrounding season → meaning.</p>
+<p>6. <strong>A low-noise assistant</strong> - Abba wants more capability but less clutter. - Silent background ledgers are better than chat spam. - Alerts should mean something changed or needs attention.</p>
+<h2 id="the-deepest-pattern">The deepest pattern</h2>
+<p>Abba’s queries show a consistent systems instinct:</p>
+<blockquote>Turn repeated anxiety, repeated admin, repeated searching, and repeated uncertainty into tools, ledgers, dashboards, and proofs.</blockquote>
+<p>That appears across domains:</p>
+<ul>
+<li>Work uncertainty → fbCAT/Canva/RWS proof workflows</li>
+<li>Money uncertainty → YNAB + earnings reconciliation</li>
+<li>Memory uncertainty → QMD/Obsidian/source maps</li>
+<li>Ops uncertainty → Discrawl, cron checks, channel routing</li>
+<li>Life uncertainty → Mai Tsara, WLC, habits, Oracle/Catalyst, fatherhood context</li>
+<li>Assistant uncertainty → skills, proof-first rules, config checks, local archives</li>
+</ul>
+<p>This is not just productivity. It is <strong>antifragile personal infrastructure</strong>: making each repeated pain point produce a stronger system.</p>
+<h2 id="risk-where-hermes-can-still-fail-abba">Risk: where Hermes can still fail Abba</h2>
+<p>1. <strong>False completion claims</strong> - Saying “done” before readback or live proof breaks trust quickly.</p>
+<p>2. <strong>Search pollution</strong> - Folding Discord ops, personal notes, app rows, and file search into one undifferentiated index would make retrieval worse.</p>
+<p>3. <strong>Over-integration</strong> - Daemons, browser extensions, remote embeddings, and plugins can add maintenance load faster than value.</p>
+<p>4. <strong>Vibes-only life answers</strong> - Abba’s personal questions require grounded retrieval, not generic coaching.</p>
+<p>5. <strong>Noisy automation</strong> - A system that reports every normal heartbeat becomes background static.</p>
+<p>6. <strong>Tool novelty bias</strong> - New tools should earn their place through capability, proof, and low maintenance.</p>
+<h2 id="recommended-routing-rules">Recommended routing rules</h2>
+<h3 id="if-abba-asks-about-discord-ops-approvals-cron-outputs-or-old-decisions">If Abba asks about Discord ops, approvals, cron outputs, or old decisions</h3>
+<p>Use <strong>Discrawl</strong> first.</p>
+<p>Examples:</p>
+<ul>
+<li>“What did we decide about X?”</li>
+<li>“Find the last cron failure.”</li>
+<li>“When did this tool get installed?”</li>
+<li>“What happened in Hermes Ops around Y?”</li>
+</ul>
+<h3 id="if-abba-asks-about-personal-life-habits-asiya-wlc-mood-or-live-app-state">If Abba asks about personal life, habits, Asiya, WLC, mood, or live app state</h3>
+<p>Use <strong>Mai Tsara first</strong>, then QMD/Obsidian for durable context.</p>
+<h3 id="if-abba-asks-about-old-notes-writing-canon-life-seasons-or-source-quotes">If Abba asks about old notes, writing, canon, life seasons, or source quotes</h3>
+<p>Use <strong>QMD/Obsidian</strong>, then manually read the strongest notes.</p>
+<h3 id="if-abba-asks-about-money-work-earned-spending-or-support-pressure">If Abba asks about money, work earned, spending, or support pressure</h3>
+<p>Use <strong>YNAB + income ledgers + notes</strong>, depending on the exact question.</p>
+<h3 id="if-abba-asks-about-current-system-state">If Abba asks about current system state</h3>
+<p>Use live tools, never memory alone.</p>
+<p>Examples:</p>
+<ul>
+<li>current model</li>
+<li>running service</li>
+<li>installed binary</li>
+<li>disk usage</li>
+<li>cron status</li>
+<li>config value</li>
+</ul>
+<h2 id="what-hermes-should-do-differently-because-of-this-report">What Hermes should do differently because of this report</h2>
+<ul>
+<li>Give shorter answers for simple ops, but stronger proof lines.</li>
+<li>Default to acting when scope is clear; ask only when ambiguity changes the tool call.</li>
+<li>Keep source lanes separated and name them when answering.</li>
+<li>Treat “can you” as often meaning “test it and prove it,” not “speculate.”</li>
+<li>Save reusable workflows as skills when a pattern repeats.</li>
+<li>Keep Discrawl out of QMD/Obsidian unless Abba explicitly asks for exported summaries.</li>
+<li>Use aggregate analytics for behavior reports, not raw private dumps.</li>
+</ul>
+<h2 id="useful-future-analyses">Useful future analyses</h2>
+<p>1. <strong>Friction reduction plan</strong> - Identify the top 10 repeated ask types and automate/routinize them.</p>
+<p>2. <strong>Hermes routing classifier</strong> - Convert these patterns into a lightweight intent router: Discrawl vs QMD vs Mai Tsara vs YNAB vs browser.</p>
+<p>3. <strong>Work-income workflow audit</strong> - Analyze which query types directly connect to earnings and which are maintenance drag.</p>
+<p>4. <strong>Life OS evolution timeline</strong> - Track the movement from Hermes tooling → Obsidian canon → Mai Tsara live-state intelligence.</p>
+<p>5. <strong>Noise budget review</strong> - Audit which cron/alert/search surfaces are useful versus clutter.</p>
+<h2 id="bottom-line">Bottom line</h2>
+<p>Abba’s queries reveal a builder who wants more than assistance. He wants <strong>compounding operational memory</strong>: systems that remember, act, verify, protect privacy, and reduce the cost of being himself across work, money, family, and meaning.</p>
+<p>Hermes should not optimize for being chatty or clever.</p>
+<p>Hermes should optimize for being <strong>source-backed, low-noise, local-first, proof-carrying, and useful under pressure</strong>.</p></article>
+<p class="footer">Generated locally from: /Users/abbakanwa/Documents/Abba-Obsidian/Reference/Hermes/Abba Query Pattern Analysis — 2026-05-12.md<br>Metrics source: /Users/abbakanwa/.hermes/private/discrawl-query-analysis/abba-query-analysis-2026-05-12.json</p>
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,406 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row =>
+                    row.some(cell => cell !== '' && cell !== null && cell !== undefined)
+                );
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Migrated from https://hearty-pickle-ha6t.here.now/atlas/apps/life-journey-visualization/ to https://abbabk.github.io/apps/life-journey-visualization/ on 2026-05-12 -->
+  <link rel="canonical" href="https://abbabk.github.io/apps/life-journey-visualization/" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abba's Life Journey Visualization (2019-2024)</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 10px;
+            background-color: #f4f4f4;
+            transition: background-color 0.3s;
+        }
+        .dark-mode {
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #333;
+            margin: 10px 0;
+        }
+        .dark-mode h1, .dark-mode h2 {
+            color: #ffffff;
+        }
+        .chart-container {
+            width: 100%;
+            margin: 10px auto;
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .dark-mode .chart-container {
+            background: #2c2c2c;
+            box-shadow: 0 2px 4px rgba(255,255,255,0.1);
+        }
+        #stats {
+            width: 100%;
+            margin: 10px auto;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .dark-mode #stats {
+            background: #2c2c2c;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            overflow-x: auto;
+            display: block;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+            font-size: 12px;
+        }
+        .dark-mode th, .dark-mode td {
+            border-color: #555;
+        }
+        th {
+            background: linear-gradient(45deg, #4CAF50, #66BB6A);
+            color: white;
+        }
+        .dark-mode th {
+            background: linear-gradient(45deg, #388E3C, #4CAF50);
+        }
+        #toggle-mode {
+            display: block;
+            margin: 10px auto;
+            padding: 8px 16px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .dark-mode #toggle-mode {
+            background: #388E3C;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            body {
+                padding: 5px;
+            }
+            h1 {
+                font-size: 1.5em;
+            }
+            h2 {
+                font-size: 1.2em;
+            }
+            .chart-container {
+                padding: 5px;
+            }
+            th, td {
+                padding: 5px;
+                font-size: 10px;
+            }
+            #toggle-mode {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+            canvas {
+                max-height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Abba's Life Journey (2019-2024)</h1>
+    <button id="toggle-mode">Toggle Dark Mode</button>
+
+    <div class="chart-container">
+        <h2>Trend Over Time (Line Chart)</h2>
+        <canvas id="lineChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+        <h2>Yearly Comparison (Bar Chart)</h2>
+        <canvas id="barChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+        <h2>Cumulative Growth (Area Chart)</h2>
+        <canvas id="areaChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+        <h2>2024 Balance (Radar Chart)</h2>
+        <canvas id="radarChart"></canvas>
+    </div>
+
+    <div id="stats">
+        <h2>Statistical Analysis</h2>
+        <table id="statsTable">
+            <tr>
+                <th>Metric</th>
+                <th>2019-2020 (%)</th>
+                <th>2020-2021 (%)</th>
+                <th>2021-2022 (%)</th>
+                <th>2022-2023 (%)</th>
+                <th>2023-2024 (%)</th>
+                <th>Avg. Growth (%)</th>
+                <th>Variance</th>
+                <th>Insight</th>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        // Data for charts
+        const years = [2019, 2020, 2021, 2022, 2023, 2024];
+        const data = {
+            financial: [10, 15, 20, 25, 80, 90],
+            learning: [20, 30, 50, 70, 85, 95],
+            career: [10, 20, 30, 50, 80, 90],
+            personal: [15, 25, 40, 60, 75, 85],
+            emotional: [10, 20, 30, 40, 60, 70]
+        };
+
+        // Calculate stats
+        const stats = {
+            financial: [], learning: [], career: [], personal: [], emotional: []
+        };
+        const avgGrowth = {};
+        const variance = {};
+
+        // Percentage changes
+        for (let metric in data) {
+            stats[metric] = [];
+            for (let i = 1; i < data[metric].length; i++) {
+                const change = ((data[metric][i] - data[metric][i-1]) / data[metric][i-1] * 100).toFixed(2);
+                stats[metric].push(change);
+            }
+            avgGrowth[metric] = (stats[metric].reduce((a, b) => a + parseFloat(b), 0) / stats[metric].length).toFixed(2);
+        }
+
+        // Variance (standard deviation)
+        for (let metric in data) {
+            const mean = data[metric].reduce((a, b) => a + b, 0) / data[metric].length;
+            const squaredDiffs = data[metric].map(val => Math.pow(val - mean, 2));
+            variance[metric] = Math.sqrt(squaredDiffs.reduce((a, b) => a + b, 0) / squaredDiffs.length).toFixed(2);
+        }
+
+        // Insights for table
+        const insights = {
+            financial: "Surged in 2023 with ₦20M and house purchase; stabilized in 2024 with mother's house.",
+            learning: "Consistent growth, peaking with 1,000+ books and philosophical dialogues in 2024.",
+            career: "Rapid rise in 2023 with Division Manager role; diversified roles in 2024.",
+            personal: "Steady progress with journaling and affirmations; 2024 saw divorce challenges.",
+            emotional: "Grew through childhood pain; 2024 divorce tested but strengthened resilience."
+        };
+
+        // Populate stats table
+        const table = document.getElementById('statsTable');
+        for (let metric in stats) {
+            const row = table.insertRow();
+            row.insertCell().textContent = metric.charAt(0).toUpperCase() + metric.slice(1);
+            stats[metric].forEach(change => {
+                row.insertCell().textContent = change + '%';
+            });
+            row.insertCell().textContent = avgGrowth[metric] + '%';
+            row.insertCell().textContent = variance[metric];
+            row.insertCell().textContent = insights[metric];
+        }
+
+        // Chart.js options for mobile
+        const chartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        font: {
+                            size: window.innerWidth <= 768 ? 10 : 12
+                        }
+                    }
+                },
+                tooltip: {
+                    bodyFont: {
+                        size: window.innerWidth <= 768 ? 10 : 12
+                    },
+                    titleFont: {
+                        size: window.innerWidth <= 768 ? 12 : 14
+                    },
+                    callbacks: {
+                        afterLabel: function(context) {
+                            const year = context.label;
+                            if (year == 2023) return '₦20M earned, house purchased, married Nuriyyah';
+                            if (year == 2024) return 'Divorced Nuriyyah, new roles, mother’s house';
+                            return '';
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        font: {
+                            size: window.innerWidth <= 768 ? 10 : 12
+                        }
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    ticks: {
+                        font: {
+                            size: window.innerWidth <= 768 ? 10 : 12
+                        }
+                    }
+                }
+            },
+            animation: {
+                duration: window.innerWidth <= 768 ? 1000 : 2000,
+                easing: 'easeInOutQuad'
+            }
+        };
+
+        // Line Chart
+        new Chart(document.getElementById('lineChart'), {
+            type: 'line',
+            data: {
+                labels: years,
+                datasets: [
+                    { label: 'Financial Growth', data: data.financial, borderColor: '#FF6384', fill: false, tension: 0.4 },
+                    { label: 'Learning Efficiency', data: data.learning, borderColor: '#36A2EB', fill: false, tension: 0.4 },
+                    { label: 'Career Progress', data: data.career, borderColor: '#FFCE56', fill: false, tension: 0.4 },
+                    { label: 'Personal Development', data: data.personal, borderColor: '#4BC0C0', fill: false, tension: 0.4 },
+                    { label: 'Emotional Resilience', data: data.emotional, borderColor: '#9966FF', fill: false, tension: 0.4 }
+                ]
+            },
+            options: {
+                ...chartOptions,
+                plugins: {
+                    ...chartOptions.plugins,
+                    title: { display: true, text: 'Growth Trends', font: { size: window.innerWidth <= 768 ? 14 : 16 } }
+                }
+            }
+        });
+
+        // Bar Chart
+        new Chart(document.getElementById('barChart'), {
+            type: 'bar',
+            data: {
+                labels: years,
+                datasets: [
+                    { label: 'Financial Growth', data: data.financial, backgroundColor: 'rgba(255,99,132,0.7)' },
+                    { label: 'Learning Efficiency', data: data.learning, backgroundColor: 'rgba(54,162,235,0.7)' },
+                    { label: 'Career Progress', data: data.career, backgroundColor: 'rgba(255,206,86,0.7)' },
+                    { label: 'Personal Development', data: data.personal, backgroundColor: 'rgba(75,192,192,0.7)' },
+                    { label: 'Emotional Resilience', data: data.emotional, backgroundColor: 'rgba(153,102,255,0.7)' }
+                ]
+            },
+            options: {
+                ...chartOptions,
+                plugins: {
+                    ...chartOptions.plugins,
+                    title: { display: true, text: 'Yearly Comparison', font: { size: window.innerWidth <= 768 ? 14 : 16 } }
+                }
+            }
+        });
+
+        // Area Chart
+        new Chart(document.getElementById('areaChart'), {
+            type: 'line',
+            data: {
+                labels: years,
+                datasets: [
+                    { label: 'Financial Growth', data: data.financial, backgroundColor: 'rgba(255,99,132,0.2)', borderColor: '#FF6384', fill: true },
+                    { label: 'Learning Efficiency', data: data.learning, backgroundColor: 'rgba(54,162,235,0.2)', borderColor: '#36A2EB', fill: true },
+                    { label: 'Career Progress', data: data.career, backgroundColor: 'rgba(255,206,86,0.2)', borderColor: '#FFCE56', fill: true },
+                    { label: 'Personal Development', data: data.personal, backgroundColor: 'rgba(75,192,192,0.2)', borderColor: '#4BC0C0', fill: true },
+                    { label: 'Emotional Resilience', data: data.emotional, backgroundColor: 'rgba(153,102,255,0.2)', borderColor: '#9966FF', fill: true }
+                ]
+            },
+            options: {
+                ...chartOptions,
+                plugins: {
+                    ...chartOptions.plugins,
+                    title: { display: true, text: 'Cumulative Growth', font: { size: window.innerWidth <= 768 ? 14 : 16 } }
+                }
+            }
+        });
+
+        // Radar Chart (2024 Balance)
+        new Chart(document.getElementById('radarChart'), {
+            type: 'radar',
+            data: {
+                labels: ['Financial', 'Learning', 'Career', 'Personal', 'Emotional'],
+                datasets: [{
+                    label: '2024 Performance',
+                    data: [90, 95, 90, 85, 70],
+                    backgroundColor: 'rgba(54,162,235,0.2)',
+                    borderColor: '#36A2EB',
+                    pointBackgroundColor: '#36A2EB'
+                }]
+            },
+            options: {
+                ...chartOptions,
+                plugins: {
+                    ...chartOptions.plugins,
+                    title: { display: true, text: 'Metric Balance in 2024', font: { size: window.innerWidth <= 768 ? 14 : 16 } }
+                },
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            stepSize: 20,
+                            font: {
+                                size: window.innerWidth <= 768 ? 10 : 12
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Dark Mode Toggle
+        document.getElementById('toggle-mode').addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            document.querySelectorAll('.chart-container, #stats').forEach(el => el.classList.toggle('dark-mode'));
+        });
+    </script>
+</body>
+</html>

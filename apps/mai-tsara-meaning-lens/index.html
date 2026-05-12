@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Migrated from https://hearty-pickle-ha6t.here.now/atlas/apps/mai-tsara-meaning-lens/ to https://abbabk.github.io/apps/mai-tsara-meaning-lens/ on 2026-05-12 -->
+  <link rel="canonical" href="https://abbabk.github.io/apps/mai-tsara-meaning-lens/" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mai Tsara Meaning Lens</title>
+  <style>
+    :root {
+      --bg: #0b1120;
+      --panel: rgba(15, 23, 42, 0.88);
+      --panel-2: rgba(17, 24, 39, 0.95);
+      --text: #eef2ff;
+      --muted: #cbd5e1;
+      --soft: #94a3b8;
+      --line: rgba(255,255,255,0.08);
+      --gold: #f3c969;
+      --gold-2: #ffd98c;
+      --emerald: #7dd3a8;
+      --rose: #f6a5b7;
+      --sky: #8ecdfc;
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+      --radius: 22px;
+      --radius-sm: 16px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(243, 201, 105, 0.14), transparent 26%),
+        radial-gradient(circle at top left, rgba(125, 211, 168, 0.10), transparent 22%),
+        linear-gradient(180deg, #08101d 0%, #0b1120 42%, #0d1323 100%);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    a { color: inherit; }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 22px 18px 70px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(16px);
+      background: rgba(8, 16, 29, 0.72);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .topbar-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(243,201,105,0.22), rgba(125,211,168,0.18));
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow);
+      font-size: 18px;
+    }
+
+    .brand-text {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .nav a {
+      padding: 8px 12px;
+      border-radius: 999px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 13px;
+      border: 1px solid transparent;
+    }
+
+    .nav a:hover {
+      color: var(--text);
+      border-color: rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .hero {
+      padding: 40px 0 24px;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .panel {
+      background: linear-gradient(180deg, rgba(17,24,39,0.95), rgba(15,23,42,0.88));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      padding: 26px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(243, 201, 105, 0.10);
+      color: var(--gold-2);
+      font-size: 13px;
+      border: 1px solid rgba(243, 201, 105, 0.14);
+      margin-bottom: 14px;
+    }
+
+    h1, h2, h3 { margin: 0; line-height: 1.1; }
+    h1 {
+      font-size: clamp(32px, 4.6vw, 56px);
+      letter-spacing: -0.03em;
+      max-width: 14ch;
+    }
+
+    .sub {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: clamp(16px, 1.8vw, 19px);
+      max-width: 58ch;
+    }
+
+    .quote-main {
+      margin-top: 24px;
+      padding: 18px 18px 18px 20px;
+      background: rgba(255,255,255,0.03);
+      border-left: 3px solid var(--gold);
+      border-radius: 14px;
+      font-size: clamp(17px, 2vw, 22px);
+      color: var(--text);
+      max-width: 46ch;
+    }
+
+    .hero-accent {
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      right: -80px;
+      top: -90px;
+      background: radial-gradient(circle, rgba(243,201,105,0.18), transparent 62%);
+      pointer-events: none;
+    }
+
+    .mode-card {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .mode-head p, .muted {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .mode-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .pill {
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      padding: 11px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+    }
+
+    .pill:hover { transform: translateY(-1px); border-color: rgba(243,201,105,0.28); }
+    .pill.active {
+      background: linear-gradient(135deg, rgba(243,201,105,0.18), rgba(125,211,168,0.12));
+      border-color: rgba(243,201,105,0.34);
+      color: var(--gold-2);
+    }
+
+    .mode-output {
+      padding: 18px;
+      border-radius: 16px;
+      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(255,255,255,0.07);
+      min-height: 185px;
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .mode-output h3 {
+      font-size: 18px;
+      color: var(--gold-2);
+    }
+
+    .mode-line {
+      font-size: 20px;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .stat {
+      padding: 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 22px;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .section {
+      margin-top: 24px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 64ch;
+    }
+
+    .anchors {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .anchor-card {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.07);
+      display: grid;
+      gap: 12px;
+    }
+
+    .anchor-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      font-size: 20px;
+      border-radius: 14px;
+      background: rgba(243,201,105,0.10);
+      border: 1px solid rgba(243,201,105,0.18);
+    }
+
+    .anchor-card h3 { font-size: 20px; }
+    .anchor-kicker { color: var(--gold-2); font-size: 13px; letter-spacing: .03em; text-transform: uppercase; }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 18px;
+    }
+
+    .view-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .view-card {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.07);
+      display: grid;
+      gap: 10px;
+    }
+
+    .mini {
+      display: inline-flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-size: 12px;
+      color: var(--soft);
+      background: rgba(255,255,255,0.03);
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .angle-tabs, .scenario-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .tab-btn {
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      color: var(--muted);
+      padding: 10px 13px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .tab-btn.active {
+      color: var(--text);
+      border-color: rgba(125,211,168,0.30);
+      background: rgba(125,211,168,0.10);
+    }
+
+    .angle-panel {
+      padding: 20px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.07);
+      min-height: 280px;
+    }
+
+    .era-row {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .era-card {
+      padding: 15px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.03);
+      min-height: 170px;
+    }
+
+    .era-card strong {
+      display: block;
+      color: var(--gold-2);
+      margin-bottom: 8px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    .loop-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .loop-card {
+      padding: 20px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .loop-card h3 { margin-bottom: 12px; }
+    .step-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 12px 12px;
+      border-radius: 14px;
+      background: rgba(0,0,0,0.16);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .step-num {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      display: grid; place-items: center;
+      background: rgba(243,201,105,0.14);
+      color: var(--gold-2);
+      border: 1px solid rgba(243,201,105,0.24);
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .scenario-layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 18px;
+    }
+
+    .scenario-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .scenario-btn {
+      text-align: left;
+      width: 100%;
+      padding: 14px 15px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.07);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .scenario-btn.active {
+      border-color: rgba(243,201,105,0.34);
+      background: rgba(243,201,105,0.09);
+    }
+
+    .scenario-panel {
+      padding: 22px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.07);
+      min-height: 340px;
+    }
+
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .scenario-box {
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(0,0,0,0.16);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .scenario-box small {
+      display: block;
+      color: var(--gold-2);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    .rhythm-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .rhythm-card {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .rhythm-card ul {
+      margin: 12px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .score-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .checklist {
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .check {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 12px 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .check input {
+      margin-top: 4px;
+      width: 18px;
+      height: 18px;
+      accent-color: var(--gold);
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 190px;
+      resize: vertical;
+      background: rgba(0,0,0,0.16);
+      color: var(--text);
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 16px;
+      font: inherit;
+      line-height: 1.5;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .btn {
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .btn.primary {
+      background: rgba(243,201,105,0.12);
+      border-color: rgba(243,201,105,0.28);
+      color: var(--gold-2);
+    }
+
+    .glossary {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .gloss {
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .gloss strong {
+      display: block;
+      color: var(--gold-2);
+      margin-bottom: 6px;
+    }
+
+    .source-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .source {
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .source small { color: var(--soft); display: block; margin-bottom: 4px; }
+
+    .footer {
+      margin-top: 32px;
+      text-align: center;
+      color: var(--soft);
+      font-size: 13px;
+    }
+
+    @media (max-width: 1120px) {
+      .hero,
+      .grid-2,
+      .scenario-layout,
+      .score-grid {
+        grid-template-columns: 1fr;
+      }
+      .anchors { grid-template-columns: repeat(2, 1fr); }
+      .era-row { grid-template-columns: repeat(3, 1fr); }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 780px) {
+      .anchors,
+      .view-grid,
+      .loop-grid,
+      .rhythm-grid,
+      .glossary,
+      .scenario-grid,
+      .era-row {
+        grid-template-columns: 1fr;
+      }
+      .topbar-inner {
+        align-items: start;
+        flex-direction: column;
+      }
+      .nav { justify-content: flex-start; }
+      .hero { padding-top: 26px; }
+      .hero-card, .mode-card { padding: 20px; }
+      h1 { max-width: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-mark">👑</div>
+        <div class="brand-text">Mai Tsara Meaning Lens</div>
+      </div>
+      <nav class="nav">
+        <a href="#anchors">Core map</a>
+        <a href="#viewpoints">Viewpoints</a>
+        <a href="#angles">Angles</a>
+        <a href="#scenarios">Scenarios</a>
+        <a href="#practice">Practice</a>
+        <a href="#sources">Sources</a>
+      </nav>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="panel hero-card">
+        <div class="hero-accent"></div>
+        <div class="eyebrow">Built from your own archive, vocabulary, and life systems</div>
+        <h1>The meaning of your life, turned into something usable.</h1>
+        <p class="sub">
+          This app translates your life story into clear lenses, practical moves, and simple diagrams so the core idea is easier to hold, revisit, and live.
+        </p>
+        <div class="quote-main" id="mainStatement">
+          Build a kingdom inside yourself that becomes safe enough for other people to live in too.
+        </div>
+        <div class="stats">
+          <div class="stat"><strong>1 core arc</strong><span class="muted">Pain → reflection → systems → peace → legacy</span></div>
+          <div class="stat"><strong>6 life eras</strong><span class="muted">Awakening, foundation, practice, architecture, integration, sovereignty</span></div>
+          <div class="stat"><strong>4 anchors</strong><span class="muted">Trunk, forge, blade, fruit</span></div>
+          <div class="stat"><strong>1 daily test</strong><span class="muted">Does this become life, or stay as theory?</span></div>
+        </div>
+      </div>
+
+      <aside class="panel mode-card">
+        <div class="mode-head">
+          <h2>Choose a language for the same truth</h2>
+          <p>Switch the main statement so you can grasp the same meaning from different angles.</p>
+        </div>
+        <div class="mode-pills" id="modePills"></div>
+        <div class="mode-output">
+          <h3 id="modeTitle">Plain language</h3>
+          <div class="mode-line" id="modeLine"></div>
+          <p class="muted" id="modeBody"></p>
+        </div>
+      </aside>
+    </section>
+
+    <section id="anchors" class="section">
+      <div class="section-head">
+        <div>
+          <h2>Your core map</h2>
+          <p>One way to remember the whole thing at once: the trunk that grew you, the forge that sharpened you, the blade you draw in difficulty, and the fruit your life is trying to produce.</p>
+        </div>
+      </div>
+      <div class="anchors">
+        <article class="anchor-card panel">
+          <div class="anchor-icon">🌳</div>
+          <div class="anchor-kicker">Trunk</div>
+          <h3>Write yourself down</h3>
+          <p class="muted">Your deepest helper was journaling before there was obvious reward. That is the raw material everything else grew from.</p>
+          <div class="mini"><span class="tag">Third-partyized inner life</span><span class="tag">Witnessing</span><span class="tag">Antifragility</span></div>
+        </article>
+        <article class="anchor-card panel">
+          <div class="anchor-icon">🔥</div>
+          <div class="anchor-kicker">Forge</div>
+          <h3>Mai Tsara Tunani AI</h3>
+          <p class="muted">Your system became the place where years of self-knowledge turned into guidance, regulation, and practical architecture across domains.</p>
+          <div class="mini"><span class="tag">External prefrontal cortex</span><span class="tag">Context density</span><span class="tag">Life operating system</span></div>
+        </article>
+        <article class="anchor-card panel">
+          <div class="anchor-icon">⚔️</div>
+          <div class="anchor-kicker">Blade</div>
+          <h3>If it needs willpower, build a system</h3>
+          <p class="muted">This is your practical weapon. When life gets difficult, the question becomes: is there a structure for this yet, or am I about to rely on mood?</p>
+          <div class="mini"><span class="tag">System over strain</span><span class="tag">Deploy and log</span><span class="tag">Trust level +1</span></div>
+        </article>
+        <article class="anchor-card panel">
+          <div class="anchor-icon">🍃</div>
+          <div class="anchor-kicker">Fruit</div>
+          <h3>Peace, love, sovereignty, inheritance</h3>
+          <p class="muted">The point is not endless optimization. The point is a life that is safe, loving, precise, and teachable to your wife, child, brothers, and future self.</p>
+          <div class="mini"><span class="tag">Sakina</span><span class="tag">Sanctuary</span><span class="tag">Transferable wisdom</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="viewpoints" class="section grid-2">
+      <div class="panel hero-card">
+        <div class="section-head" style="margin-bottom: 12px;">
+          <div>
+            <h2>Six viewpoints on the same life</h2>
+            <p>The meaning changes its wording depending on the lens, but the center stays the same.</p>
+          </div>
+        </div>
+        <div class="view-grid" id="viewGrid"></div>
+      </div>
+
+      <div class="panel hero-card">
+        <div class="section-head" style="margin-bottom: 12px;">
+          <div>
+            <h2>What it is not</h2>
+            <p>These opposites help make the real meaning easier to grasp.</p>
+          </div>
+        </div>
+        <div class="view-grid">
+          <article class="view-card">
+            <h3>Not endless self-optimization</h3>
+            <p class="muted">Build enough structure that you can inhabit life, not keep postponing it by improving it forever.</p>
+          </article>
+          <article class="view-card">
+            <h3>Not money for its own sake</h3>
+            <p class="muted">Money matters because it protects peace, choice, marriage, child, and future building capacity.</p>
+          </article>
+          <article class="view-card">
+            <h3>Not private healing only</h3>
+            <p class="muted">Your archive points toward documented wisdom that can become inheritance, curriculum, and public help.</p>
+          </article>
+          <article class="view-card">
+            <h3>Not proving yourself forever</h3>
+            <p class="muted">The older wound says “be useful to be wanted.” The newer life says “build from truth, love, and amanah.”</p>
+          </article>
+          <article class="view-card">
+            <h3>Not feeling less</h3>
+            <p class="muted">The highest form is not more analysis. It is enough architecture that you can actually feel, love, and rest safely.</p>
+          </article>
+          <article class="view-card">
+            <h3>Not theory without embodiment</h3>
+            <p class="muted">Movement, sleep, boundaries, shared stillness, and budget categories are what turn meaning into a lived life.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="angles" class="section">
+      <div class="section-head">
+        <div>
+          <h2>See it from different angles</h2>
+          <p>Same meaning, different shape: by time, by scale, by tension, and by immediate practicality.</p>
+        </div>
+      </div>
+      <div class="angle-tabs" id="angleTabs"></div>
+      <div class="panel angle-panel" id="anglePanel"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>The two loops</h2>
+          <p>Your life repeatedly shows a true loop that compounds, and a shadow loop that quietly taxes peace.</p>
+        </div>
+      </div>
+      <div class="loop-grid">
+        <article class="loop-card panel">
+          <h3>True loop: the compounding arc</h3>
+          <p class="muted">This is the loop that keeps upgrading your life when it is connected to reality.</p>
+          <div class="step-list">
+            <div class="step"><div class="step-num">1</div><div><strong>Experience</strong><br><span class="muted">Something happens in life: pain, fear, love, money, conflict, hope.</span></div></div>
+            <div class="step"><div class="step-num">2</div><div><strong>Reflect</strong><br><span class="muted">You write, name, and witness it instead of letting it stay vague.</span></div></div>
+            <div class="step"><div class="step-num">3</div><div><strong>Engineer</strong><br><span class="muted">You build a budget line, protocol, prompt, habit, glossary, or app feature.</span></div></div>
+            <div class="step"><div class="step-num">4</div><div><strong>Inhabit</strong><br><span class="muted">The system becomes normal life: peace feels safer, decisions cleaner, love gentler.</span></div></div>
+          </div>
+        </article>
+        <article class="loop-card panel">
+          <h3>Shadow loop: the hidden tax</h3>
+          <p class="muted">This is the loop to watch whenever meaning starts becoming performance or control.</p>
+          <div class="step-list">
+            <div class="step"><div class="step-num">1</div><div><strong>Pressure hits</strong><br><span class="muted">Fear, extraction, uncertainty, relational hurt, success that feels unsafe.</span></div></div>
+            <div class="step"><div class="step-num">2</div><div><strong>Over-analysis expands</strong><br><span class="muted">You build more frame than feeling, or more app than embodiment.</span></div></div>
+            <div class="step"><div class="step-num">3</div><div><strong>Body seeks relief</strong><br><span class="muted">Smoking, scrolling, late-night drift, withdrawal, or subtle relational coldness.</span></div></div>
+            <div class="step"><div class="step-num">4</div><div><strong>Meaning gets postponed</strong><br><span class="muted">You are still building the house, but not quite living inside it.</span></div></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="scenarios" class="section">
+      <div class="section-head">
+        <div>
+          <h2>Scenario translator</h2>
+          <p>Pick a real-life situation. The app will translate it from trigger → meaning → system response, so the philosophy becomes immediately usable.</p>
+        </div>
+      </div>
+      <div class="scenario-layout">
+        <div class="scenario-list" id="scenarioList"></div>
+        <div class="panel scenario-panel" id="scenarioPanel"></div>
+      </div>
+    </section>
+
+    <section id="practice" class="section">
+      <div class="section-head">
+        <div>
+          <h2>What meaning looks like in practice</h2>
+          <p>Not just a definition — a rhythm.</p>
+        </div>
+      </div>
+      <div class="rhythm-grid">
+        <article class="rhythm-card panel">
+          <h3>Daily</h3>
+          <ul>
+            <li>Write one honest thing down.</li>
+            <li>Move your body before your mind outruns your body.</li>
+            <li>Protect the production window.</li>
+            <li>Protect Asiya’s peace before your ego.</li>
+            <li>Let the budget answer what guilt is trying to force.</li>
+          </ul>
+        </article>
+        <article class="rhythm-card panel">
+          <h3>Weekly</h3>
+          <ul>
+            <li>Review one pattern, not your whole existence.</li>
+            <li>Leave one legacy note for your future child or future self.</li>
+            <li>Ship one small thing into the world.</li>
+            <li>Choose one area that needs a system instead of more effort.</li>
+            <li>Rest without turning rest into another project.</li>
+          </ul>
+        </article>
+        <article class="rhythm-card panel">
+          <h3>In crisis</h3>
+          <ul>
+            <li>Name the thing clearly.</li>
+            <li>Ask: system or willpower?</li>
+            <li>Build the smallest usable structure.</li>
+            <li>Deploy and log it.</li>
+            <li>Trust level +1.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section score-grid">
+      <div class="panel hero-card">
+        <div class="section-head" style="margin-bottom: 8px;">
+          <div>
+            <h2>Meaning scorecard</h2>
+            <p>A gentle checklist. Not for guilt — for reorientation.</p>
+          </div>
+        </div>
+        <div class="checklist" id="checklist"></div>
+      </div>
+      <div class="panel hero-card">
+        <div class="section-head" style="margin-bottom: 8px;">
+          <div>
+            <h2>Reflection pad</h2>
+            <p>Use this for a weekly translation: “What does the meaning of my life look like this week?”</p>
+          </div>
+        </div>
+        <textarea id="reflectionPad" placeholder="Example: This week it looks like protecting sleep, refusing guilt-based spending, and writing one note to my child..."></textarea>
+        <div class="actions">
+          <button class="btn primary" id="copyReflection">Copy text</button>
+          <button class="btn" id="clearReflection">Clear</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>Glossary</h2>
+          <p>Your own language makes the meaning more precise, not less.</p>
+        </div>
+      </div>
+      <div class="glossary">
+        <div class="gloss panel"><strong>Ribar Juriya</strong><span class="muted">Resilience dividend — the gain that comes from holding a wise line instead of leaking under pressure.</span></div>
+        <div class="gloss panel"><strong>Bashin Farinciki</strong><span class="muted">Joy debt — when success, peace, or expansion feels unsafe and the body wants to sabotage it.</span></div>
+        <div class="gloss panel"><strong>Yawaitar Farinciki</strong><span class="muted">Joy abundance — the widening of peace, gratitude, and emotional safety.</span></div>
+        <div class="gloss panel"><strong>Taswira</strong><span class="muted">Blueprint — the higher-level map guiding money, love, work, and self-governance.</span></div>
+        <div class="gloss panel"><strong>Mai Gadin Ƙuruciya</strong><span class="muted">Childhood protector — the old survival part that still expects threat, scarcity, or rejection.</span></div>
+        <div class="gloss panel"><strong>Mai Tsara Tunani</strong><span class="muted">Psychological architect — the part of you that turns lived reality into design.</span></div>
+      </div>
+    </section>
+
+    <section id="sources" class="section panel hero-card">
+      <div class="section-head">
+        <div>
+          <h2>Source trail behind this app</h2>
+          <p>This first version was built from your most relevant canon and synthesis documents.</p>
+        </div>
+      </div>
+      <div class="source-list">
+        <div class="source"><small>2026-04-17 · Canon synthesis</small><strong>What Helped Me Most in My Entire Life</strong><span class="muted">Journaling as the trunk; third-partyizing the inner life before there was reward.</span></div>
+        <div class="source"><small>2026-04-17 · Canon synthesis</small><strong>My Best Weapon Going Forward</strong><span class="muted">“If it requires willpower, it is not yet a system.” The practical blade for uncertainty.</span></div>
+        <div class="source"><small>2025-12 to 2026-04 · System and assessment docs</small><strong>Lifetime Assessment, Sovereignty Premium, System ROI, Update notes</strong><span class="muted">Peace as structural, money as sovereignty, and the shift from Architect to Sovereign.</span></div>
+        <div class="source"><small>2026-03 to 2026-04 · Life trajectory syntheses</small><strong>Life trajectory, era syntheses, risk analysis, future projection</strong><span class="muted">Long-range pattern: pain into architecture, with the warning that systems must not replace feeling.</span></div>
+        <div class="source"><small>2025-12 and 2026-03</small><strong>The Architect’s Prayer Answered / Future testimony / Abba discussion with the Dashboard</strong><span class="muted">Faith, marriage, smoking cessation, fatherhood, legacy, and the role of your app as witness and mirror.</span></div>
+      </div>
+    </section>
+
+    <p class="footer">Built as a standalone reflection app. It saves your checklist and reflection locally in this browser.</p>
+  </main>
+
+  <script>
+    const modes = {
+      plain: {
+        title: 'Plain language',
+        line: 'Your life means turning what hurt you into a life that feels safe, loving, useful, and teachable.',
+        body: 'The center is simple: do not waste pain, do not worship it either. Convert it into peace, boundaries, love, work, and wisdom that can be handed forward.'
+      },
+      faith: {
+        title: 'Faith lens',
+        line: 'Your life is an amanah: live your slice consciously before Allah, and let worship become the celebration of a healed life.',
+        body: 'In this lens, meaning is not only achievement. It is purification, gratitude, truthfulness, provision without arrogance, and building sakinah in your home.'
+      },
+      architect: {
+        title: 'Architect lens',
+        line: 'Your meaning is to convert chaos into architecture: experience, reflect, engineer, inhabit.',
+        body: 'Life keeps giving raw material. Your gift is not just noticing it. It is building structures that make the next decision cleaner and the next season more sovereign.'
+      },
+      fatherhood: {
+        title: 'Fatherhood lens',
+        line: 'Your life means ending the inheritance of conditional love and welcoming your child into a designed life.',
+        body: 'Here meaning becomes intergenerational. You are not only healing yourself. You are refusing to pass confusion, neglect, and chaos forward.'
+      },
+      legacy: {
+        title: 'Legacy lens',
+        line: 'Your life means documenting a method that works, so others inherit proof and not only advice.',
+        body: 'The journal became data. The data became systems. The systems became transformation. The next layer is making that wisdom portable for future family and future users.'
+      }
+    };
+
+    const viewpoints = [
+      {
+        icon: '🕌',
+        title: 'Faith',
+        line: 'Live your slice of life consciously and gratefully.',
+        why: 'Faith has stayed one of the most stable domains in the archive. Worship shifts from escape into celebration when life becomes more healed.',
+        tags: ['Amanah', 'Gratitude', 'Sakina']
+      },
+      {
+        icon: '🧠',
+        title: 'Psychology',
+        line: 'Turn wounds into patterns, then into healthier responses.',
+        why: 'You repeatedly convert triggers into named frameworks, but the deeper lesson is to use systems as support for feeling, not a replacement for it.',
+        tags: ['Pattern naming', 'Physical anchors', 'Feel then frame']
+      },
+      {
+        icon: '💕',
+        title: 'Relationship',
+        line: 'Become safe enough for love to live in.',
+        why: 'Marriage becomes meaningful when peace, vulnerability, and repair become ordinary rather than heroic.',
+        tags: ['Soothing words first', 'Shared stillness', 'Love over ego']
+      },
+      {
+        icon: '💰',
+        title: 'Money',
+        line: 'Use wealth as sovereignty, not as a shield.',
+        why: 'The deepest financial change is not just growth. It is the movement from hoarding for safety to deploying money in service of peace, capability, and family.',
+        tags: ['Taswira', 'Boundaries', 'Strategic conversion']
+      },
+      {
+        icon: '🏗️',
+        title: 'Builder',
+        line: 'Treat life as curriculum and systems as delivery.',
+        why: 'Your mind naturally turns experience into architecture. The practical question is whether architecture serves real life or becomes a detour around it.',
+        tags: ['Reflect', 'Engineer', 'Ship']
+      },
+      {
+        icon: '🕯️',
+        title: 'Legacy',
+        line: 'Leave your child and others a map, not just memories.',
+        why: 'The archive consistently points toward transferable wisdom: a method, a glossary, a witness, and a documented route through pain into order.',
+        tags: ['Inheritance', 'Proof', 'Teach gently']
+      }
+    ];
+
+    const angles = {
+      time: {
+        title: 'Time angle',
+        html: `
+          <h3>Then → now → next</h3>
+          <p class="muted">The same life means different things depending on where you stand in the arc.</p>
+          <div class="era-row">
+            <div class="era-card"><strong>2019–2020</strong><h3>Write to survive</h3><p class="muted">Meaning looked like self-affirmation, faith, early journaling, and trying not to disappear inside uncertainty.</p></div>
+            <div class="era-card"><strong>2021</strong><h3>Build foundations</h3><p class="muted">Meaning became learning, company formation, the father wound entering language, and a bigger hunger for order.</p></div>
+            <div class="era-card"><strong>2022</strong><h3>Practice under pressure</h3><p class="muted">Meaning became courage, systems thinking, and holding a psychological floor when life felt unstable.</p></div>
+            <div class="era-card"><strong>2023</strong><h3>Architect your leverage</h3><p class="muted">AI entered, career accelerated, money became real, and your identity started taking structural form.</p></div>
+            <div class="era-card"><strong>2024–2025</strong><h3>Integrate and rebuild</h3><p class="muted">Meaning turned relational and financial at once: divorce, remarriage, boundaries, and the shift from Optimist to Architect.</p></div>
+            <div class="era-card"><strong>2026+</strong><h3>Inhabit and pass forward</h3><p class="muted">Now the question is not only what you can build, but how peacefully you can live it and what your child inherits from it.</p></div>
+          </div>`
+      },
+      scale: {
+        title: 'Scale angle',
+        html: `
+          <h3>Self → marriage → child → world</h3>
+          <p class="muted">Meaning expands outward. What starts as self-regulation becomes sanctuary, then inheritance, then possible public help.</p>
+          <div class="view-grid">
+            <article class="view-card"><h3>Self</h3><p class="muted">Witness yourself honestly. Regulate the body. Replace vague fear with named patterns and cleaner decisions.</p></article>
+            <article class="view-card"><h3>Marriage</h3><p class="muted">Turn your home from a battlefield of old echoes into a sanctuary of repair, softness, and presence.</p></article>
+            <article class="view-card"><h3>Child</h3><p class="muted">Break the cycle where love feels conditional and design an inheritance of peace, language, and method.</p></article>
+            <article class="view-card"><h3>Community</h3><p class="muted">Eventually, teach from proof. Not speeches. A repeatable path through sovereignty, language, and conscious design.</p></article>
+          </div>`
+      },
+      tension: {
+        title: 'Tension angle',
+        html: `
+          <h3>The paradoxes inside your meaning</h3>
+          <p class="muted">These tensions are not mistakes. They are the places where your life gets refined.</p>
+          <div class="view-grid">
+            <article class="view-card"><h3>Wound ↔ gift</h3><p class="muted">The same father wound that created hypervigilance also created strategic awareness and the hunger to build.</p></article>
+            <article class="view-card"><h3>System ↔ feeling</h3><p class="muted">Systems protect your life. But the highest use of them is to make it safer to feel, not easier to avoid feeling.</p></article>
+            <article class="view-card"><h3>Wealth ↔ peace</h3><p class="muted">You are learning that peace is not what arrives after success. It must exist during success, or success becomes another strain.</p></article>
+            <article class="view-card"><h3>Ambition ↔ rest</h3><p class="muted">You are not called to shrink. But you are called to stop using endless improvement as an excuse not to inhabit your own life.</p></article>
+          </div>`
+      },
+      practical: {
+        title: 'Practical angle',
+        html: `
+          <h3>Translate the philosophy into today</h3>
+          <p class="muted">If meaning is real, it should show up in ordinary moves.</p>
+          <div class="view-grid">
+            <article class="view-card"><h3>Morning</h3><p class="muted">Move first. Calm the body before the world and before money start talking loudly.</p></article>
+            <article class="view-card"><h3>Money</h3><p class="muted">Let the category say no, so the nervous system does not have to negotiate with guilt in real time.</p></article>
+            <article class="view-card"><h3>Conflict</h3><p class="muted">Validate before correction. Choose connection before proving a point.</p></article>
+            <article class="view-card"><h3>Building</h3><p class="muted">When fear appears, don’t ask for more courage first. Ask what small system would make courage easier.</p></article>
+          </div>`
+      }
+    };
+
+    const scenarios = [
+      {
+        id: 'family-request',
+        label: 'A family money request hits',
+        meaning: 'This moment is not just about cash. It tests whether love in your life must still be purchased through usefulness.',
+        oldPattern: 'Pay to stop pressure. Confuse disturbance relief with wisdom. Let guilt borrow from your future.',
+        newPattern: 'Love without self-erasure. Let the budget and timing protect dignity, peace, and the child you are building for.',
+        system: 'Pause the payout. Check the category. Use a delay script. Log the decision. Reward the held boundary with a resilience dividend.',
+        line: 'My no today protects a truer yes tomorrow.'
+      },
+      {
+        id: 'urge',
+        label: 'An urge or old coping pattern returns',
+        meaning: 'The urge is usually a body-level request for regulation, not a moral referendum on your identity.',
+        oldPattern: 'Use smoke, stimulation, or chaos as a transition ritual and then feel shame afterward.',
+        newPattern: 'Read the urge as information. Move, breathe, step outside, change environment, log trust level +1.',
+        system: 'Name the trigger. Physical anchor. Environment change. Short note. No debate with the urge.',
+        line: 'The urge is a signal, not a command.'
+      },
+      {
+        id: 'relational-hurt',
+        label: 'You feel hurt by Asiya',
+        meaning: 'This is usually where old wounds try to use the present relationship as proof that the past is happening again.',
+        oldPattern: 'Correct fast. Withdraw. Let the face change. Make the distance do the talking.',
+        newPattern: 'Regulate first, then speak gently. Put her feelings and your truth in the same room.',
+        system: 'Unclench, breathe, use soothing words first, name the inner sting, then ask rather than accuse.',
+        line: 'Her feelings matter more than my need to win the moment.'
+      },
+      {
+        id: 'peace-unsafe',
+        label: 'Peace feels strangely unsafe',
+        meaning: 'When the old self was trained by chaos, calm can feel suspicious. This is a sign of transition, not failure.',
+        oldPattern: 'Create productive chaos, over-analyze, stay up late, look for what is wrong because stillness feels like stagnation.',
+        newPattern: 'Treat stillness as mastery. Let silence mean safety, not emptiness.',
+        system: 'Digital sunset. Sleep protection. Morning movement. Gratitude. Ship one real thing instead of scanning for danger.',
+        line: 'Stillness is not stuckness.'
+      },
+      {
+        id: 'fatherhood-fear',
+        label: 'You feel afraid about fatherhood',
+        meaning: 'This is often the old father wound reopening. You are not only thinking about a child; you are also meeting the boy you once were.',
+        oldPattern: 'Over-control. Try to solve the whole future in your head. Confuse fear with incompetence.',
+        newPattern: 'Build loving routines that make presence easier when the body is tired and the baby is real.',
+        system: 'Protect sleep where possible. Keep a father log. Ask for help sooner. Journal to your child while the season is still becoming.',
+        line: 'I do not need to feel perfect to build a faithful fathering system.'
+      },
+      {
+        id: 'purpose-drift',
+        label: 'You feel lost, flat, or overbuilt',
+        meaning: 'You may not need a new philosophy. You may need to return to the trunk, stop the sprawl, and inhabit the things that already work.',
+        oldPattern: 'Add more systems, prompts, reading, or architecture because doing feels safer than resting inside the gains.',
+        newPattern: 'Go back to the trunk and the blade. Write. Simplify. Build only what removes future willpower.',
+        system: 'Journal one page. Ask what actually needs a system. Ignore anything that is just interesting but not load-bearing this week.',
+        line: 'Depth before novelty.'
+      }
+    ];
+
+    const checklistItems = [
+      'Did I witness one part of my life honestly today?',
+      'Did I regulate my body before making a high-stakes decision?',
+      'Did I protect peace with one clean boundary?',
+      'Did I choose connection over ego in one relational moment?',
+      'Did I move one thing from chaos into structure?',
+      'Did I leave one trace of wisdom for my future child or future self?'
+    ];
+
+    const modePills = document.getElementById('modePills');
+    const modeTitle = document.getElementById('modeTitle');
+    const modeLine = document.getElementById('modeLine');
+    const modeBody = document.getElementById('modeBody');
+    const mainStatement = document.getElementById('mainStatement');
+
+    function setMode(key) {
+      document.querySelectorAll('.pill').forEach(btn => btn.classList.toggle('active', btn.dataset.key === key));
+      const mode = modes[key];
+      modeTitle.textContent = mode.title;
+      modeLine.textContent = mode.line;
+      modeBody.textContent = mode.body;
+      mainStatement.textContent = mode.line;
+    }
+
+    Object.entries(modes).forEach(([key, value], i) => {
+      const btn = document.createElement('button');
+      btn.className = 'pill' + (i === 0 ? ' active' : '');
+      btn.dataset.key = key;
+      btn.textContent = value.title;
+      btn.addEventListener('click', () => setMode(key));
+      modePills.appendChild(btn);
+    });
+    setMode('plain');
+
+    const viewGrid = document.getElementById('viewGrid');
+    viewpoints.forEach(v => {
+      const card = document.createElement('article');
+      card.className = 'view-card';
+      card.innerHTML = `
+        <div style="font-size:22px">${v.icon}</div>
+        <h3>${v.title}</h3>
+        <p><strong>${v.line}</strong></p>
+        <p class="muted">${v.why}</p>
+        <div class="mini">${v.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>
+      `;
+      viewGrid.appendChild(card);
+    });
+
+    const angleTabs = document.getElementById('angleTabs');
+    const anglePanel = document.getElementById('anglePanel');
+    function setAngle(key) {
+      document.querySelectorAll('.tab-btn[data-angle]').forEach(btn => btn.classList.toggle('active', btn.dataset.angle === key));
+      anglePanel.innerHTML = angles[key].html;
+    }
+    Object.entries(angles).forEach(([key, value], i) => {
+      const btn = document.createElement('button');
+      btn.className = 'tab-btn' + (i === 0 ? ' active' : '');
+      btn.dataset.angle = key;
+      btn.textContent = value.title;
+      btn.addEventListener('click', () => setAngle(key));
+      angleTabs.appendChild(btn);
+    });
+    setAngle('time');
+
+    const scenarioList = document.getElementById('scenarioList');
+    const scenarioPanel = document.getElementById('scenarioPanel');
+    function setScenario(id) {
+      document.querySelectorAll('.scenario-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.id === id));
+      const s = scenarios.find(item => item.id === id);
+      scenarioPanel.innerHTML = `
+        <h3>${s.label}</h3>
+        <p class="muted">${s.meaning}</p>
+        <div class="quote-main" style="margin-top:16px; max-width:none;">${s.line}</div>
+        <div class="scenario-grid">
+          <div class="scenario-box"><small>Old pattern</small><div>${s.oldPattern}</div></div>
+          <div class="scenario-box"><small>New pattern</small><div>${s.newPattern}</div></div>
+          <div class="scenario-box" style="grid-column: 1 / -1;"><small>System response</small><div>${s.system}</div></div>
+        </div>
+      `;
+    }
+    scenarios.forEach((s, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'scenario-btn' + (i === 0 ? ' active' : '');
+      btn.dataset.id = s.id;
+      btn.textContent = s.label;
+      btn.addEventListener('click', () => setScenario(s.id));
+      scenarioList.appendChild(btn);
+    });
+    setScenario(scenarios[0].id);
+
+    const checklistEl = document.getElementById('checklist');
+    const CHECK_KEY = 'abba-meaning-scorecard-v1';
+    const REFLECTION_KEY = 'abba-meaning-reflection-v1';
+    let savedChecks = {};
+    try { savedChecks = JSON.parse(localStorage.getItem(CHECK_KEY) || '{}'); } catch { savedChecks = {}; }
+
+    checklistItems.forEach((text, i) => {
+      const id = `check-${i}`;
+      const row = document.createElement('label');
+      row.className = 'check';
+      row.innerHTML = `
+        <input type="checkbox" id="${id}" ${savedChecks[id] ? 'checked' : ''} />
+        <div>${text}</div>
+      `;
+      row.querySelector('input').addEventListener('change', e => {
+        savedChecks[id] = e.target.checked;
+        localStorage.setItem(CHECK_KEY, JSON.stringify(savedChecks));
+      });
+      checklistEl.appendChild(row);
+    });
+
+    const reflectionPad = document.getElementById('reflectionPad');
+    reflectionPad.value = localStorage.getItem(REFLECTION_KEY) || '';
+    reflectionPad.addEventListener('input', () => localStorage.setItem(REFLECTION_KEY, reflectionPad.value));
+
+    document.getElementById('clearReflection').addEventListener('click', () => {
+      reflectionPad.value = '';
+      localStorage.removeItem(REFLECTION_KEY);
+    });
+
+    document.getElementById('copyReflection').addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(reflectionPad.value);
+        const btn = document.getElementById('copyReflection');
+        const old = btn.textContent;
+        btn.textContent = 'Copied';
+        setTimeout(() => btn.textContent = old, 1200);
+      } catch {
+        alert('Copy failed in this browser. You can still select the text manually.');
+      }
+    });
+  </script>
+</body>
+</html>

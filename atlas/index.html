@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Migrated from https://hearty-pickle-ha6t.here.now/atlas/ to https://abbabk.github.io/ on 2026-05-12 -->
+  <link rel="canonical" href="https://abbabk.github.io/" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="data:," />
+  <title>Abba / Hermes here.now Library</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0d1117;
+      --panel: #151b24;
+      --panel2: #101722;
+      --text: #eef4ff;
+      --muted: #9fb0c7;
+      --line: rgba(255,255,255,.11);
+      --accent: #7dd3fc;
+      --accent2: #c4b5fd;
+      --good: #86efac;
+      --warn: #fde68a;
+      --shadow: 0 18px 60px rgba(0,0,0,.28);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(125,211,252,.14), transparent 34rem),
+        radial-gradient(circle at 85% 10%, rgba(196,181,253,.12), transparent 30rem),
+        var(--bg);
+      color: var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 42px 20px 64px; }
+    header {
+      padding: 34px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(21,27,36,.96), rgba(16,23,34,.84));
+      box-shadow: var(--shadow);
+    }
+    .eyebrow { color: var(--good); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; font-size: .78rem; }
+    h1 { font-size: clamp(2.2rem, 5vw, 4.5rem); line-height: .95; margin: 12px 0 18px; }
+    h2 { margin: 34px 0 14px; font-size: 1.55rem; }
+    h3 { margin: 0 0 8px; font-size: 1.08rem; }
+    p { color: var(--muted); margin: 0; }
+    .summary { max-width: 780px; font-size: 1.08rem; }
+    .nav { display:flex; flex-wrap:wrap; gap: 10px; margin-top: 24px; }
+    .pill { border:1px solid var(--line); border-radius:999px; padding: 8px 12px; background:rgba(255,255,255,.045); color: var(--text); }
+    .grid { display:grid; grid-template-columns: repeat(12, 1fr); gap: 16px; margin-top: 16px; }
+    .card {
+      grid-column: span 6;
+      background: rgba(21,27,36,.82);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,.16);
+    }
+    .card.full { grid-column: 1 / -1; }
+    .card.small { grid-column: span 4; }
+    .meta { display:flex; flex-wrap:wrap; gap: 8px; margin: 11px 0 14px; }
+    .tag { font-size:.78rem; color: var(--muted); border:1px solid var(--line); border-radius:999px; padding: 4px 8px; background:rgba(255,255,255,.035); }
+    .tag.date { color: var(--warn); }
+    .tag.theme { color: var(--accent2); }
+    ul { margin: 10px 0 0; padding-left: 18px; color: var(--muted); }
+    li + li { margin-top: 7px; }
+    .linkline { margin-top: 13px; font-weight: 700; }
+    .date-lane { display:grid; gap: 12px; }
+    .lane-item { padding: 14px 16px; border:1px solid var(--line); border-radius: 16px; background:rgba(255,255,255,.035); }
+    .footer { margin-top: 34px; color: var(--muted); font-size: .92rem; }
+    @media (max-width: 820px) {
+      header { padding: 24px; border-radius: 22px; }
+      .card, .card.small { grid-column: 1 / -1; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <div class="eyebrow">Abba / Hermes Artifact Map</div>
+      <h1>here.now Library</h1>
+      <p class="summary">A living map of published here.now pages, grouped by theme, pattern, and date so one artifact can lead naturally to the others.</p>
+      <p style="margin-top:12px"><strong>Live Library URL:</strong> <a href="/">/</a></p>
+      <nav class="nav" aria-label="Library sections">
+        <a class="pill" href="#health">Health & Patterns</a>
+        <a class="pill" href="#mai-tsara">Mai Tsara / Life OS</a>
+        <a class="pill" href="#apps">Interactive Apps</a>
+        <a class="pill" href="#hermes">Hermes Operating Layer</a>
+        <a class="pill" href="#dates">Date Lanes</a>
+        <a class="pill" href="#rule">Future Rule</a>
+      </nav>
+    </header>
+
+    <section id="health">
+      <h2>Health, Body & Energy</h2>
+      <div class="grid">
+        <article class="card full">
+          <h3>Sleep & Night Freedom Pattern</h3>
+          <div class="meta"><span class="tag date">2026-05-12</span><span class="tag theme">sleep</span><span class="tag theme">night freedom</span><span class="tag theme">body regulation</span></div>
+          <p>Night freedom can become a false life-solution window: phone proximity, late execution, 2–3 AM sleep, weaker tomorrow, then more night urgency.</p>
+          <div class="linkline"><a href="/night-freedom/">Open Sleep & Night Freedom Pattern →</a></div>
+          <ul>
+            <li>Open next: Mai Tsara Visual Summary for the broader Life OS method.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="mai-tsara">
+      <h2>Mai Tsara Tunani AI / Life OS</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>First Homepage</h3>
+          <div class="meta"><span class="tag date">2026-05-11</span><span class="tag theme">product</span><span class="tag theme">monetization</span></div>
+          <p>Public positioning for Mai Tsara as a Personal Life Operating System built from real context.</p>
+          <div class="linkline"><a href="/mai-tsara/">Open First Homepage →</a></div>
+        </article>
+        <article class="card">
+          <h3>Visual Summary</h3>
+          <div class="meta"><span class="tag date">2026-05-11</span><span class="tag theme">life os</span><span class="tag theme">public-safe summary</span></div>
+          <p>Explains the method: capture, arrange, interpret, decide, return.</p>
+          <div class="linkline"><a href="/life-os/">Open Visual Summary →</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="apps">
+      <h2>Interactive Apps & Visualizations</h2>
+      <div class="grid">
+        <article class="card full">
+          <h3>Abba Interactive Apps Hub</h3>
+          <div class="meta"><span class="tag theme">interactive tools</span><span class="tag theme">visualization</span><span class="tag theme">mobile friendly</span></div>
+          <p>The main live hub for interactive HTML apps and Life OS visualizations.</p>
+          <div class="linkline"><a href="/apps/">Open Interactive Apps Hub →</a></div>
+        </article>
+        <article class="card small"><h3>Mai Tsara Meaning Lens</h3><a href="/apps/mai-tsara-meaning-lens/">Open →</a></article>
+        <article class="card small"><h3>Interactive Life Dashboard</h3><a href="/apps/interactive-life-dashboard/">Open →</a></article>
+        <article class="card small"><h3>Life Compass</h3><a href="/apps/life-compass/">Open →</a></article>
+        <article class="card small"><h3>Growth App</h3><a href="/apps/growth-app/">Open →</a></article>
+        <article class="card small"><h3>Markmap</h3><a href="/apps/markmap/">Open →</a></article>
+        <article class="card small"><h3>Life Journey Visualizations</h3><a href="/apps/life-journey-visualization/">Open main →</a></article>
+      </div>
+    </section>
+
+
+    <section id="hermes">
+      <h2>Hermes Operating Layer</h2>
+      <div class="grid">
+        <article class="card full">
+          <h3>Abba Query Pattern Analysis</h3>
+          <div class="meta"><span class="tag date">2026-05-12</span><span class="tag theme">Hermes ops</span><span class="tag theme">query intelligence</span><span class="tag theme">routing rules</span></div>
+          <p>Source-backed analysis of how Abba uses Hermes: not as a chatbot, but as an operating layer for action, proof, memory, and low-noise routing.</p>
+          <div class="linkline"><a href="/query-patterns/">Open Abba Query Pattern Analysis →</a></div>
+          <ul>
+            <li>Open next: Mai Tsara Visual Summary for the Life OS method, or Sleep Pattern for a personal-system example.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="dates">
+      <h2>Date Lanes</h2>
+      <div class="date-lane">
+        <div class="lane-item"><strong>2026-05-12:</strong> <a href="/night-freedom/">Sleep & Night Freedom Pattern</a>, <a href="/query-patterns/">Abba Query Pattern Analysis</a>, <a href="/">Here.now Library</a></div>
+        <div class="lane-item"><strong>2026-05-11:</strong> <a href="/mai-tsara/">Mai Tsara First Homepage</a>, <a href="/life-os/">Mai Tsara Visual Summary</a>, <a href="/apps/">Interactive Apps Hub</a></div>
+      </div>
+    </section>
+
+    <section id="rule">
+      <h2>Future Rule</h2>
+      <div class="grid">
+        <article class="card full">
+          <p>Every new here.now artifact should be added to this library by theme, concept/pattern, and date. New HTML artifacts should also include a small link back to this library so live pages can lead to each other instead of becoming isolated islands.</p>
+        </article>
+      </div>
+    </section>
+
+    <p class="footer">Maintained by Hermes for Abba. Public links are grouped here for navigation; private raw evidence stays in Obsidian unless intentionally made public-safe.</p>
+  </main>
+</body>
+</html>

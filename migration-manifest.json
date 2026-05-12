@@ -1,0 +1,326 @@
+{
+  "migrated_at": "2026-05-12",
+  "source_base": "https://hearty-pickle-ha6t.here.now/atlas/",
+  "target_base": "https://abbabk.github.io/",
+  "pages": [
+    {
+      "source": "https://hearty-pickle-ha6t.here.now/atlas/",
+      "route": "/",
+      "canonical": "https://abbabk.github.io/",
+      "file": "atlas/index.html",
+      "title": "Abba / Hermes here.now Library",
+      "bytes": 9401
+    },
+    {
+      "source": "https://hearty-pickle-ha6t.here.now/atlas/night-freedom/",
+      "route": "/night-freedom/",
+      "canonical": "https://abbabk.github.io/night-freedom/",
+      "file": "night-freedom/index.html",
+      "title": "Sleep & Night Freedom Pattern",
+      "bytes": 19073
+    },
+    {
+      "source": "https://hearty-pickle-ha6t.here.now/atlas/mai-tsara/",
+      "route": "/mai-tsara/",
+      "canonical": "https://abbabk.github.io/mai-tsara/",
+      "file": "mai-tsara/index.html",
+      "title": "Mai Tsara Tunani AI — Personal Life Operating System",
+      "bytes": 12523
+    },
+    {
+      "source": "https://hearty-pickle-ha6t.here.now/atlas/life-os/",
+      "route": "/life-os/",
+      "canonical": "https://abbabk.github.io/life-os/",
+      "file": "life-os/index.html",
+      "title": "Mai Tsara Tunani AI — Visual Summary",
+      "bytes": 11192
+    },
+    {
+      "source": "https://hearty-pickle-ha6t.here.now/atlas/query-patterns/",
+      "route": "/query-patterns/",
+      "canonical": "https://abbabk.github.io/query-patterns/",
+      "file": "query-patterns/index.html",
+      "title": "Abba Query Pattern Analysis — 2026-05-12",
+      "bytes": 30244
+    },
+    {
+      "source": "https://hearty-pickle-ha6t.here.now/atlas/apps/",
+      "route": "/apps/",
+      "canonical": "https://abbabk.github.io/apps/",
+      "file": "apps/index.html",
+      "title": "Abba Interactive Apps Hub",
+      "bytes": 8559
+    },
+    {
+      "source": "https://hearty-pickle-ha6t.here.now/atlas/apps/mai-tsara-meaning-lens/",
+      "route": "/apps/mai-tsara-meaning-lens/",
+      "canonical": "https://abbabk.github.io/apps/mai-tsara-meaning-lens/",
+      "file": "apps/mai-tsara-meaning-lens/index.html",
+      "title": "Mai Tsara Meaning Lens",
+      "bytes": 49625
+    },
+    {
+      "source": "https://hearty-pickle-ha6t.here.now/atlas/apps/interactive-life-dashboard/",
+      "route": "/apps/interactive-life-dashboard/",
+      "canonical": "https://abbabk.github.io/apps/interactive-life-dashboard/",
+      "file": "apps/interactive-life-dashboard/index.html",
+      "title": "Abba's Life Dashboard",
+      "bytes": 8891
+    },
+    {
+      "source": "https://hearty-pickle-ha6t.here.now/atlas/apps/life-compass/",
+      "route": "/apps/life-compass/",
+      "canonical": "https://abbabk.github.io/apps/life-compass/",
+      "file": "apps/life-compass/index.html",
+      "title": "Abba's Life Compass - Deep Dive Synthesis",
+      "bytes": 33235
+    },
+    {
+      "source": "https://hearty-pickle-ha6t.here.now/atlas/apps/growth-app/",
+      "route": "/apps/growth-app/",
+      "canonical": "https://abbabk.github.io/apps/growth-app/",
+      "file": "apps/growth-app/index.html",
+      "title": "Unlock Your Growth",
+      "bytes": 10357
+    },
+    {
+      "source": "https://hearty-pickle-ha6t.here.now/atlas/apps/markmap/",
+      "route": "/apps/markmap/",
+      "canonical": "https://abbabk.github.io/apps/markmap/",
+      "file": "apps/markmap/index.html",
+      "title": "Markmap",
+      "bytes": 12199
+    },
+    {
+      "source": "https://hearty-pickle-ha6t.here.now/atlas/apps/abba-mobile-visualization/",
+      "route": "/apps/abba-mobile-visualization/",
+      "canonical": "https://abbabk.github.io/apps/abba-mobile-visualization/",
+      "file": "apps/abba-mobile-visualization/index.html",
+      "title": "Abba's Life Journey Visualization",
+      "bytes": 10305
+    },
+    {
+      "source": "https://hearty-pickle-ha6t.here.now/atlas/apps/enhanced-mobile-visualization/",
+      "route": "/apps/enhanced-mobile-visualization/",
+      "canonical": "https://abbabk.github.io/apps/enhanced-mobile-visualization/",
+      "file": "apps/enhanced-mobile-visualization/index.html",
+      "title": "Abba's Enhanced Life Journey (2019-2024)",
+      "bytes": 22448
+    },
+    {
+      "source": "https://hearty-pickle-ha6t.here.now/atlas/apps/life-journey-visualization/",
+      "route": "/apps/life-journey-visualization/",
+      "canonical": "https://abbabk.github.io/apps/life-journey-visualization/",
+      "file": "apps/life-journey-visualization/index.html",
+      "title": "Abba's Life Journey Visualization (2019-2024)",
+      "bytes": 15315
+    },
+    {
+      "source": "https://hearty-pickle-ha6t.here.now/atlas/apps/classic-visualization/",
+      "route": "/apps/classic-visualization/",
+      "canonical": "https://abbabk.github.io/apps/classic-visualization/",
+      "file": "apps/classic-visualization/index.html",
+      "title": "Abba's Life Journey Visualization",
+      "bytes": 5968
+    }
+  ],
+  "assets": [
+    {
+      "source": "https://hearty-pickle-ha6t.here.now/atlas/apps/icon.svg",
+      "route": "/apps/icon.svg",
+      "file": "apps/icon.svg",
+      "bytes": 555,
+      "content_type": "image/svg+xml"
+    },
+    {
+      "source": "https://hearty-pickle-ha6t.here.now/atlas/apps/apple-touch-icon.png",
+      "route": "/apps/apple-touch-icon.png",
+      "file": "apps/apple-touch-icon.png",
+      "bytes": 1246,
+      "content_type": "image/png"
+    },
+    {
+      "source": "https://hearty-pickle-ha6t.here.now/atlas/apps/site-manifest.json",
+      "route": "/apps/site-manifest.json",
+      "file": "apps/site-manifest.json",
+      "bytes": 391,
+      "content_type": "application/json; charset=utf-8"
+    }
+  ],
+  "errors": [],
+  "asset_files_total": 43,
+  "asset_files": [
+    {
+      "file": ".git/COMMIT_EDITMSG",
+      "bytes": 32
+    },
+    {
+      "file": ".git/HEAD",
+      "bytes": 21
+    },
+    {
+      "file": ".git/config",
+      "bytes": 312
+    },
+    {
+      "file": ".git/description",
+      "bytes": 73
+    },
+    {
+      "file": ".git/hooks/applypatch-msg.sample",
+      "bytes": 478
+    },
+    {
+      "file": ".git/hooks/commit-msg.sample",
+      "bytes": 896
+    },
+    {
+      "file": ".git/hooks/fsmonitor-watchman.sample",
+      "bytes": 4726
+    },
+    {
+      "file": ".git/hooks/post-update.sample",
+      "bytes": 189
+    },
+    {
+      "file": ".git/hooks/pre-applypatch.sample",
+      "bytes": 424
+    },
+    {
+      "file": ".git/hooks/pre-commit.sample",
+      "bytes": 1649
+    },
+    {
+      "file": ".git/hooks/pre-merge-commit.sample",
+      "bytes": 416
+    },
+    {
+      "file": ".git/hooks/pre-push.sample",
+      "bytes": 1374
+    },
+    {
+      "file": ".git/hooks/pre-rebase.sample",
+      "bytes": 4898
+    },
+    {
+      "file": ".git/hooks/pre-receive.sample",
+      "bytes": 544
+    },
+    {
+      "file": ".git/hooks/prepare-commit-msg.sample",
+      "bytes": 1492
+    },
+    {
+      "file": ".git/hooks/push-to-checkout.sample",
+      "bytes": 2783
+    },
+    {
+      "file": ".git/hooks/sendemail-validate.sample",
+      "bytes": 2308
+    },
+    {
+      "file": ".git/hooks/update.sample",
+      "bytes": 3650
+    },
+    {
+      "file": ".git/index",
+      "bytes": 289
+    },
+    {
+      "file": ".git/info/exclude",
+      "bytes": 240
+    },
+    {
+      "file": ".git/logs/HEAD",
+      "bytes": 569
+    },
+    {
+      "file": ".git/logs/refs/heads/main",
+      "bytes": 379
+    },
+    {
+      "file": ".git/logs/refs/remotes/origin/main",
+      "bytes": 154
+    },
+    {
+      "file": ".git/objects/0b/c4832fa25f727da9dd39543fb7a1ccc616dec1",
+      "bytes": 122
+    },
+    {
+      "file": ".git/objects/46/c02bb3be960418f00238296e3bcad8092e7236",
+      "bytes": 153
+    },
+    {
+      "file": ".git/objects/7d/483ac31080d2c5e53d56260c4c69380b4c6a42",
+      "bytes": 4960
+    },
+    {
+      "file": ".git/objects/97/4cf9c224e19788681973d839876914bcc3c74a",
+      "bytes": 451
+    },
+    {
+      "file": ".git/objects/e6/9de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 15
+    },
+    {
+      "file": ".git/refs/heads/main",
+      "bytes": 41
+    },
+    {
+      "file": ".git/refs/remotes/origin/main",
+      "bytes": 41
+    },
+    {
+      "file": "apps/apple-touch-icon.png",
+      "bytes": 1246
+    },
+    {
+      "file": "apps/icon.svg",
+      "bytes": 555
+    },
+    {
+      "file": "apps/interactive-life-dashboard/assets/charts-C-zmPWFf.js",
+      "bytes": 525628
+    },
+    {
+      "file": "apps/interactive-life-dashboard/assets/google-services-C6huTpaC.js",
+      "bytes": 257579
+    },
+    {
+      "file": "apps/interactive-life-dashboard/assets/index-9nypHQxV.js",
+      "bytes": 2000902
+    },
+    {
+      "file": "apps/interactive-life-dashboard/assets/index-JRb8KEO7.css",
+      "bytes": 218688
+    },
+    {
+      "file": "apps/interactive-life-dashboard/assets/react-vendor-wzZzN_Jv.js",
+      "bytes": 12446
+    },
+    {
+      "file": "apps/interactive-life-dashboard/assets/utils-DvD4i5RQ.js",
+      "bytes": 176059
+    },
+    {
+      "file": "apps/interactive-life-dashboard/icon-192x192.png",
+      "bytes": 5502
+    },
+    {
+      "file": "apps/interactive-life-dashboard/icon-512x512.png",
+      "bytes": 19435
+    },
+    {
+      "file": "apps/interactive-life-dashboard/icon.svg",
+      "bytes": 808
+    },
+    {
+      "file": "apps/interactive-life-dashboard/manifest.json",
+      "bytes": 1727
+    },
+    {
+      "file": "apps/site-manifest.json",
+      "bytes": 391
+    }
+  ]
+}

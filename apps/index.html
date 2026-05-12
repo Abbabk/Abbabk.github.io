@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Migrated from https://hearty-pickle-ha6t.here.now/atlas/apps/ to https://abbabk.github.io/apps/ on 2026-05-12 -->
+  <link rel="canonical" href="https://abbabk.github.io/apps/" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Abba Interactive Apps Hub</title>
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+  <link rel="manifest" href="./site-manifest.json">
+  <style>
+    :root {
+      --bg: #08111f;
+      --panel: #0f172a;
+      --panel-2: #111c34;
+      --text: #e5edf8;
+      --muted: #9fb2cf;
+      --line: rgba(148,163,184,.22);
+      --accent: #60a5fa;
+      --accent-2: #22c55e;
+      --shadow: 0 18px 40px rgba(0,0,0,.35);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; background: linear-gradient(180deg, #08111f 0%, #0b1220 100%); color: var(--text); font: 16px/1.5 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    body { padding: 20px 16px 40px; }
+    .wrap { width: min(1100px, 100%); margin: 0 auto; }
+    .hero { background: linear-gradient(160deg, rgba(37,99,235,.3), rgba(15,23,42,.92)); border: 1px solid var(--line); border-radius: 24px; padding: 22px 18px; box-shadow: var(--shadow); }
+    .eyebrow { color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: .08em; font-size: 12px; }
+    h1 { margin: 8px 0 10px; font-size: clamp(28px, 5vw, 48px); line-height: 1.02; }
+    .lead { margin: 0; color: var(--muted); max-width: 70ch; }
+    .tip-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin-top: 18px; }
+    .tip { background: rgba(8,17,31,.52); border: 1px solid var(--line); border-radius: 18px; padding: 14px; }
+    .tip strong { display: block; margin-bottom: 4px; color: white; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-top: 18px; }
+    .card { display: flex; flex-direction: column; gap: 10px; text-decoration: none; color: inherit; background: linear-gradient(180deg, rgba(17,28,52,.98), rgba(10,16,30,.98)); border: 1px solid var(--line); border-radius: 22px; padding: 18px; min-height: 210px; box-shadow: var(--shadow); transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease; }
+    .card:hover, .card:focus-visible { transform: translateY(-2px); border-color: rgba(96,165,250,.55); box-shadow: 0 20px 50px rgba(37,99,235,.16); outline: none; }
+    .card-kicker { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--accent-2); }
+    .card h2 { margin: 0; font-size: 22px; line-height: 1.12; }
+    .card p { margin: 0; color: var(--muted); }
+    .meta { margin-top: auto; color: #7dd3fc; font-size: 13px; word-break: break-word; }
+    .cta { font-weight: 700; color: white; }
+    .footer { margin-top: 18px; color: var(--muted); font-size: 14px; }
+    code { background: rgba(15,23,42,.9); border: 1px solid var(--line); border-radius: 8px; padding: .15rem .4rem; color: #bfdbfe; }
+    @media (max-width: 640px) {
+      body { padding: 14px 12px 28px; }
+      .hero { padding: 18px 14px; border-radius: 20px; }
+      .card { border-radius: 18px; min-height: 180px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div class="eyebrow">Obsidian + mobile ready</div>
+      <h1>Abba Interactive Apps Hub</h1>
+      <p class="lead">Use this hub as the stable mobile-first entry point for your HTML apps. Open it in Obsidian Web viewer or Custom Frames on desktop, and open the same URL in your phone browser for the strongest mobile experience.</p>
+      <p style="margin-top:10px"><a href="/">Open here.now Library →</a></p>
+      <div class="tip-grid">
+        <div class="tip"><strong>Desktop</strong>Best inside Obsidian via Web viewer or Custom Frames.</div>
+        <div class="tip"><strong>Mobile</strong>Open in browser and add to home screen for the smoothest taps, scrolling, and JS behavior.</div>
+        <div class="tip"><strong>Source of truth</strong>HTML source files remain in your vault under <code>Inbox/Imported/UpNote/General Space/Files</code> or packaged app folders.</div>
+      </div>
+    </section>
+    <section class="cards">
+      <a class="card" href="./mai-tsara-meaning-lens/">
+      <div class="card-kicker">Interactive HTML app</div>
+      <h2>Mai Tsara Meaning Lens</h2>
+      <p>Meaning-lens app with language modes, reflective tools, and the built-in Scenario Translator for turning real situations into usable system responses.</p>
+      <div class="meta">Source: Downloads/Hermes Automations/abba_meaning_lens_app.html</div>
+      <div class="cta">Open app →</div>
+    </a><a class="card" href="./interactive-life-dashboard/">
+      <div class="card-kicker">Interactive HTML app</div>
+      <h2>Interactive Life Dashboard</h2>
+      <p>Separate full dashboard app bundle with Decision Maker, Digital Twin, memory, finance, translation tooling, and the broader interactive system.</p>
+      <div class="meta">Source: Downloads/Dev/Abba-dashboard-Stable (safe production build)</div>
+      <div class="cta">Open app →</div>
+    </a><a class="card" href="./life-compass/">
+      <div class="card-kicker">Interactive HTML app</div>
+      <h2>Life Compass</h2>
+      <p>A polished interactive prototype with clickable sections and simulated AI response flow.</p>
+      <div class="meta">Source: Inbox/Imported/UpNote/General Space/Files/Abba&#x27;s Life Compass.html</div>
+      <div class="cta">Open app →</div>
+    </a><a class="card" href="./growth-app/">
+      <div class="card-kicker">Interactive HTML app</div>
+      <h2>Growth App</h2>
+      <p>Single-file interactive growth app for reflection and exploration.</p>
+      <div class="meta">Source: Inbox/Imported/UpNote/General Space/Files/Growth App.html</div>
+      <div class="cta">Open app →</div>
+    </a><a class="card" href="./markmap/">
+      <div class="card-kicker">Interactive HTML app</div>
+      <h2>Markmap</h2>
+      <p>Interactive zoomable mind map rendered with Markmap and D3.</p>
+      <div class="meta">Source: Inbox/Imported/UpNote/General Space/Files/markmap (1).html</div>
+      <div class="cta">Open app →</div>
+    </a><a class="card" href="./abba-mobile-visualization/">
+      <div class="card-kicker">Interactive HTML app</div>
+      <h2>Abba Mobile Visualization</h2>
+      <p>Mobile-friendly life journey visualization with charts.</p>
+      <div class="meta">Source: Inbox/Imported/UpNote/General Space/Files/Abba Mobile Visualization.html</div>
+      <div class="cta">Open app →</div>
+    </a><a class="card" href="./enhanced-mobile-visualization/">
+      <div class="card-kicker">Interactive HTML app</div>
+      <h2>Enhanced Mobile Visualization</h2>
+      <p>Extended mobile visualization dashboard with richer charts and sections.</p>
+      <div class="meta">Source: Inbox/Imported/UpNote/General Space/Files/enhanced_mobile_visualization.html</div>
+      <div class="cta">Open app →</div>
+    </a><a class="card" href="./life-journey-visualization/">
+      <div class="card-kicker">Interactive HTML app</div>
+      <h2>Life Journey Visualization</h2>
+      <p>Compact mobile-first chart-based life journey view.</p>
+      <div class="meta">Source: Inbox/Imported/UpNote/General Space/Files/mobile_friendly_visualization.html</div>
+      <div class="cta">Open app →</div>
+    </a><a class="card" href="./classic-visualization/">
+      <div class="card-kicker">Interactive HTML app</div>
+      <h2>Classic Visualization</h2>
+      <p>Original chart-based visualization dashboard.</p>
+      <div class="meta">Source: Inbox/Imported/UpNote/General Space/Files/abba_visualization.html</div>
+      <div class="cta">Open app →</div>
+    </a>
+    </section>
+    <p class="footer">Excluded from hosting for safety: <code>summarizer.html</code> because it uses a client-side Gemini key/API pattern and should be moved behind a backend before public/mobile deployment. The full Interactive Life Dashboard build was published with sensitive client env keys removed, so advanced AI features may ask for user-supplied keys or configured gateways.</p>
+  </main>
+</body>
+</html>

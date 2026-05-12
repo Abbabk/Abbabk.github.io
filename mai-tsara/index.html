@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Migrated from https://hearty-pickle-ha6t.here.now/atlas/mai-tsara/ to https://abbabk.github.io/mai-tsara/ on 2026-05-12 -->
+  <link rel="canonical" href="https://abbabk.github.io/mai-tsara/" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mai Tsara Tunani AI — Personal Life Operating System</title>
+  <meta name="description" content="Mai Tsara Tunani AI helps ambitious people turn their real life context — goals, habits, money patterns, journals, and vision — into a personal life operating system." />
+  <meta property="og:title" content="Mai Tsara Tunani AI" />
+  <meta property="og:description" content="A personal life operating system built from your real context." />
+  <meta property="og:type" content="website" />
+  <style>
+    :root {
+      --bg: #080b12;
+      --panel: rgba(255,255,255,.075);
+      --panel-2: rgba(255,255,255,.11);
+      --text: #f5f7fb;
+      --muted: #b9c2d0;
+      --soft: #8792a6;
+      --gold: #f6c65b;
+      --green: #7be0ad;
+      --blue: #83b7ff;
+      --line: rgba(255,255,255,.14);
+      --shadow: 0 30px 80px rgba(0,0,0,.45);
+      --radius: 28px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(246,198,91,.18), transparent 32rem),
+        radial-gradient(circle at 82% 12%, rgba(131,183,255,.18), transparent 34rem),
+        radial-gradient(circle at 50% 92%, rgba(123,224,173,.13), transparent 32rem),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    a { color: inherit; }
+    .wrap { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+    header {
+      padding: 24px 0;
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(18px);
+      background: rgba(8,11,18,.62);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      z-index: 5;
+    }
+    nav { display:flex; align-items:center; justify-content:space-between; gap: 18px; }
+    .brand { display:flex; align-items:center; gap: 12px; font-weight: 800; letter-spacing: -.02em; }
+    .mark { width: 38px; height: 38px; display:grid; place-items:center; border-radius: 14px; background: linear-gradient(135deg, var(--gold), var(--green)); color: #07100d; box-shadow: 0 10px 30px rgba(246,198,91,.22); }
+    .navlinks { display:flex; gap: 18px; color: var(--muted); font-size: 14px; }
+    .navlinks a { text-decoration:none; }
+    .hero { padding: 92px 0 58px; }
+    .eyebrow { color: var(--gold); font-weight: 800; letter-spacing: .14em; font-size: 12px; text-transform: uppercase; }
+    h1 { margin: 16px 0 18px; font-size: clamp(46px, 7vw, 86px); line-height: .95; letter-spacing: -.07em; max-width: 980px; }
+    .lead { font-size: clamp(19px, 2.4vw, 25px); color: var(--muted); max-width: 820px; margin: 0 0 34px; }
+    .cta-row { display:flex; flex-wrap:wrap; gap: 14px; align-items:center; margin-top: 34px; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; min-height: 52px; padding: 0 22px; border-radius: 999px; text-decoration:none; font-weight: 800; border: 1px solid var(--line); }
+    .btn.primary { background: linear-gradient(135deg, var(--gold), #ffe39a); color: #181000; border-color: transparent; }
+    .btn.secondary { color: var(--text); background: rgba(255,255,255,.07); }
+    .note { color: var(--soft); font-size: 14px; }
+    .grid { display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin: 48px 0 0; }
+    .card { background: linear-gradient(180deg, var(--panel-2), var(--panel)); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; box-shadow: var(--shadow); }
+    .card h3, .section h2 { margin-top: 0; letter-spacing: -.035em; }
+    .card p { color: var(--muted); margin-bottom: 0; }
+    .section { padding: 64px 0; }
+    .split { display:grid; grid-template-columns: .95fr 1.05fr; gap: 28px; align-items:start; }
+    h2 { font-size: clamp(32px, 4.2vw, 54px); line-height: 1; margin-bottom: 16px; }
+    .section-copy { color: var(--muted); font-size: 18px; max-width: 680px; }
+    .list { display:grid; gap: 13px; margin-top: 24px; }
+    .item { display:flex; gap: 12px; padding: 16px; border: 1px solid var(--line); border-radius: 20px; background: rgba(255,255,255,.055); }
+    .check { color: var(--green); font-weight: 900; }
+    .item strong { display:block; }
+    .item span { color: var(--muted); }
+    .quote { font-size: clamp(25px, 3vw, 38px); line-height: 1.18; letter-spacing: -.04em; }
+    .muted { color: var(--muted); }
+    .pillars { display:grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .footer-cta { text-align:center; padding: 86px 0 70px; }
+    .footer-cta h2 { margin-left:auto; margin-right:auto; max-width: 760px; }
+    footer { border-top: 1px solid var(--line); padding: 28px 0; color: var(--soft); font-size: 14px; }
+    @media (max-width: 820px) {
+      .navlinks { display:none; }
+      .hero { padding-top: 64px; }
+      .grid, .split, .pillars { grid-template-columns: 1fr; }
+      .card { padding: 22px; }
+      h1 { letter-spacing: -.055em; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <nav>
+        <div class="brand"><div class="mark">MT</div><span>Mai Tsara Tunani AI</span></div>
+        <div class="navlinks">
+          <a href="#method">Method</a>
+          <a href="#offer">Offer</a>
+          <a href="#fit">Who it helps</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="eyebrow">Personal Life Operating System</div>
+        <h1>Turn your real life context into a private AI coach for your next move.</h1>
+        <p class="lead">Mai Tsara Tunani AI helps ambitious people convert journals, goals, habits, money patterns, emotions, relationships, and vision into one living system for clarity, discipline, and peace.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="mailto:abbabkanwa@gmail.com?subject=Mai%20Tsara%20Life%20OS%20Setup">Request early access</a>
+          <a class="btn secondary" href="#offer">See the first offer</a>
+          <span class="note">Built first from lived proof, not theory.</span>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <h3>Context-first coaching</h3>
+            <p>Advice grounded in your real life evidence: goals, habits, journal patterns, financial behavior, and personal vision.</p>
+          </div>
+          <div class="card">
+            <h3>Taswira-based living</h3>
+            <p>Your blueprint becomes practical: daily rituals, decisions, boundaries, and reviews that reinforce the life you are building.</p>
+          </div>
+          <div class="card">
+            <h3>Private by design</h3>
+            <p>The first version is a guided setup service, not a public data-hungry app. Your context stays treated as sacred.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="method">
+      <div class="wrap split">
+        <div>
+          <div class="eyebrow">The method</div>
+          <h2>Not another generic AI life coach.</h2>
+          <p class="section-copy">Most coaching tools start from generic prompts. Mai Tsara starts from the person: their values, their patterns, their habits, their money behavior, their emotional loops, and their long-term vision.</p>
+        </div>
+        <div class="list">
+          <div class="item"><div class="check">✓</div><div><strong>Life context intake</strong><span>Gather goals, values, identity anchors, routines, journal themes, and current pressure points.</span></div></div>
+          <div class="item"><div class="check">✓</div><div><strong>Habit sensors</strong><span>Use habit logs as signals, not checkboxes — each completion becomes evidence about the person’s life system.</span></div></div>
+          <div class="item"><div class="check">✓</div><div><strong>Money as identity evidence</strong><span>Spending, saving, and investing become feedback on values, fear, discipline, provision, and future self.</span></div></div>
+          <div class="item"><div class="check">✓</div><div><strong>Vision-to-action loop</strong><span>Turn reflection into specific actions, weekly reviews, decision support, and personal operating rules.</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="card">
+          <p class="quote">“The product is not just an app. It is context turned into daily life architecture.”</p>
+          <p class="muted">Mai Tsara means “the one who arranges thoughts.” The goal is not to replace human judgment — it is to help a person see their own life clearly enough to act with peace.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="offer">
+      <div class="wrap split">
+        <div>
+          <div class="eyebrow">First offer</div>
+          <h2>Mai Tsara Life OS — Personal AI Dashboard Setup</h2>
+          <p class="section-copy">A guided setup for people who want a private AI-assisted life system built from their real context before this becomes a broader product.</p>
+        </div>
+        <div class="pillars">
+          <div class="card"><h3>1. Personal intake</h3><p>Goals, values, life domains, habits, finances, journal themes, relationships, and current constraints.</p></div>
+          <div class="card"><h3>2. Dashboard blueprint</h3><p>A structured private dashboard/template that organizes the person’s life context into usable sections.</p></div>
+          <div class="card"><h3>3. AI coach prompts</h3><p>Custom Oracle-style prompts and personas that answer from the person’s own context and goals.</p></div>
+          <div class="card"><h3>4. Weekly operating rhythm</h3><p>Habit review, decision support, life-domain review, and next-action planning over 2–4 guided weeks.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="fit">
+      <div class="wrap split">
+        <div>
+          <div class="eyebrow">Best fit</div>
+          <h2>For people with ambition, data, and inner complexity.</h2>
+          <p class="section-copy">This is for people who already have dreams, notes, goals, habits, and life pressure — but need a system that turns all of it into clear direction.</p>
+        </div>
+        <div class="list">
+          <div class="item"><div class="check">•</div><div><strong>Founders and builders</strong><span>People building serious work while managing emotional, relational, and financial pressure.</span></div></div>
+          <div class="item"><div class="check">•</div><div><strong>Ambitious but scattered professionals</strong><span>People with many tools, notes, and goals — but no unifying life system.</span></div></div>
+          <div class="item"><div class="check">•</div><div><strong>People changing habits and money behavior</strong><span>Especially those who want discipline to feel meaningful, not punitive.</span></div></div>
+          <div class="item"><div class="check">•</div><div><strong>Values-driven families and leaders</strong><span>People who want growth that includes faith, family, peace, and responsibility.</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="footer-cta">
+      <div class="wrap">
+        <div class="eyebrow">Early access</div>
+        <h2>Build a personal life operating system before you build another productivity stack.</h2>
+        <p class="section-copy" style="margin-left:auto;margin-right:auto;">The first version is intentionally guided and private. No therapy claims. No generic promises. Just a serious system for turning your context into clearer decisions.</p>
+        <div class="cta-row" style="justify-content:center;">
+          <a class="btn primary" href="mailto:abbabkanwa@gmail.com?subject=Mai%20Tsara%20Life%20OS%20Setup">Request early access</a>
+          <a class="btn secondary" href="mailto:abbabkanwa@gmail.com?subject=Mai%20Tsara%20Collaboration">Collaborate</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">© 2026 Mai Tsara Tunani AI. Personal reflection, decision support, and life-system design — not medical or mental-health treatment.</div>
+  </footer>
+</body>
+</html>

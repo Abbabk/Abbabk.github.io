@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Migrated from https://hearty-pickle-ha6t.here.now/atlas/apps/classic-visualization/ to https://abbabk.github.io/apps/classic-visualization/ on 2026-05-12 -->
+  <link rel="canonical" href="https://abbabk.github.io/apps/classic-visualization/" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abba's Life Journey Visualization</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; }
+        h1, h2 { text-align: center; color: #333; }
+        .chart-container { width: 80%; margin: 20px auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        #stats { width: 80%; margin: 20px auto; padding: 20px; background: white; border-radius: 8px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+        th { background-color: #4CAF50; color: white; }
+    </style>
+</head>
+<body>
+    <h1>Abba's Life Journey (2019-2024)</h1>
+    
+    <div class="chart-container">
+        <h2>Trend Over Time (Line Chart)</h2>
+        <canvas id="lineChart"></canvas>
+    </div>
+    
+    <div class="chart-container">
+        <h2>Yearly Comparison (Bar Chart)</h2>
+        <canvas id="barChart"></canvas>
+    </div>
+    
+    <div class="chart-container">
+        <h2>Cumulative Growth (Area Chart)</h2>
+        <canvas id="areaChart"></canvas>
+    </div>
+    
+    <div id="stats">
+        <h2>Statistical Analysis</h2>
+        <table id="statsTable">
+            <tr>
+                <th>Metric</th>
+                <th>2019-2020 (%)</th>
+                <th>2020-2021 (%)</th>
+                <th>2021-2022 (%)</th>
+                <th>2022-2023 (%)</th>
+                <th>2023-2024 (%)</th>
+                <th>Avg. Growth (%)</th>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        // Data for charts
+        const years = [2019, 2020, 2021, 2022, 2023, 2024];
+        const data = {
+            financial: [10, 15, 20, 25, 80, 90],
+            learning: [20, 30, 50, 70, 85, 95],
+            career: [10, 20, 30, 50, 80, 90],
+            personal: [15, 25, 40, 60, 75, 85]
+        };
+
+        // Calculate percentage changes and averages
+        const stats = {
+            financial: [],
+            learning: [],
+            career: [],
+            personal: []
+        };
+        const avgGrowth = {};
+
+        for (let metric in data) {
+            stats[metric] = [];
+            for (let i = 1; i < data[metric].length; i++) {
+                const change = ((data[metric][i] - data[metric][i-1]) / data[metric][i-1] * 100).toFixed(2);
+                stats[metric].push(change);
+            }
+            avgGrowth[metric] = (stats[metric].reduce((a, b) => a + parseFloat(b), 0) / stats[metric].length).toFixed(2);
+        }
+
+        // Populate stats table
+        const table = document.getElementById('statsTable');
+        for (let metric in stats) {
+            const row = table.insertRow();
+            row.insertCell().textContent = metric.charAt(0).toUpperCase() + metric.slice(1);
+            stats[metric].forEach(change => {
+                row.insertCell().textContent = change + '%';
+            });
+            row.insertCell().textContent = avgGrowth[metric] + '%';
+        }
+
+        // Line Chart
+        new Chart(document.getElementById('lineChart'), {
+            type: 'line',
+            data: {
+                labels: years,
+                datasets: [
+                    { label: 'Financial Growth', data: data.financial, borderColor: '#FF6384', fill: false },
+                    { label: 'Learning Efficiency', data: data.learning, borderColor: '#36A2EB', fill: false },
+                    { label: 'Career Progress', data: data.career, borderColor: '#FFCE56', fill: false },
+                    { label: 'Personal Development', data: data.personal, borderColor: '#4BC0C0', fill: false }
+                ]
+            },
+            options: { responsive: true, plugins: { title: { display: true, text: 'Growth Trends' } } }
+        });
+
+        // Bar Chart
+        new Chart(document.getElementById('barChart'), {
+            type: 'bar',
+            data: {
+                labels: years,
+                datasets: [
+                    { label: 'Financial Growth', data: data.financial, backgroundColor: '#FF6384' },
+                    { label: 'Learning Efficiency', data: data.learning, backgroundColor: '#36A2EB' },
+                    { label: 'Career Progress', data: data.career, backgroundColor: '#FFCE56' },
+                    { label: 'Personal Development', data: data.personal, backgroundColor: '#4BC0C0' }
+                ]
+            },
+            options: { responsive: true, plugins: { title: { display: true, text: 'Yearly Comparison' } } }
+        });
+
+        // Area Chart
+        new Chart(document.getElementById('areaChart'), {
+            type: 'line',
+            data: {
+                labels: years,
+                datasets: [
+                    { label: 'Financial Growth', data: data.financial, backgroundColor: 'rgba(255,99,132,0.2)', borderColor: '#FF6384', fill: true },
+                    { label: 'Learning Efficiency', data: data.learning, backgroundColor: 'rgba(54,162,235,0.2)', borderColor: '#36A2EB', fill: true },
+                    { label: 'Career Progress', data: data.career, backgroundColor: 'rgba(255,206,86,0.2)', borderColor: '#FFCE56', fill: true },
+                    { label: 'Personal Development', data: data.personal, backgroundColor: 'rgba(75,192,192,0.2)', borderColor: '#4BC0C0', fill: true }
+                ]
+            },
+            options: { responsive: true, plugins: { title: { display: true, text: 'Cumulative Growth' } } }
+        });
+    </script>
+</body>
+</html>
