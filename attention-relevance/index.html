@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="A preserved Hermes answer to Abba's question about attention, relevance, stewardship, margin, presence, and fatherhood." />
+  <meta property="og:title" content="What Your Attention Is Teaching You" />
+  <meta property="og:description" content="Relevance is not what feels interesting. It is what keeps touching your future." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://abbabk.github.io/attention-relevance/" />
+  <link rel="icon" href="data:," />
+  <title>What Your Attention Is Teaching You</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #07080d;
+      --ink: #fff8ea;
+      --muted: #bdb4a6;
+      --soft: #82786b;
+      --line: rgba(255,255,255,.14);
+      --panel: rgba(255,255,255,.07);
+      --panel-2: rgba(255,255,255,.105);
+      --gold: #f5c967;
+      --teal: #71ead8;
+      --rose: #f6a7bf;
+      --blue: #9dbbff;
+      --green: #a7f3d0;
+      --max: 1120px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% -12%, rgba(113,234,216,.22), transparent 34rem),
+        radial-gradient(circle at 88% 0%, rgba(245,201,103,.18), transparent 32rem),
+        radial-gradient(circle at 52% 46%, rgba(157,187,255,.12), transparent 42rem),
+        linear-gradient(180deg, #07080d 0%, #0c111d 48%, #07080d 100%);
+      line-height: 1.58;
+    }
+    body:before { content: ""; position: fixed; inset: 0; pointer-events: none; opacity: .16; background-image: radial-gradient(rgba(255,255,255,.16) 1px, transparent 1px); background-size: 24px 24px; mask-image: linear-gradient(180deg, #000, transparent 78%); }
+    a { color: inherit; }
+    .shell { width: min(var(--max), calc(100% - 34px)); margin: 0 auto; position: relative; }
+    header { padding: 26px 0 56px; }
+    nav { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 64px; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; color: var(--muted); text-decoration: none; text-transform: uppercase; letter-spacing: .12em; font-size: 12px; font-weight: 850; }
+    .mark { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 16px; background: linear-gradient(135deg, var(--gold), var(--teal)); color: #071014; font-weight: 950; letter-spacing: -.04em; }
+    .navlinks { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+    .pill { text-decoration: none; border: 1px solid var(--line); background: rgba(255,255,255,.045); color: var(--muted); padding: 9px 13px; border-radius: 999px; font-size: 13px; }
+    .hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(290px, .72fr); gap: 28px; align-items: stretch; }
+    .eyebrow { display: inline-flex; gap: 9px; align-items: center; border: 1px solid rgba(113,234,216,.24); color: var(--teal); background: rgba(113,234,216,.08); padding: 8px 12px; border-radius: 999px; font-size: 13px; margin-bottom: 22px; }
+    h1 { margin: 0 0 22px; font-size: clamp(46px, 8vw, 92px); line-height: .91; letter-spacing: -.078em; max-width: 850px; text-wrap: balance; }
+    h1 span { color: var(--gold); }
+    .hero-copy { color: var(--muted); font-size: clamp(17px, 2vw, 21px); max-width: 760px; margin: 0; }
+    .question-card { border: 1px solid rgba(245,201,103,.26); background: linear-gradient(180deg, rgba(245,201,103,.13), rgba(255,255,255,.04)); border-radius: 28px; padding: 22px; box-shadow: 0 26px 90px rgba(0,0,0,.34); }
+    .label { color: var(--gold); letter-spacing: .14em; text-transform: uppercase; font-size: 12px; font-weight: 950; margin-bottom: 10px; }
+    .question { font-size: clamp(24px, 3.4vw, 42px); line-height: 1.04; letter-spacing: -.055em; margin: 0; }
+    main { padding: 16px 0 72px; }
+    .section { margin-top: 48px; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 22px; margin-bottom: 18px; }
+    .kicker { color: var(--gold); font-size: 13px; letter-spacing: .14em; text-transform: uppercase; font-weight: 950; }
+    h2 { margin: 5px 0 0; font-size: clamp(30px, 4.5vw, 54px); line-height: .98; letter-spacing: -.06em; }
+    .section-head p { margin: 0; color: var(--muted); max-width: 500px; }
+    .concept-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+    .concept { min-height: 150px; border: 1px solid var(--line); border-radius: 24px; padding: 18px; background: linear-gradient(180deg, rgba(255,255,255,.085), rgba(255,255,255,.035)); position: relative; overflow: hidden; }
+    .concept:before { content: ""; position: absolute; inset: auto -28px -48px auto; width: 128px; height: 128px; border-radius: 999px; background: radial-gradient(circle, var(--accent), transparent 68%); opacity: .34; }
+    .concept strong { display: block; font-size: 19px; letter-spacing: -.035em; margin-bottom: 8px; }
+    .concept span { color: var(--muted); font-size: 14px; }
+    .preserved { border: 1px solid rgba(113,234,216,.26); border-radius: 32px; background: linear-gradient(180deg, rgba(113,234,216,.09), rgba(255,255,255,.04)); padding: clamp(20px, 4vw, 42px); box-shadow: 0 24px 80px rgba(0,0,0,.28); }
+    .preserved .note { color: var(--teal); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; font-weight: 950; margin-bottom: 18px; }
+    .answer { font-size: clamp(17px, 1.7vw, 20px); color: #f8f1e6; }
+    .answer p { margin: 0 0 20px; }
+    .answer strong { color: var(--gold); }
+    .preserved-list { list-style: none; padding: 0; margin: 20px 0 24px; display: grid; gap: 4px; }
+    .preserved-list li { margin-top: 18px; font-size: 20px; font-weight: 850; letter-spacing: -.035em; }
+    .preserved-list .li-cont { color: var(--muted); margin: 4px 0 0 18px; max-width: 820px; }
+    .thesis { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .thesis-card { border: 1px solid var(--line); border-radius: 28px; padding: 22px; background: rgba(255,255,255,.06); }
+    .thesis-card strong { display: block; color: var(--gold); margin-bottom: 8px; font-size: 21px; letter-spacing: -.035em; }
+    .thesis-card p { margin: 0; color: var(--muted); }
+    details { border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.045); border-radius: 28px; overflow: hidden; }
+    summary { cursor: pointer; list-style: none; display: grid; grid-template-columns: minmax(0, 1fr) 40px; gap: 12px; align-items: center; padding: 18px 20px; }
+    summary::-webkit-details-marker { display: none; }
+    .summary-copy strong { display: block; font-size: 19px; }
+    .summary-copy span { display: block; color: var(--muted); font-size: 14px; margin-top: 3px; }
+    .chevron { width: 40px; height: 40px; border-radius: 999px; display: grid; place-items: center; color: var(--gold); background: rgba(255,255,255,.08); transition: transform .18s ease; }
+    details[open] .chevron { transform: rotate(180deg); }
+    pre { margin: 0; padding: 0 20px 22px; white-space: pre-wrap; color: var(--muted); font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 13px; line-height: 1.55; }
+    footer { border-top: 1px solid var(--line); color: var(--soft); padding: 30px 0 42px; font-size: 14px; }
+    @media (max-width: 920px) {
+      nav, .section-head { align-items: flex-start; flex-direction: column; }
+      .hero, .thesis { grid-template-columns: 1fr; }
+      .concept-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 560px) {
+      .concept-grid { grid-template-columns: 1fr; }
+      summary { grid-template-columns: minmax(0, 1fr) 34px; padding: 16px; }
+      .chevron { width: 34px; height: 34px; }
+      pre { padding: 0 16px 18px; font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="shell">
+      <nav aria-label="Primary">
+        <a class="brand" href="https://abbabk.github.io/"><span class="mark">A/H</span><span>Abba / Hermes</span></a>
+        <div class="navlinks"><a class="pill" href="#concepts">Key concepts</a><a class="pill" href="#preserved">Exact answer</a><a class="pill" href="/">Gallery</a></div>
+      </nav>
+      <section class="hero">
+        <div>
+          <div class="eyebrow">Published reflection · 2026-05-12</div>
+          <h1>What your attention is <span>teaching</span> you.</h1>
+          <p class="hero-copy">A visual artifact preserving the original question and answer exactly, with a light design layer around the core concepts: relevance, margin, presence, systems, body regulation, and stewardship.</p>
+        </div>
+        <aside class="question-card">
+          <div class="label">Original question</div>
+          <p class="question">What is my attention teaching me is relevant?</p>
+        </aside>
+      </section>
+    </div>
+  </header>
+  <main class="shell">
+    <section class="section" id="concepts">
+      <div class="section-head"><div><div class="kicker">Concept map</div><h2>The short version</h2></div><p>This summary is a design layer only. The preserved response below keeps the original wording intact.</p></div>
+      <div class="concept-grid">
+        <article class="concept" style="--accent:var(--gold)"><strong>Relevance</strong><span>Not what is merely interesting, but what keeps touching the future.</span></article>
+        <article class="concept" style="--accent:var(--teal)"><strong>Margin</strong><span>Breathing room is becoming more important than raw ambition.</span></article>
+        <article class="concept" style="--accent:var(--blue)"><strong>Presence</strong><span>The question is provision without absence, tiredness, or reactivity.</span></article>
+        <article class="concept" style="--accent:var(--rose)"><strong>Stewardship</strong><span>The movement is from capacity-building into protecting what matters.</span></article>
+      </div>
+    </section>
+    <section class="section">
+      <div class="thesis">
+        <article class="thesis-card"><strong>Main thesis</strong><p>Your attention is filtering life through fatherhood, household peace, margin, and systems that make wisdom livable.</p></article>
+        <article class="thesis-card"><strong>Operational command</strong><p>Protect what matters, build margin, reduce vigilance, and make the life easier to inherit.</p></article>
+      </div>
+    </section>
+    <section class="section" id="preserved">
+      <div class="section-head"><div><div class="kicker">Preserved response</div><h2>Original answer text</h2></div><p>The wording below is preserved from the chat answer. Styling only adds emphasis and readability.</p></div>
+      <article class="preserved">
+        <div class="note">Exact response, visually rendered</div>
+        <div class="answer"><p>Your attention is teaching you that <strong>relevance is not what feels interesting. It is what keeps touching your future.</strong></p>
+<p>Right now, the strongest relevant things seem to be:</p>
+<ul class="preserved-list">
+<li><strong>Household peace</strong>  </li>
+<div class="li-cont">Not just success. A calmer home around Asiya, your daughter, money, work, and your body.</div>
+<li><strong>Margin</strong>  </li>
+<div class="li-cont">Your attention keeps returning to money, YNAB, income, car repair, work lanes, and buffers because fatherhood is making “breathing room” more important than raw ambition.</div>
+<li><strong>Presence</strong>  </li>
+<div class="li-cont">The repeated tension is not “Can I provide?” It is: <strong>can I provide without becoming absent, tired, reactive, or always mentally elsewhere?</strong></div>
+<li><strong>Systems that enforce insight</strong>  </li>
+<div class="li-cont">You already understand many things. Your attention is now pointing at the missing bridge: turning insight into weekly behavior, sleep boundaries, money rules, work limits, and proof.</div>
+<li><strong>Body regulation</strong>  </li>
+<div class="li-cont">Sleep, night freedom, stress, vigilance, and energy are relevant because your body decides how much of your wisdom your family actually receives.</div>
+<li><strong>Hausa + AI + workflow judgment</strong>  </li>
+<div class="li-cont">Career-wise, your attention keeps circling automation, RWS, fbCAT, localization, Hermes, Mai Tsara. That is not random. It is showing your strongest leverage: language expertise plus AI systems plus operational judgment.</div>
+<li><strong>Fatherhood as the new sorting function</strong>  </li>
+<div class="li-cont">A lot of things that used to be “interesting” now have to answer a harder question:</div>
+<div class="li-cont"><strong>Does this make me a calmer, stronger, more dependable father?</strong></div>
+</ul>
+<p>My blunt read: your attention is trying to move you from <strong>capacity-building</strong> to <strong>stewardship</strong>.</p>
+<p>Not “do more.”  <br>More like: <strong>protect what matters, build margin, reduce vigilance, and make your life easier to inherit.</strong></p></div>
+      </article>
+    </section>
+    <section class="section">
+      <details>
+        <summary><span class="summary-copy"><strong>Show raw preserved response</strong><span>Plain-text copy of the exact response for comparison or reuse.</span></span><span class="chevron" aria-hidden="true">⌄</span></summary>
+        <pre>Your attention is teaching you that **relevance is not what feels interesting. It is what keeps touching your future.**
+
+Right now, the strongest relevant things seem to be:
+
+- **Household peace**  
+  Not just success. A calmer home around Asiya, your daughter, money, work, and your body.
+
+- **Margin**  
+  Your attention keeps returning to money, YNAB, income, car repair, work lanes, and buffers because fatherhood is making “breathing room” more important than raw ambition.
+
+- **Presence**  
+  The repeated tension is not “Can I provide?” It is: **can I provide without becoming absent, tired, reactive, or always mentally elsewhere?**
+
+- **Systems that enforce insight**  
+  You already understand many things. Your attention is now pointing at the missing bridge: turning insight into weekly behavior, sleep boundaries, money rules, work limits, and proof.
+
+- **Body regulation**  
+  Sleep, night freedom, stress, vigilance, and energy are relevant because your body decides how much of your wisdom your family actually receives.
+
+- **Hausa + AI + workflow judgment**  
+  Career-wise, your attention keeps circling automation, RWS, fbCAT, localization, Hermes, Mai Tsara. That is not random. It is showing your strongest leverage: language expertise plus AI systems plus operational judgment.
+
+- **Fatherhood as the new sorting function**  
+  A lot of things that used to be “interesting” now have to answer a harder question:  
+  **Does this make me a calmer, stronger, more dependable father?**
+
+My blunt read: your attention is trying to move you from **capacity-building** to **stewardship**.
+
+Not “do more.”  
+More like: **protect what matters, build margin, reduce vigilance, and make your life easier to inherit.**</pre>
+      </details>
+    </section>
+  </main>
+  <footer><div class="shell">Public GitHub Pages artifact by Hermes for Abba Bello Kanwa. Live route: <a href="https://abbabk.github.io/attention-relevance/">https://abbabk.github.io/attention-relevance/</a>.</div></footer>
+</body>
+</html>
