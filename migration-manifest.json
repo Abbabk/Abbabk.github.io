@@ -148,7 +148,7 @@
     }
   ],
   "errors": [],
-  "asset_files_total": 193,
+  "asset_files_total": 195,
   "asset_files": [
     {
       "file": "apps/apple-touch-icon.png",
@@ -397,6 +397,10 @@
     {
       "file": "apps/interactive-life-dashboard/assets/knowledgeStorage-SNw_PRrb.js",
       "bytes": 23098
+    },
+    {
+      "file": "apps/interactive-life-dashboard/assets/localStorageCleanup-BN3TbxcP.js",
+      "bytes": 2428
     },
     {
       "file": "apps/interactive-life-dashboard/assets/memorySearchWorker-z7QJNr3E.js",
@@ -781,6 +785,10 @@
     {
       "file": "interactive-life-dashboard/assets/knowledgeStorage-SNw_PRrb.js",
       "bytes": 23098
+    },
+    {
+      "file": "interactive-life-dashboard/assets/localStorageCleanup-BN3TbxcP.js",
+      "bytes": 2428
     },
     {
       "file": "interactive-life-dashboard/assets/memorySearchWorker-z7QJNr3E.js",
