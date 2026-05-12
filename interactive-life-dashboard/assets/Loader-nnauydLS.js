@@ -1,0 +1,1 @@
+import{j as e}from"./utils-DvD4i5RQ.js";const r=()=>e.jsx("div",{className:"flex items-center justify-center py-12",children:e.jsx("div",{className:"animate-spin rounded-full h-12 w-12 border-4 border-sky-200 border-t-sky-600"})});export{r as L};

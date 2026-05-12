@@ -148,7 +148,7 @@
     }
   ],
   "errors": [],
-  "asset_files_total": 98,
+  "asset_files_total": 193,
   "asset_files": [
     {
       "file": "apps/apple-touch-icon.png",
@@ -541,7 +541,393 @@
     {
       "file": "apps/site-manifest.json",
       "bytes": 391
+    },
+    {
+      "file": "interactive-life-dashboard/assets/ActionCenter-Co8iZFts.js",
+      "bytes": 74679
+    },
+    {
+      "file": "interactive-life-dashboard/assets/ActionScanner-CsZU_MQh.js",
+      "bytes": 44798
+    },
+    {
+      "file": "interactive-life-dashboard/assets/AppreciationEngine-CVq9N3u0.js",
+      "bytes": 4769
+    },
+    {
+      "file": "interactive-life-dashboard/assets/ArchitectsBriefing-CMr3M8Us.js",
+      "bytes": 13904
+    },
+    {
+      "file": "interactive-life-dashboard/assets/AutonomousAgentPage-TijBfplP.js",
+      "bytes": 37510
+    },
+    {
+      "file": "interactive-life-dashboard/assets/CatalystBrainPage-Dzemci5S.js",
+      "bytes": 615139
+    },
+    {
+      "file": "interactive-life-dashboard/assets/ConfirmDeleteModal-DF7sKSNh.js",
+      "bytes": 1603
+    },
+    {
+      "file": "interactive-life-dashboard/assets/ConsolePage-DEJBQvG5.js",
+      "bytes": 2913
+    },
+    {
+      "file": "interactive-life-dashboard/assets/Dashboard-DxGi21ca.js",
+      "bytes": 78280
+    },
+    {
+      "file": "interactive-life-dashboard/assets/DecisionMaker-Zq0SRQgm.js",
+      "bytes": 76897
+    },
+    {
+      "file": "interactive-life-dashboard/assets/DigitalTwinPage-CLgnYbJm.js",
+      "bytes": 27916
+    },
+    {
+      "file": "interactive-life-dashboard/assets/DomainCoach-0eqUKiqF.js",
+      "bytes": 12298
+    },
+    {
+      "file": "interactive-life-dashboard/assets/FinancePage-BkoVbsVU.js",
+      "bytes": 258588
+    },
+    {
+      "file": "interactive-life-dashboard/assets/FlightControlPage-DqOg2z9d.js",
+      "bytes": 29403
+    },
+    {
+      "file": "interactive-life-dashboard/assets/FocusTimer-DJod6r_A.js",
+      "bytes": 6783
+    },
+    {
+      "file": "interactive-life-dashboard/assets/GlobalAiCoach-Ca2j-lUL.js",
+      "bytes": 210279
+    },
+    {
+      "file": "interactive-life-dashboard/assets/HabitAnalytics-DkxWXjzq.js",
+      "bytes": 52345
+    },
+    {
+      "file": "interactive-life-dashboard/assets/HabitArchive-DYwVeuEj.js",
+      "bytes": 3651
+    },
+    {
+      "file": "interactive-life-dashboard/assets/HabitAssessmentModal-D4f4IAGF.js",
+      "bytes": 3741
+    },
+    {
+      "file": "interactive-life-dashboard/assets/HabitTracker-DOdH2TD9.js",
+      "bytes": 99793
+    },
+    {
+      "file": "interactive-life-dashboard/assets/HorizonScanner-z6Yxk4nw.js",
+      "bytes": 12098
+    },
+    {
+      "file": "interactive-life-dashboard/assets/IndexedDBImage-CJCztVc6.js",
+      "bytes": 3040
+    },
+    {
+      "file": "interactive-life-dashboard/assets/KnowledgeCenter-DIi3q4Ku.js",
+      "bytes": 262923
+    },
+    {
+      "file": "interactive-life-dashboard/assets/LifeDashboardCharts-CkMsvTC2.js",
+      "bytes": 4166
+    },
+    {
+      "file": "interactive-life-dashboard/assets/LifeFieldPage-Bxhk5pGV.js",
+      "bytes": 47166
+    },
+    {
+      "file": "interactive-life-dashboard/assets/Loader-nnauydLS.js",
+      "bytes": 247
+    },
+    {
+      "file": "interactive-life-dashboard/assets/MarkdownRenderer-DoCuVvZw.js",
+      "bytes": 532
+    },
+    {
+      "file": "interactive-life-dashboard/assets/MemoryPage-D8enlwkN.js",
+      "bytes": 156875
+    },
+    {
+      "file": "interactive-life-dashboard/assets/OperatingGuide-KFvhsFDj.js",
+      "bytes": 12804
+    },
+    {
+      "file": "interactive-life-dashboard/assets/PeaceProtocol-BkDhtDmD.js",
+      "bytes": 47486
+    },
+    {
+      "file": "interactive-life-dashboard/assets/RelationalContextPage-Dnal3kkT.js",
+      "bytes": 37785
+    },
+    {
+      "file": "interactive-life-dashboard/assets/RunHistorySummary-DMuF-wfe.js",
+      "bytes": 1967
+    },
+    {
+      "file": "interactive-life-dashboard/assets/SaveToMemoryButton-0OGZ-pX3.js",
+      "bytes": 2947
+    },
+    {
+      "file": "interactive-life-dashboard/assets/Sentinel-Bjkfi210.js",
+      "bytes": 14726
+    },
+    {
+      "file": "interactive-life-dashboard/assets/SettingsPage-375YvLbU.js",
+      "bytes": 579657
+    },
+    {
+      "file": "interactive-life-dashboard/assets/StructuredResponseViewer-BQ8_Ehor.js",
+      "bytes": 9678
+    },
+    {
+      "file": "interactive-life-dashboard/assets/SynthesisHub-B6Pwr_rq.js",
+      "bytes": 9780
+    },
+    {
+      "file": "interactive-life-dashboard/assets/VisionLegacyPage-CVYU3MNN.js",
+      "bytes": 40051
+    },
+    {
+      "file": "interactive-life-dashboard/assets/VisionWeaver-VevzRSEH.js",
+      "bytes": 13473
+    },
+    {
+      "file": "interactive-life-dashboard/assets/VitalityHub-D1ny1X-f.js",
+      "bytes": 40026
+    },
+    {
+      "file": "interactive-life-dashboard/assets/VoicePlaybackButton-DMKwhCVy.js",
+      "bytes": 16518
+    },
+    {
+      "file": "interactive-life-dashboard/assets/WellbeingUpdateBanner-Bc7stC4o.js",
+      "bytes": 1962
+    },
+    {
+      "file": "interactive-life-dashboard/assets/apiKeyValidator-b74QSvYq.js",
+      "bytes": 11966
+    },
+    {
+      "file": "interactive-life-dashboard/assets/backgroundSyncService-Y2pMUImn.js",
+      "bytes": 3945
+    },
+    {
+      "file": "interactive-life-dashboard/assets/charts-C-zmPWFf.js",
+      "bytes": 525628
+    },
+    {
+      "file": "interactive-life-dashboard/assets/fileProcessingService-Bt1IcHgj.js",
+      "bytes": 460913
+    },
+    {
+      "file": "interactive-life-dashboard/assets/google-services-C6huTpaC.js",
+      "bytes": 257584
+    },
+    {
+      "file": "interactive-life-dashboard/assets/historicalAnalysisService-ZR8JQSv1.js",
+      "bytes": 9140
+    },
+    {
+      "file": "interactive-life-dashboard/assets/hybridBackupService-vfLwvoue.js",
+      "bytes": 8892
+    },
+    {
+      "file": "interactive-life-dashboard/assets/index--VeT195Y.js",
+      "bytes": 401522
+    },
+    {
+      "file": "interactive-life-dashboard/assets/index-9nypHQxV.js",
+      "bytes": 2000912
+    },
+    {
+      "file": "interactive-life-dashboard/assets/index-BizZavMe.js",
+      "bytes": 608
+    },
+    {
+      "file": "interactive-life-dashboard/assets/index-DJCNCpPn.js",
+      "bytes": 52740
+    },
+    {
+      "file": "interactive-life-dashboard/assets/index-JRb8KEO7.css",
+      "bytes": 218688
+    },
+    {
+      "file": "interactive-life-dashboard/assets/index-z_iHPUKR.js",
+      "bytes": 1621
+    },
+    {
+      "file": "interactive-life-dashboard/assets/initialSyncService-BBgg93hN.js",
+      "bytes": 16621
+    },
+    {
+      "file": "interactive-life-dashboard/assets/insightExtractor-D_tlfYwP.js",
+      "bytes": 16532
+    },
+    {
+      "file": "interactive-life-dashboard/assets/jszip.min-BuvcPVGA.js",
+      "bytes": 96932
+    },
+    {
+      "file": "interactive-life-dashboard/assets/knowledgeProvider-diTTJ_ll.js",
+      "bytes": 16548
+    },
+    {
+      "file": "interactive-life-dashboard/assets/knowledgeStorage-SNw_PRrb.js",
+      "bytes": 23098
+    },
+    {
+      "file": "interactive-life-dashboard/assets/memorySearchWorker-z7QJNr3E.js",
+      "bytes": 854
+    },
+    {
+      "file": "interactive-life-dashboard/assets/mlSentimentAnalyzer-DYzDDMq6.js",
+      "bytes": 8073
+    },
+    {
+      "file": "interactive-life-dashboard/assets/pdf.worker.min-CXgfMxHN.mjs",
+      "bytes": 1070779
+    },
+    {
+      "file": "interactive-life-dashboard/assets/peaceGroundingActivityService-B9zEiRwh.js",
+      "bytes": 3555
+    },
+    {
+      "file": "interactive-life-dashboard/assets/persistentMemoryService-DUL-Pv2Z.js",
+      "bytes": 9938
+    },
+    {
+      "file": "interactive-life-dashboard/assets/phase3CommentAnalyzer-MhTQ1Qrq.js",
+      "bytes": 114887
+    },
+    {
+      "file": "interactive-life-dashboard/assets/proactiveNativePushService-DrxIMqrU.js",
+      "bytes": 3714
+    },
+    {
+      "file": "interactive-life-dashboard/assets/react-vendor-wzZzN_Jv.js",
+      "bytes": 12446
+    },
+    {
+      "file": "interactive-life-dashboard/assets/replicacheMemorySync-BPE25o8n.js",
+      "bytes": 128560
+    },
+    {
+      "file": "interactive-life-dashboard/assets/transformers-BLoXe1PJ.js",
+      "bytes": 825932
+    },
+    {
+      "file": "interactive-life-dashboard/assets/trash-2-CBBECJuA.js",
+      "bytes": 3308
+    },
+    {
+      "file": "interactive-life-dashboard/assets/truthEngineFeatureFlags-9GfWfyUK.js",
+      "bytes": 2576
+    },
+    {
+      "file": "interactive-life-dashboard/assets/unifiedAnalyticsService-AvYtB2cm.js",
+      "bytes": 15634
+    },
+    {
+      "file": "interactive-life-dashboard/assets/unifiedBackupCoordinator-CldZBP4Y.js",
+      "bytes": 27433
+    },
+    {
+      "file": "interactive-life-dashboard/assets/useAIQueryLogger-BGk_TntB.js",
+      "bytes": 540
+    },
+    {
+      "file": "interactive-life-dashboard/assets/useAiActivityScope-CN5lsR19.js",
+      "bytes": 720
+    },
+    {
+      "file": "interactive-life-dashboard/assets/usePersistentState-Dux-4dkk.js",
+      "bytes": 771
+    },
+    {
+      "file": "interactive-life-dashboard/assets/useSlashPromptPalette-DWIZTGZt.js",
+      "bytes": 12187
+    },
+    {
+      "file": "interactive-life-dashboard/assets/useTranslationToggle-J6gnxluw.js",
+      "bytes": 2049
+    },
+    {
+      "file": "interactive-life-dashboard/assets/utils-DvD4i5RQ.js",
+      "bytes": 176059
+    },
+    {
+      "file": "interactive-life-dashboard/assets/vectorSearchWorker-B7mMbKSu.js",
+      "bytes": 3888
+    },
+    {
+      "file": "interactive-life-dashboard/assets/voicePlaybackService-CVVNpV9V.js",
+      "bytes": 10391
+    },
+    {
+      "file": "interactive-life-dashboard/assets/web-B2c_m5jZ.js",
+      "bytes": 492
+    },
+    {
+      "file": "interactive-life-dashboard/assets/web-COD_0_p7.js",
+      "bytes": 889
+    },
+    {
+      "file": "interactive-life-dashboard/assets/web-IWwvdwIa.js",
+      "bytes": 8905
+    },
+    {
+      "file": "interactive-life-dashboard/icon-128x128.png",
+      "bytes": 3947
+    },
+    {
+      "file": "interactive-life-dashboard/icon-144x144.png",
+      "bytes": 3969
+    },
+    {
+      "file": "interactive-life-dashboard/icon-152x152.png",
+      "bytes": 4617
+    },
+    {
+      "file": "interactive-life-dashboard/icon-192x192.png",
+      "bytes": 5502
+    },
+    {
+      "file": "interactive-life-dashboard/icon-384x384.png",
+      "bytes": 13137
+    },
+    {
+      "file": "interactive-life-dashboard/icon-512x512.png",
+      "bytes": 19435
+    },
+    {
+      "file": "interactive-life-dashboard/icon-72x72.png",
+      "bytes": 1826
+    },
+    {
+      "file": "interactive-life-dashboard/icon-96x96.png",
+      "bytes": 2544
+    },
+    {
+      "file": "interactive-life-dashboard/icon.svg",
+      "bytes": 808
+    },
+    {
+      "file": "interactive-life-dashboard/manifest.json",
+      "bytes": 1777
     }
   ],
-  "notes": "All discovered here.now HTML pages were migrated to clean GitHub Pages routes. The interactive dashboard includes its Vite/PWA chunk assets under /apps/interactive-life-dashboard/."
+  "notes": "All discovered here.now HTML pages were migrated to clean GitHub Pages routes. The interactive dashboard includes its Vite/PWA chunk assets under /apps/interactive-life-dashboard/.",
+  "compatibility_aliases": [
+    {
+      "route": "/interactive-life-dashboard/",
+      "reason": "Vite app chunks were built with this absolute base path; canonical page remains /apps/interactive-life-dashboard/"
+    }
+  ]
 }
