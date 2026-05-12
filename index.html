@@ -3,91 +3,84 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="The canonical public HTML library for Abba Bello Kanwa and Hermes artifacts." />
-  <meta property="og:title" content="Abba / Hermes HTML Library" />
-  <meta property="og:description" content="A public map of polished HTML artifacts, Mai Tsara pages, Life OS explainers, and interactive demos." />
+  <meta name="description" content="A polished public gallery of Abba Bello Kanwa and Hermes HTML artifacts, Life OS explainers, Mai Tsara pages, and interactive tools." />
+  <meta property="og:title" content="Abba / Hermes HTML Gallery" />
+  <meta property="og:description" content="Visual artifacts for thinking, memory, systems, and personal operating design." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://abbabk.github.io/" />
   <link rel="icon" href="data:," />
-  <title>Abba / Hermes HTML Library</title>
+  <title>Abba / Hermes HTML Gallery</title>
   <style>
     :root {
       color-scheme: dark;
-      --bg: #070a12;
-      --bg-2: #0d1220;
+      --bg: #07080d;
+      --ink: #f7f4ec;
+      --muted: #b9b1a4;
+      --soft: #81796f;
+      --line: rgba(255,255,255,.13);
       --panel: rgba(255,255,255,.065);
-      --panel-strong: rgba(255,255,255,.105);
-      --line: rgba(255,255,255,.14);
-      --text: #f4f7fb;
-      --muted: #aeb9ca;
-      --soft: #7f8da3;
-      --gold: #f2c46d;
-      --teal: #67e8d2;
-      --blue: #8cb7ff;
-      --rose: #f7a7c0;
-      --shadow: 0 24px 90px rgba(0,0,0,.45);
-      --radius: 24px;
+      --panel-2: rgba(255,255,255,.1);
+      --gold: #f4c76b;
+      --teal: #71ead8;
+      --blue: #94b9ff;
+      --rose: #f6a7bf;
+      --green: #a7f3d0;
       --max: 1180px;
+      --radius: 28px;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
     * { box-sizing: border-box; }
-
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       min-height: 100vh;
+      color: var(--ink);
       background:
-        radial-gradient(circle at 12% 0%, rgba(103,232,210,.16), transparent 34rem),
-        radial-gradient(circle at 86% 4%, rgba(242,196,109,.16), transparent 32rem),
-        radial-gradient(circle at 54% 38%, rgba(140,183,255,.13), transparent 40rem),
-        linear-gradient(180deg, #070a12 0%, #0a0f1d 44%, #070a12 100%);
-      color: var(--text);
-      line-height: 1.6;
+        radial-gradient(circle at 16% -8%, rgba(113,234,216,.2), transparent 34rem),
+        radial-gradient(circle at 82% 4%, rgba(244,199,107,.18), transparent 32rem),
+        radial-gradient(circle at 54% 36%, rgba(148,185,255,.12), transparent 46rem),
+        linear-gradient(180deg, #07080d 0%, #0b101c 42%, #07080d 100%);
+      line-height: 1.55;
     }
 
     a { color: inherit; text-decoration: none; }
+    .shell { width: min(var(--max), calc(100% - 34px)); margin: 0 auto; }
 
-    .shell { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
-
-    header {
-      padding: 28px 0 70px;
-      position: relative;
-      overflow: hidden;
+    .grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .22;
+      background-image: radial-gradient(rgba(255,255,255,.12) 1px, transparent 1px);
+      background-size: 22px 22px;
+      mask-image: linear-gradient(180deg, #000, transparent 82%);
     }
 
+    header { padding: 28px 0 76px; position: relative; overflow: hidden; }
     nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 18px;
-      margin-bottom: 72px;
+      margin-bottom: 68px;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: var(--muted);
-      font-size: 14px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
+    .brand { display: flex; align-items: center; gap: 12px; color: var(--muted); font-size: 13px; letter-spacing: .11em; text-transform: uppercase; }
     .mark {
-      width: 38px;
-      height: 38px;
-      border-radius: 14px;
+      width: 42px;
+      height: 42px;
+      border-radius: 16px;
       display: grid;
       place-items: center;
-      background: linear-gradient(135deg, rgba(103,232,210,.92), rgba(242,196,109,.9));
-      color: #08101a;
-      font-weight: 900;
-      letter-spacing: -.04em;
-      box-shadow: 0 12px 36px rgba(103,232,210,.24);
+      background: linear-gradient(135deg, var(--gold), var(--teal));
+      color: #071014;
+      font-weight: 950;
+      letter-spacing: -.05em;
+      box-shadow: 0 18px 54px rgba(113,234,216,.22);
     }
 
     .navlinks { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
-
     .pill, .button {
       border: 1px solid var(--line);
       background: rgba(255,255,255,.045);
@@ -95,211 +88,174 @@
       padding: 9px 13px;
       border-radius: 999px;
       font-size: 13px;
-      transition: .18s ease;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
     }
+    .pill:hover, .button:hover, .artifact:hover { transform: translateY(-2px); border-color: rgba(113,234,216,.46); background: rgba(255,255,255,.075); }
 
-    .pill:hover, .button:hover, .card:hover {
-      border-color: rgba(103,232,210,.42);
-      transform: translateY(-1px);
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(300px, .72fr);
-      gap: 34px;
-      align-items: end;
-    }
-
+    .hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(310px, .78fr); gap: 34px; align-items: stretch; }
     .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 9px;
       color: var(--teal);
-      background: rgba(103,232,210,.08);
-      border: 1px solid rgba(103,232,210,.18);
+      background: rgba(113,234,216,.08);
+      border: 1px solid rgba(113,234,216,.18);
       padding: 8px 12px;
       border-radius: 999px;
       font-size: 13px;
       margin-bottom: 22px;
     }
-
-    h1 {
-      font-size: clamp(44px, 8vw, 92px);
-      line-height: .92;
-      letter-spacing: -.075em;
-      margin: 0 0 24px;
-      max-width: 910px;
-    }
-
-    .hero p {
-      color: var(--muted);
-      font-size: clamp(17px, 2vw, 21px);
-      max-width: 760px;
-      margin: 0;
-    }
-
+    h1 { font-size: clamp(46px, 8vw, 94px); line-height: .91; letter-spacing: -.078em; margin: 0 0 24px; max-width: 920px; }
+    h1 em { font-style: normal; color: var(--gold); }
+    .hero-copy { color: var(--muted); font-size: clamp(17px, 2vw, 21px); max-width: 760px; margin: 0; }
     .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .button { display: inline-flex; align-items: center; gap: 10px; padding: 12px 16px; font-weight: 800; color: var(--ink); }
+    .button.primary { border-color: transparent; background: linear-gradient(135deg, var(--gold), var(--teal)); color: #061014; box-shadow: 0 20px 70px rgba(113,234,216,.2); }
 
-    .button {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 16px;
-      font-weight: 700;
-      color: var(--text);
-      background: rgba(255,255,255,.07);
-    }
-
-    .button.primary {
-      border-color: transparent;
-      background: linear-gradient(135deg, #f2c46d, #67e8d2);
-      color: #07101a;
-      box-shadow: 0 18px 60px rgba(103,232,210,.22);
-    }
-
-    .status-panel {
+    .hero-board {
       border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.095), rgba(255,255,255,.04));
+      background: linear-gradient(180deg, rgba(255,255,255,.105), rgba(255,255,255,.045));
       border-radius: var(--radius);
-      padding: 22px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(18px);
+      padding: 20px;
+      box-shadow: 0 26px 90px rgba(0,0,0,.38);
+      overflow: hidden;
+      position: relative;
+      min-height: 360px;
     }
+    .hero-board:before { content: ""; position: absolute; inset: -60px -80px auto auto; width: 220px; height: 220px; background: radial-gradient(circle, rgba(244,199,107,.28), transparent 64%); }
+    .board-top { position: relative; display: flex; justify-content: space-between; align-items: center; gap: 10px; color: var(--muted); font-size: 13px; margin-bottom: 16px; }
+    .board-grid { position: relative; display: grid; grid-template-columns: 1.2fr .8fr; gap: 12px; }
+    .mini {
+      min-height: 116px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 20px;
+      background: linear-gradient(145deg, rgba(255,255,255,.11), rgba(255,255,255,.035));
+      padding: 14px;
+      overflow: hidden;
+      position: relative;
+    }
+    .mini.wide { grid-column: span 2; min-height: 128px; }
+    .mini strong { display: block; font-size: 14px; line-height: 1.15; letter-spacing: -.02em; margin-bottom: 9px; }
+    .bars, .dots { display: grid; gap: 7px; }
+    .bar { height: 8px; border-radius: 999px; background: rgba(255,255,255,.14); overflow: hidden; }
+    .bar span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--teal), var(--gold)); }
+    .dots { grid-template-columns: repeat(5, 1fr); margin-top: 16px; }
+    .dot { aspect-ratio: 1; border-radius: 50%; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.12); }
+    .dot:nth-child(2), .dot:nth-child(5) { background: rgba(113,234,216,.45); }
+    .mini .curve { position: absolute; right: -16px; bottom: -18px; width: 130px; height: 76px; border: 2px solid rgba(244,199,107,.5); border-top-left-radius: 100px; border-bottom: 0; border-right: 0; transform: rotate(-8deg); }
 
-    .status-panel h2 { font-size: 17px; margin: 0 0 14px; }
-    .status-panel p { font-size: 14px; color: var(--muted); margin: 0 0 18px; }
+    .category-nav { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+    .category-nav a { display: inline-flex; align-items: center; gap: 9px; border: 1px solid var(--line); background: rgba(255,255,255,.05); color: var(--ink); padding: 10px 13px; border-radius: 999px; font-size: 13px; font-weight: 800; }
+    .category-nav span { color: #071014; background: var(--gold); min-width: 24px; text-align: center; border-radius: 999px; padding: 2px 7px; font-size: 12px; }
 
-    .metrics { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-    .metric { padding: 14px; border-radius: 18px; background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.09); }
-    .metric strong { display: block; font-size: 22px; letter-spacing: -.04em; }
-    .metric span { color: var(--soft); font-size: 12px; }
+    main { padding: 0 0 82px; }
+    .section { margin-top: 64px; scroll-margin-top: 24px; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 22px; margin-bottom: 18px; }
+    .section-kicker { color: var(--gold); font-size: 13px; letter-spacing: .13em; text-transform: uppercase; font-weight: 900; }
+    .section h2 { margin: 6px 0 0; font-size: clamp(30px, 4vw, 48px); line-height: 1; letter-spacing: -.06em; }
+    .section-head p { margin: 0; color: var(--muted); max-width: 540px; font-size: 15px; }
 
-    main { padding: 8px 0 78px; }
-
-    .section-head {
+    .gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .artifact {
+      min-height: 310px;
       display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      align-items: end;
-      margin: 54px 0 18px;
-    }
-
-    .section-head h2 { margin: 0; font-size: clamp(25px, 4vw, 42px); letter-spacing: -.055em; }
-    .section-head p { margin: 0; color: var(--muted); max-width: 520px; font-size: 15px; }
-
-    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-
-    .card {
-      min-height: 240px;
+      flex-direction: column;
       border: 1px solid var(--line);
       border-radius: var(--radius);
       background: linear-gradient(180deg, rgba(255,255,255,.085), rgba(255,255,255,.035));
-      padding: 20px;
+      overflow: hidden;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+      box-shadow: 0 18px 62px rgba(0,0,0,.24);
+    }
+    .artifact.featured { grid-column: span 2; }
+    .thumb {
+      min-height: 142px;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+      background:
+        radial-gradient(circle at 18% 22%, var(--accent, var(--teal)), transparent 10rem),
+        linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.02));
       position: relative;
       overflow: hidden;
-      transition: .18s ease;
-      box-shadow: 0 16px 60px rgba(0,0,0,.25);
     }
+    .thumb:before { content: ""; position: absolute; inset: 22px; border: 1px solid rgba(255,255,255,.24); border-radius: 18px; }
+    .thumb:after { content: ""; position: absolute; left: 34px; right: 34px; bottom: 28px; height: 10px; border-radius: 999px; background: rgba(255,255,255,.25); box-shadow: 0 -20px 0 rgba(255,255,255,.12), 0 -40px 0 rgba(255,255,255,.09); }
+    .thumb.timeline:after { height: 4px; bottom: 46px; box-shadow: 70px 0 0 rgba(255,255,255,.23), 140px 0 0 rgba(255,255,255,.23), 210px 0 0 rgba(255,255,255,.23); }
+    .thumb.dashboard:after { left: 32px; right: 32px; top: 34px; bottom: auto; height: 52px; border-radius: 16px; box-shadow: 0 66px 0 rgba(255,255,255,.1), 135px 66px 0 rgba(255,255,255,.1); width: 44%; }
+    .thumb.lens:after { left: 50%; top: 28px; width: 76px; height: 76px; border-radius: 50%; transform: translateX(-50%); box-shadow: -88px 34px 0 -20px rgba(255,255,255,.18), 88px 34px 0 -20px rgba(255,255,255,.18); }
+    .body { padding: 18px; display: flex; flex: 1; flex-direction: column; }
+    .meta { display: flex; justify-content: space-between; gap: 12px; align-items: center; margin-bottom: 14px; }
+    .tag { display: inline-flex; color: #061014; background: var(--accent, var(--teal)); border-radius: 999px; padding: 5px 9px; font-size: 12px; font-weight: 900; }
+    .route { color: var(--soft); font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 12px; }
+    .artifact h3 { margin: 0 0 9px; font-size: 22px; line-height: 1.1; letter-spacing: -.04em; }
+    .artifact p { margin: 0; color: var(--muted); font-size: 14px; }
+    .open { margin-top: auto; padding-top: 20px; color: var(--ink); font-size: 14px; font-weight: 900; }
 
-    .card:before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at top right, var(--glow, rgba(103,232,210,.15)), transparent 52%);
-      opacity: .9;
-      pointer-events: none;
-    }
-
-    .card > * { position: relative; }
-    .tag { display: inline-flex; color: #07101a; background: var(--tag, var(--teal)); border-radius: 999px; padding: 5px 9px; font-size: 12px; font-weight: 800; margin-bottom: 18px; }
-    .card h3 { margin: 0 0 10px; font-size: 22px; line-height: 1.12; letter-spacing: -.04em; }
-    .card p { margin: 0; color: var(--muted); font-size: 14px; }
-    .card .open { display: inline-flex; margin-top: 20px; color: var(--text); font-size: 14px; font-weight: 800; }
-
-    .wide { grid-column: span 2; }
-
-    .route-list {
-      display: grid;
-      gap: 10px;
-      margin-top: 12px;
-    }
-
-    .route {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: center;
-      padding: 12px 14px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.1);
-      background: rgba(255,255,255,.04);
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .route strong { color: var(--text); }
-    .route code { color: var(--teal); font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 12px; }
-
-    .note {
-      margin-top: 34px;
-      padding: 20px;
-      border: 1px solid rgba(242,196,109,.22);
-      background: rgba(242,196,109,.08);
+    .route-panel {
+      border: 1px solid rgba(244,199,107,.24);
+      background: rgba(244,199,107,.075);
       border-radius: var(--radius);
-      color: #f7dfaf;
+      padding: 22px;
+      color: #f8ddb0;
     }
+    .route-strip { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+    .route-strip code { border: 1px solid rgba(244,199,107,.22); background: rgba(0,0,0,.18); border-radius: 999px; padding: 8px 10px; color: #fff2cf; font-size: 12px; }
 
-    footer {
-      padding: 34px 0 46px;
-      border-top: 1px solid var(--line);
-      color: var(--soft);
-      font-size: 14px;
-    }
+    footer { padding: 34px 0 46px; border-top: 1px solid var(--line); color: var(--soft); font-size: 14px; }
 
-    @media (max-width: 860px) {
+    @media (max-width: 900px) {
       nav, .section-head { align-items: flex-start; flex-direction: column; }
       .hero { grid-template-columns: 1fr; }
-      .grid, .grid.two { grid-template-columns: 1fr; }
-      .wide { grid-column: span 1; }
-      .metrics { grid-template-columns: 1fr 1fr; }
+      .gallery { grid-template-columns: 1fr; }
+      .artifact.featured { grid-column: span 1; }
+      .board-grid { grid-template-columns: 1fr; }
+      .mini.wide { grid-column: span 1; }
     }
   </style>
 </head>
 <body>
+  <div class="grain" aria-hidden="true"></div>
   <header>
     <div class="shell">
       <nav aria-label="Primary">
-        <a class="brand" href="https://abbabk.github.io/" aria-label="Abba / Hermes HTML Library home">
+        <a class="brand" href="https://abbabk.github.io/" aria-label="Abba / Hermes HTML Gallery home">
           <span class="mark">A/H</span>
           <span>Abba / Hermes</span>
         </a>
         <div class="navlinks">
-          <a class="pill" href="#library">Library</a>
+          <a class="pill" href="#life-os">Life OS</a>
+          <a class="pill" href="#mai-tsara">Mai Tsara</a>
           <a class="pill" href="#apps">Apps</a>
-          <a class="pill" href="#routes">Routes</a>
+          <a class="pill" href="#systems">Systems</a>
           <a class="pill" href="https://github.com/Abbabk/Abbabk.github.io">GitHub repo</a>
         </div>
       </nav>
 
       <section class="hero">
         <div>
-          <div class="eyebrow">Permanent public home - GitHub Pages</div>
-          <h1>HTML artifacts that make thought easier to inspect.</h1>
-          <p>This is the canonical public library for polished Abba and Hermes HTML work: Mai Tsara pages, Life OS explainers, visual dashboards, and interactive tools. here.now remains the fast preview lane. GitHub Pages is the durable home.</p>
+          <div class="eyebrow">Public visual library · GitHub Pages</div>
+          <h1>Artifacts for <em>thinking</em>, memory, and life systems.</h1>
+          <p class="hero-copy">A gallery of browser-native pages by Abba and Hermes: Mai Tsara, Life OS maps, visual reports, and small interactive tools that turn private operating ideas into inspectable public-safe form.</p>
           <div class="actions">
-            <a class="button primary" href="#library">Explore the library →</a>
-            <a class="button" href="/atlas/">Migrated atlas copy</a>
+            <a class="button primary" href="#life-os">Enter the gallery →</a>
+            <a class="button" href="/apps/">Open apps hub</a>
+          </div>
+          <div class="category-nav" aria-label="Gallery categories">
+            <a href="#life-os">Life OS <span>4</span></a>
+            <a href="#mai-tsara">Mai Tsara <span>2</span></a>
+            <a href="#apps">Interactive Apps <span>6</span></a>
+            <a href="#systems">Systems <span>3</span></a>
           </div>
         </div>
-        <aside class="status-panel" aria-label="Library status">
-          <h2>Publishing status</h2>
-          <p>Created as a public, git-tracked root site. Individual artifacts are now mirrored into clean routes under this domain.</p>
-          <div class="metrics">
-            <div class="metric"><strong>1</strong><span>canonical root</span></div>
-            <div class="metric"><strong>17</strong><span>migrated pages</span></div>
-            <div class="metric"><strong>0</strong><span>private raw logs</span></div>
-            <div class="metric"><strong>Git</strong><span>history + rollback</span></div>
+
+        <aside class="hero-board" aria-label="Gallery preview">
+          <div class="board-top"><strong>Live library status</strong><span>17 migrated pages</span></div>
+          <div class="board-grid">
+            <div class="mini wide">
+              <strong>Context → meaning → action</strong>
+              <div class="bars"><div class="bar"><span style="width:78%"></span></div><div class="bar"><span style="width:54%"></span></div><div class="bar"><span style="width:88%"></span></div></div>
+            </div>
+            <div class="mini"><strong>Life OS signals</strong><div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div></div>
+            <div class="mini"><strong>Hermes proof loop</strong><span class="curve"></span></div>
           </div>
         </aside>
       </section>
@@ -307,123 +263,63 @@
   </header>
 
   <main class="shell">
-    <section id="library" aria-labelledby="library-title">
+    <section class="section" id="life-os" aria-labelledby="life-os-title">
       <div class="section-head">
-        <h2 id="library-title">Core library</h2>
-        <p>Public-safe artifacts have been migrated from here.now into native GitHub Pages routes with minimal, meaningful names.</p>
+        <div><div class="section-kicker">01 · Life OS</div><h2 id="life-os-title">Personal patterns made visible</h2></div>
+        <p>Public-safe maps of growth, sleep, recurring mistakes, and the operating methods Abba is building around.</p>
       </div>
-      <div class="grid">
-        <a class="card wide" href="/mai-tsara/" style="--tag:#67e8d2; --glow:rgba(103,232,210,.20)">
-          <span class="tag">Mai Tsara</span>
-          <h3>Mai Tsara Tunani AI - first homepage</h3>
-          <p>Public positioning for Mai Tsara as a private, context-first personal life operating system.</p>
-          <span class="open">Open current page →</span>
-        </a>
-        <a class="card" href="/life-os/" style="--tag:#f2c46d; --glow:rgba(242,196,109,.18)">
-          <span class="tag">Life OS</span>
-          <h3>Visual summary</h3>
-          <p>The method: capture, arrange, interpret, decide, return.</p>
-          <span class="open">Open →</span>
-        </a>
-        <a class="card" href="/night-freedom/" style="--tag:#f7a7c0; --glow:rgba(247,167,192,.18)">
-          <span class="tag">Health</span>
-          <h3>Sleep and night freedom pattern</h3>
-          <p>A public-safe pattern map for late-night urgency, phone proximity, and next-day cost.</p>
-          <span class="open">Open →</span>
-        </a>
-        <a class="card" href="/query-patterns/" style="--tag:#8cb7ff; --glow:rgba(140,183,255,.18)">
-          <span class="tag">Hermes ops</span>
-          <h3>Query pattern analysis</h3>
-          <p>How Abba uses Hermes as an operating layer for action, proof, memory, and low-noise routing.</p>
-          <span class="open">Open →</span>
-        </a>
-        <a class="card" href="/recurring-mistakes/" style="--tag:#a7f3d0; --glow:rgba(167,243,208,.18)">
-          <span class="tag">Life OS</span>
-          <h3>Recurring mistakes to avoid</h3>
-          <p>A public-safe map of life-domain traps and replacement rules: less control, more margin.</p>
-          <span class="open">Open →</span>
-        </a>
-        <a class="card wide" href="/achievements/" style="--tag:#f5c86c; --glow:rgba(245,200,108,.20)">
-          <span class="tag">Life canon</span>
-          <h3>Achievements chronology & growth catalysts</h3>
-          <p>A public-safe visual timeline of Abba's major life achievements, catalysts, and repeatable success patterns.</p>
-          <span class="open">Open →</span>
-        </a>
+      <div class="gallery">
+        <a class="artifact featured" href="/achievements/" style="--accent:var(--gold)"><div class="thumb timeline"></div><div class="body"><div class="meta"><span class="tag">Life canon</span><span class="route">/achievements/</span></div><h3>Achievements chronology & growth catalysts</h3><p>A visual timeline of major life achievements, catalysts, and repeatable success patterns.</p><span class="open">Open artifact →</span></div></a>
+        <a class="artifact" href="/life-os/" style="--accent:var(--teal)"><div class="thumb"></div><div class="body"><div class="meta"><span class="tag">Method</span><span class="route">/life-os/</span></div><h3>Life OS visual summary</h3><p>The method: capture, arrange, interpret, decide, return.</p><span class="open">Open →</span></div></a>
+        <a class="artifact" href="/night-freedom/" style="--accent:var(--rose)"><div class="thumb timeline"></div><div class="body"><div class="meta"><span class="tag">Health</span><span class="route">/night-freedom/</span></div><h3>Sleep and night freedom pattern</h3><p>A pattern map for late-night urgency, phone proximity, and next-day cost.</p><span class="open">Open →</span></div></a>
+        <a class="artifact" href="/recurring-mistakes/" style="--accent:var(--green)"><div class="thumb"></div><div class="body"><div class="meta"><span class="tag">Reflection</span><span class="route">/recurring-mistakes/</span></div><h3>Recurring mistakes to avoid</h3><p>Life-domain traps and replacement rules: less control, more margin.</p><span class="open">Open →</span></div></a>
       </div>
     </section>
 
-    <section id="apps" aria-labelledby="apps-title">
+    <section class="section" id="mai-tsara" aria-labelledby="mai-tsara-title">
       <div class="section-head">
-        <h2 id="apps-title">Interactive apps</h2>
-        <p>Small browser-native tools and visualizations, now available as clean GitHub Pages routes.</p>
+        <div><div class="section-kicker">02 · Mai Tsara</div><h2 id="mai-tsara-title">The personal AI interface</h2></div>
+        <p>Pages that frame Mai Tsara Tunani AI as a context-first life operating system, not another generic chatbot.</p>
       </div>
-      <div class="grid">
-        <a class="card" href="/apps/">
-          <span class="tag">Hub</span>
-          <h3>Interactive apps hub</h3>
-          <p>The current live hub for HTML apps and Life OS visualizations.</p>
-          <span class="open">Open →</span>
-        </a>
-        <a class="card" href="/apps/mai-tsara-meaning-lens/">
-          <span class="tag">Lens</span>
-          <h3>Mai Tsara Meaning Lens</h3>
-          <p>A meaning-making interface for arranging context into interpretation.</p>
-          <span class="open">Open →</span>
-        </a>
-        <a class="card" href="/apps/interactive-life-dashboard/">
-          <span class="tag">Dashboard</span>
-          <h3>Interactive Life Dashboard</h3>
-          <p>A visual dashboard pattern for personal operating context.</p>
-          <span class="open">Open →</span>
-        </a>
-        <a class="card" href="/apps/life-compass/">
-          <span class="tag">Compass</span>
-          <h3>Life Compass</h3>
-          <p>Directional thinking in a compact browser surface.</p>
-          <span class="open">Open →</span>
-        </a>
-        <a class="card" href="/apps/growth-app/">
-          <span class="tag">Growth</span>
-          <h3>Growth App</h3>
-          <p>A small public-safe growth and reflection artifact.</p>
-          <span class="open">Open →</span>
-        </a>
-        <a class="card" href="/apps/life-journey-visualization/">
-          <span class="tag">Journey</span>
-          <h3>Life Journey Visualizations</h3>
-          <p>A visual map of life journey patterns and narrative movement.</p>
-          <span class="open">Open →</span>
-        </a>
+      <div class="gallery">
+        <a class="artifact featured" href="/mai-tsara/" style="--accent:var(--teal)"><div class="thumb lens"></div><div class="body"><div class="meta"><span class="tag">Homepage</span><span class="route">/mai-tsara/</span></div><h3>Mai Tsara Tunani AI</h3><p>Public positioning for Mai Tsara as a private, context-first personal life operating system.</p><span class="open">Open current page →</span></div></a>
+        <a class="artifact" href="/apps/mai-tsara-meaning-lens/" style="--accent:var(--blue)"><div class="thumb lens"></div><div class="body"><div class="meta"><span class="tag">Lens</span><span class="route">/apps/mai-tsara-meaning-lens/</span></div><h3>Mai Tsara Meaning Lens</h3><p>A meaning-making interface for arranging context into interpretation.</p><span class="open">Open →</span></div></a>
       </div>
     </section>
 
-    <section id="routes" aria-labelledby="routes-title">
+    <section class="section" id="apps" aria-labelledby="apps-title">
       <div class="section-head">
-        <h2 id="routes-title">Clean route plan</h2>
-        <p>The migrated pages now live at these clean public routes. here.now links remain as compatibility references only.</p>
+        <div><div class="section-kicker">03 · Interactive apps</div><h2 id="apps-title">Small tools you can actually use</h2></div>
+        <p>Browser-native applets and visualizations with clean public routes.</p>
       </div>
-      <div class="card" style="min-height: auto;">
-        <div class="route-list">
-          <div class="route"><strong>Library home</strong><code>/</code></div>
-          <div class="route"><strong>Mai Tsara landing page</strong><code>/mai-tsara/</code></div>
-          <div class="route"><strong>Life OS visual summary</strong><code>/life-os/</code></div>
-          <div class="route"><strong>Interactive apps hub</strong><code>/apps/</code></div>
-          <div class="route"><strong>Hermes query patterns</strong><code>/query-patterns/</code></div>
-          <div class="route"><strong>Sleep and night freedom</strong><code>/night-freedom/</code></div>
-          <div class="route"><strong>Recurring mistakes to avoid</strong><code>/recurring-mistakes/</code></div>
-          <div class="route"><strong>Achievements chronology</strong><code>/achievements/</code></div>
-        </div>
+      <div class="gallery">
+        <a class="artifact" href="/apps/" style="--accent:var(--gold)"><div class="thumb dashboard"></div><div class="body"><div class="meta"><span class="tag">Hub</span><span class="route">/apps/</span></div><h3>Interactive apps hub</h3><p>The live hub for HTML apps and Life OS visualizations.</p><span class="open">Open →</span></div></a>
+        <a class="artifact featured" href="/apps/interactive-life-dashboard/" style="--accent:var(--teal)"><div class="thumb dashboard"></div><div class="body"><div class="meta"><span class="tag">Dashboard</span><span class="route">/apps/interactive-life-dashboard/</span></div><h3>Interactive Life Dashboard</h3><p>A visual dashboard pattern for personal operating context.</p><span class="open">Open →</span></div></a>
+        <a class="artifact" href="/apps/life-compass/" style="--accent:var(--blue)"><div class="thumb"></div><div class="body"><div class="meta"><span class="tag">Compass</span><span class="route">/apps/life-compass/</span></div><h3>Life Compass</h3><p>Directional thinking in a compact browser surface.</p><span class="open">Open →</span></div></a>
+        <a class="artifact" href="/apps/growth-app/" style="--accent:var(--green)"><div class="thumb timeline"></div><div class="body"><div class="meta"><span class="tag">Growth</span><span class="route">/apps/growth-app/</span></div><h3>Growth App</h3><p>A small public-safe growth and reflection artifact.</p><span class="open">Open →</span></div></a>
+        <a class="artifact" href="/apps/life-journey-visualization/" style="--accent:var(--rose)"><div class="thumb timeline"></div><div class="body"><div class="meta"><span class="tag">Journey</span><span class="route">/apps/life-journey-visualization/</span></div><h3>Life Journey Visualizations</h3><p>A visual map of life journey patterns and narrative movement.</p><span class="open">Open →</span></div></a>
       </div>
-      <div class="note">
-        <strong>Public-safety rule:</strong> GitHub Pages is public. This repo contains migrated public-safe HTML pages and summarized descriptions. Raw private Obsidian notes, logs, transcripts, account data, and internal paths stay out of this repo unless a scrubbed publishable version is created.
+    </section>
+
+    <section class="section" id="systems" aria-labelledby="systems-title">
+      <div class="section-head">
+        <div><div class="section-kicker">04 · Systems</div><h2 id="systems-title">Hermes as an operating layer</h2></div>
+        <p>Pages about proof, routing, artifact publishing, and how the library stays public-safe.</p>
+      </div>
+      <div class="gallery">
+        <a class="artifact featured" href="/query-patterns/" style="--accent:var(--blue)"><div class="thumb dashboard"></div><div class="body"><div class="meta"><span class="tag">Hermes ops</span><span class="route">/query-patterns/</span></div><h3>Query pattern analysis</h3><p>How Abba uses Hermes as an operating layer for action, proof, memory, and low-noise routing.</p><span class="open">Open →</span></div></a>
+        <a class="artifact" href="/atlas/" style="--accent:var(--gold)"><div class="thumb"></div><div class="body"><div class="meta"><span class="tag">Atlas</span><span class="route">/atlas/</span></div><h3>Migrated atlas copy</h3><p>The compatibility atlas from earlier publishing work.</p><span class="open">Open →</span></div></a>
+        <div class="artifact" style="--accent:var(--gold)"><div class="body"><div class="meta"><span class="tag">Safety</span><span class="route">public-safe</span></div><h3>Public-safety rule</h3><p>GitHub Pages is public. This repo contains scrubbed HTML pages and summarized descriptions only. Raw notes, logs, transcripts, account data, and internal paths stay out.</p><span class="open">Canonical home: abbabk.github.io</span></div></div>
+      </div>
+      <div class="route-panel" style="margin-top:16px">
+        <strong>Clean routes, not random slugs.</strong>
+        <div class="route-strip"><code>/mai-tsara/</code><code>/life-os/</code><code>/achievements/</code><code>/apps/</code><code>/query-patterns/</code><code>/night-freedom/</code></div>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="shell">
-      Maintained by Hermes for Abba Bello Kanwa. Canonical public URL: <a href="https://abbabk.github.io/">https://abbabk.github.io/</a>. Last updated: 2026-05-12.
-    </div>
+    <div class="shell">Maintained by Hermes for Abba Bello Kanwa. Canonical public URL: <a href="https://abbabk.github.io/">https://abbabk.github.io/</a>. Last updated: 2026-05-12.</div>
   </footer>
 </body>
 </html>
