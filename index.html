@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The canonical public HTML library for Abba Bello Kanwa and Hermes artifacts." />
+  <meta property="og:title" content="Abba / Hermes HTML Library" />
+  <meta property="og:description" content="A public map of polished HTML artifacts, Mai Tsara pages, Life OS explainers, and interactive demos." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://abbabk.github.io/" />
+  <link rel="icon" href="data:," />
+  <title>Abba / Hermes HTML Library</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #070a12;
+      --bg-2: #0d1220;
+      --panel: rgba(255,255,255,.065);
+      --panel-strong: rgba(255,255,255,.105);
+      --line: rgba(255,255,255,.14);
+      --text: #f4f7fb;
+      --muted: #aeb9ca;
+      --soft: #7f8da3;
+      --gold: #f2c46d;
+      --teal: #67e8d2;
+      --blue: #8cb7ff;
+      --rose: #f7a7c0;
+      --shadow: 0 24px 90px rgba(0,0,0,.45);
+      --radius: 24px;
+      --max: 1180px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(103,232,210,.16), transparent 34rem),
+        radial-gradient(circle at 86% 4%, rgba(242,196,109,.16), transparent 32rem),
+        radial-gradient(circle at 54% 38%, rgba(140,183,255,.13), transparent 40rem),
+        linear-gradient(180deg, #070a12 0%, #0a0f1d 44%, #070a12 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .shell { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+
+    header {
+      padding: 28px 0 70px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 72px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(103,232,210,.92), rgba(242,196,109,.9));
+      color: #08101a;
+      font-weight: 900;
+      letter-spacing: -.04em;
+      box-shadow: 0 12px 36px rgba(103,232,210,.24);
+    }
+
+    .navlinks { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+
+    .pill, .button {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.045);
+      color: var(--muted);
+      padding: 9px 13px;
+      border-radius: 999px;
+      font-size: 13px;
+      transition: .18s ease;
+    }
+
+    .pill:hover, .button:hover, .card:hover {
+      border-color: rgba(103,232,210,.42);
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(300px, .72fr);
+      gap: 34px;
+      align-items: end;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--teal);
+      background: rgba(103,232,210,.08);
+      border: 1px solid rgba(103,232,210,.18);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      font-size: clamp(44px, 8vw, 92px);
+      line-height: .92;
+      letter-spacing: -.075em;
+      margin: 0 0 24px;
+      max-width: 910px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: clamp(17px, 2vw, 21px);
+      max-width: 760px;
+      margin: 0;
+    }
+
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      font-weight: 700;
+      color: var(--text);
+      background: rgba(255,255,255,.07);
+    }
+
+    .button.primary {
+      border-color: transparent;
+      background: linear-gradient(135deg, #f2c46d, #67e8d2);
+      color: #07101a;
+      box-shadow: 0 18px 60px rgba(103,232,210,.22);
+    }
+
+    .status-panel {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.095), rgba(255,255,255,.04));
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .status-panel h2 { font-size: 17px; margin: 0 0 14px; }
+    .status-panel p { font-size: 14px; color: var(--muted); margin: 0 0 18px; }
+
+    .metrics { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .metric { padding: 14px; border-radius: 18px; background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.09); }
+    .metric strong { display: block; font-size: 22px; letter-spacing: -.04em; }
+    .metric span { color: var(--soft); font-size: 12px; }
+
+    main { padding: 8px 0 78px; }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: end;
+      margin: 54px 0 18px;
+    }
+
+    .section-head h2 { margin: 0; font-size: clamp(25px, 4vw, 42px); letter-spacing: -.055em; }
+    .section-head p { margin: 0; color: var(--muted); max-width: 520px; font-size: 15px; }
+
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .card {
+      min-height: 240px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.085), rgba(255,255,255,.035));
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+      transition: .18s ease;
+      box-shadow: 0 16px 60px rgba(0,0,0,.25);
+    }
+
+    .card:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, var(--glow, rgba(103,232,210,.15)), transparent 52%);
+      opacity: .9;
+      pointer-events: none;
+    }
+
+    .card > * { position: relative; }
+    .tag { display: inline-flex; color: #07101a; background: var(--tag, var(--teal)); border-radius: 999px; padding: 5px 9px; font-size: 12px; font-weight: 800; margin-bottom: 18px; }
+    .card h3 { margin: 0 0 10px; font-size: 22px; line-height: 1.12; letter-spacing: -.04em; }
+    .card p { margin: 0; color: var(--muted); font-size: 14px; }
+    .card .open { display: inline-flex; margin-top: 20px; color: var(--text); font-size: 14px; font-weight: 800; }
+
+    .wide { grid-column: span 2; }
+
+    .route-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .route {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      padding: 12px 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .route strong { color: var(--text); }
+    .route code { color: var(--teal); font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 12px; }
+
+    .note {
+      margin-top: 34px;
+      padding: 20px;
+      border: 1px solid rgba(242,196,109,.22);
+      background: rgba(242,196,109,.08);
+      border-radius: var(--radius);
+      color: #f7dfaf;
+    }
+
+    footer {
+      padding: 34px 0 46px;
+      border-top: 1px solid var(--line);
+      color: var(--soft);
+      font-size: 14px;
+    }
+
+    @media (max-width: 860px) {
+      nav, .section-head { align-items: flex-start; flex-direction: column; }
+      .hero { grid-template-columns: 1fr; }
+      .grid, .grid.two { grid-template-columns: 1fr; }
+      .wide { grid-column: span 1; }
+      .metrics { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="shell">
+      <nav aria-label="Primary">
+        <a class="brand" href="https://abbabk.github.io/" aria-label="Abba / Hermes HTML Library home">
+          <span class="mark">A/H</span>
+          <span>Abba / Hermes</span>
+        </a>
+        <div class="navlinks">
+          <a class="pill" href="#library">Library</a>
+          <a class="pill" href="#apps">Apps</a>
+          <a class="pill" href="#routes">Routes</a>
+          <a class="pill" href="https://github.com/Abbabk/Abbabk.github.io">GitHub repo</a>
+        </div>
+      </nav>
+
+      <section class="hero">
+        <div>
+          <div class="eyebrow">Permanent public home - GitHub Pages</div>
+          <h1>HTML artifacts that make thought easier to inspect.</h1>
+          <p>This is the canonical public library for polished Abba and Hermes HTML work: Mai Tsara pages, Life OS explainers, visual dashboards, and interactive tools. here.now remains the fast preview lane. GitHub Pages is the durable home.</p>
+          <div class="actions">
+            <a class="button primary" href="#library">Explore the library →</a>
+            <a class="button" href="https://hearty-pickle-ha6t.here.now/atlas/">Previous here.now atlas</a>
+          </div>
+        </div>
+        <aside class="status-panel" aria-label="Library status">
+          <h2>Publishing status</h2>
+          <p>Created as a public, git-tracked root site. Individual artifacts can now migrate into clean routes under this domain.</p>
+          <div class="metrics">
+            <div class="metric"><strong>1</strong><span>canonical root</span></div>
+            <div class="metric"><strong>9+</strong><span>seeded artifacts</span></div>
+            <div class="metric"><strong>0</strong><span>private raw logs</span></div>
+            <div class="metric"><strong>Git</strong><span>history + rollback</span></div>
+          </div>
+        </aside>
+      </section>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section id="library" aria-labelledby="library-title">
+      <div class="section-head">
+        <h2 id="library-title">Core library</h2>
+        <p>Public-safe artifacts already published through here.now are indexed here first. Next pass can migrate the files themselves into native GitHub Pages routes.</p>
+      </div>
+      <div class="grid">
+        <a class="card wide" href="https://hearty-pickle-ha6t.here.now/atlas/mai-tsara/" style="--tag:#67e8d2; --glow:rgba(103,232,210,.20)">
+          <span class="tag">Mai Tsara</span>
+          <h3>Mai Tsara Tunani AI - first homepage</h3>
+          <p>Public positioning for Mai Tsara as a private, context-first personal life operating system.</p>
+          <span class="open">Open current page →</span>
+        </a>
+        <a class="card" href="https://hearty-pickle-ha6t.here.now/atlas/life-os/" style="--tag:#f2c46d; --glow:rgba(242,196,109,.18)">
+          <span class="tag">Life OS</span>
+          <h3>Visual summary</h3>
+          <p>The method: capture, arrange, interpret, decide, return.</p>
+          <span class="open">Open →</span>
+        </a>
+        <a class="card" href="https://hearty-pickle-ha6t.here.now/atlas/night-freedom/" style="--tag:#f7a7c0; --glow:rgba(247,167,192,.18)">
+          <span class="tag">Health</span>
+          <h3>Sleep and night freedom pattern</h3>
+          <p>A public-safe pattern map for late-night urgency, phone proximity, and next-day cost.</p>
+          <span class="open">Open →</span>
+        </a>
+        <a class="card" href="https://hearty-pickle-ha6t.here.now/atlas/query-patterns/" style="--tag:#8cb7ff; --glow:rgba(140,183,255,.18)">
+          <span class="tag">Hermes ops</span>
+          <h3>Query pattern analysis</h3>
+          <p>How Abba uses Hermes as an operating layer for action, proof, memory, and low-noise routing.</p>
+          <span class="open">Open →</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="apps" aria-labelledby="apps-title">
+      <div class="section-head">
+        <h2 id="apps-title">Interactive apps</h2>
+        <p>Small browser-native tools and visualizations. These are ideal candidates for clean GitHub Pages routes.</p>
+      </div>
+      <div class="grid">
+        <a class="card" href="https://hearty-pickle-ha6t.here.now/atlas/apps/">
+          <span class="tag">Hub</span>
+          <h3>Interactive apps hub</h3>
+          <p>The current live hub for HTML apps and Life OS visualizations.</p>
+          <span class="open">Open →</span>
+        </a>
+        <a class="card" href="https://hearty-pickle-ha6t.here.now/atlas/apps/mai-tsara-meaning-lens/">
+          <span class="tag">Lens</span>
+          <h3>Mai Tsara Meaning Lens</h3>
+          <p>A meaning-making interface for arranging context into interpretation.</p>
+          <span class="open">Open →</span>
+        </a>
+        <a class="card" href="https://hearty-pickle-ha6t.here.now/atlas/apps/interactive-life-dashboard/">
+          <span class="tag">Dashboard</span>
+          <h3>Interactive Life Dashboard</h3>
+          <p>A visual dashboard pattern for personal operating context.</p>
+          <span class="open">Open →</span>
+        </a>
+        <a class="card" href="https://hearty-pickle-ha6t.here.now/atlas/apps/life-compass/">
+          <span class="tag">Compass</span>
+          <h3>Life Compass</h3>
+          <p>Directional thinking in a compact browser surface.</p>
+          <span class="open">Open →</span>
+        </a>
+        <a class="card" href="https://hearty-pickle-ha6t.here.now/atlas/apps/growth-app/">
+          <span class="tag">Growth</span>
+          <h3>Growth App</h3>
+          <p>A small public-safe growth and reflection artifact.</p>
+          <span class="open">Open →</span>
+        </a>
+        <a class="card" href="https://hearty-pickle-ha6t.here.now/atlas/apps/life-journey-visualization/">
+          <span class="tag">Journey</span>
+          <h3>Life Journey Visualizations</h3>
+          <p>A visual map of life journey patterns and narrative movement.</p>
+          <span class="open">Open →</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="routes" aria-labelledby="routes-title">
+      <div class="section-head">
+        <h2 id="routes-title">Clean route plan</h2>
+        <p>The root is live first. These route names are the clean public structure I recommend migrating into next.</p>
+      </div>
+      <div class="card" style="min-height: auto;">
+        <div class="route-list">
+          <div class="route"><strong>Library home</strong><code>/</code></div>
+          <div class="route"><strong>Mai Tsara landing page</strong><code>/mai-tsara/</code></div>
+          <div class="route"><strong>Life OS visual summary</strong><code>/life-os/</code></div>
+          <div class="route"><strong>Interactive apps hub</strong><code>/apps/</code></div>
+          <div class="route"><strong>Hermes query patterns</strong><code>/query-patterns/</code></div>
+          <div class="route"><strong>Sleep and night freedom</strong><code>/night-freedom/</code></div>
+        </div>
+      </div>
+      <div class="note">
+        <strong>Public-safety rule:</strong> GitHub Pages is public. This root page contains only public links and summarized descriptions. Raw private Obsidian notes, logs, transcripts, account data, and internal paths stay out of this repo unless a scrubbed publishable version is created.
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">
+      Maintained by Hermes for Abba Bello Kanwa. Canonical public URL: <a href="https://abbabk.github.io/">https://abbabk.github.io/</a>. Last seeded: 2026-05-12.
+    </div>
+  </footer>
+</body>
+</html>
