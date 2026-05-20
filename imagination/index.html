@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="A public-safe visual artifact from Abba Bello Kanwa's notes on imagination, self-image, vision, fear, and how inner images shape lived reality." />
+  <meta property="og:title" content="Imagination Controls Reality" />
+  <meta property="og:description" content="Thought becomes image. Image becomes feeling. Feeling becomes identity. Identity becomes action. Action becomes reality." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://abbabk.github.io/imagination/" />
+  <link rel="icon" href="data:," />
+  <title>Imagination Controls Reality</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #06070b;
+      --ink: #fff8ec;
+      --muted: #c7bdae;
+      --soft: #8f8577;
+      --line: rgba(255,255,255,.14);
+      --panel: rgba(255,255,255,.075);
+      --panel-strong: rgba(255,255,255,.12);
+      --gold: #f4c76b;
+      --amber: #ff9f43;
+      --teal: #74f3df;
+      --rose: #ff8fb5;
+      --violet: #b7a2ff;
+      --danger: #ff6b6b;
+      --green: #a8f5c8;
+      --max: 1180px;
+      --radius: 28px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 2%, rgba(244,199,107,.25), transparent 34rem),
+        radial-gradient(circle at 86% 8%, rgba(116,243,223,.2), transparent 36rem),
+        radial-gradient(circle at 48% 45%, rgba(183,162,255,.12), transparent 48rem),
+        linear-gradient(180deg, #06070b 0%, #0d101a 44%, #06070b 100%);
+      line-height: 1.55;
+      overflow-x: hidden;
+    }
+
+    body:before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .2;
+      background-image: radial-gradient(rgba(255,255,255,.13) 1px, transparent 1px);
+      background-size: 24px 24px;
+      mask-image: linear-gradient(180deg, #000, transparent 78%);
+    }
+
+    a { color: inherit; }
+    .shell { width: min(var(--max), calc(100% - 34px)); margin: 0 auto; position: relative; }
+
+    header { padding: 28px 0 72px; position: relative; }
+    nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 76px; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: var(--muted); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; }
+    .mark { width: 42px; height: 42px; border-radius: 16px; display: grid; place-items: center; color: #071014; background: linear-gradient(135deg, var(--gold), var(--teal)); font-weight: 950; letter-spacing: -.05em; box-shadow: 0 18px 60px rgba(116,243,223,.2); }
+    .navlinks { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; }
+    .pill { text-decoration: none; color: var(--muted); border: 1px solid var(--line); background: rgba(255,255,255,.045); padding: 9px 13px; border-radius: 999px; font-size: 13px; transition: transform .18s ease, border-color .18s ease, background .18s ease; }
+    .pill:hover { transform: translateY(-2px); border-color: rgba(116,243,223,.5); background: rgba(255,255,255,.075); }
+
+    .hero { display: grid; grid-template-columns: minmax(0, 1.04fr) minmax(320px, .74fr); gap: 36px; align-items: stretch; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--teal); background: rgba(116,243,223,.08); border: 1px solid rgba(116,243,223,.18); padding: 8px 12px; border-radius: 999px; font-size: 13px; margin-bottom: 22px; }
+    h1 { margin: 0 0 24px; font-size: clamp(52px, 8.5vw, 112px); line-height: .88; letter-spacing: -.085em; max-width: 930px; }
+    h1 .glow { color: var(--gold); text-shadow: 0 0 34px rgba(244,199,107,.22); }
+    .hero-copy { margin: 0; max-width: 740px; color: var(--muted); font-size: clamp(18px, 2vw, 22px); }
+    .hero-copy strong { color: var(--ink); }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .button { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; border: 1px solid var(--line); background: rgba(255,255,255,.06); color: var(--ink); padding: 12px 16px; border-radius: 999px; font-size: 14px; font-weight: 850; }
+    .button.primary { border-color: transparent; color: #071014; background: linear-gradient(135deg, var(--gold), var(--teal)); box-shadow: 0 22px 80px rgba(116,243,223,.22); }
+
+    .control-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.11), rgba(255,255,255,.045));
+      padding: 22px;
+      box-shadow: 0 28px 90px rgba(0,0,0,.38);
+      min-height: 420px;
+      position: relative;
+      overflow: hidden;
+    }
+    .control-card:before { content: ""; position: absolute; inset: -70px -90px auto auto; width: 240px; height: 240px; background: radial-gradient(circle, rgba(244,199,107,.28), transparent 65%); }
+    .card-label { position: relative; display: flex; justify-content: space-between; gap: 10px; color: var(--muted); font-size: 13px; margin-bottom: 24px; }
+    .loop { position: relative; display: grid; gap: 10px; }
+    .loop-step { display: grid; grid-template-columns: 42px minmax(0,1fr); gap: 12px; align-items: center; padding: 13px; border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.055); border-radius: 18px; }
+    .loop-step span:first-child { width: 42px; height: 42px; border-radius: 14px; display: grid; place-items: center; color: #071014; background: var(--accent, var(--gold)); font-weight: 950; }
+    .loop-step strong { display: block; line-height: 1.1; letter-spacing: -.02em; }
+    .loop-step small { display: block; color: var(--muted); margin-top: 3px; }
+    .signal { margin-top: 18px; position: relative; padding: 16px; border-radius: 20px; border: 1px solid rgba(244,199,107,.22); background: rgba(244,199,107,.08); color: #ffe5ad; font-weight: 750; }
+
+    main { padding: 0 0 84px; }
+    .section { margin-top: 64px; scroll-margin-top: 28px; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 22px; margin-bottom: 20px; }
+    .kicker { color: var(--gold); font-size: 13px; letter-spacing: .14em; text-transform: uppercase; font-weight: 950; }
+    h2 { margin: 6px 0 0; font-size: clamp(34px, 4.2vw, 56px); line-height: 1; letter-spacing: -.06em; }
+    .section-head p { margin: 0; color: var(--muted); max-width: 540px; font-size: 15px; }
+
+    .quote-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    blockquote { margin: 0; }
+    .quote-card { min-height: 260px; display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(180deg, rgba(255,255,255,.085), rgba(255,255,255,.035)); padding: 21px; box-shadow: 0 18px 62px rgba(0,0,0,.22); position: relative; overflow: hidden; }
+    .quote-card.featured { grid-column: span 2; }
+    .quote-card:before { content: "“"; position: absolute; top: -22px; right: 18px; color: var(--accent, var(--gold)); opacity: .22; font-size: 120px; font-family: Georgia, serif; }
+    .source { color: var(--accent, var(--gold)); font-size: 12px; text-transform: uppercase; letter-spacing: .12em; font-weight: 950; margin-bottom: 18px; }
+    .quote-card p { position: relative; margin: 0; font-size: clamp(20px, 2.6vw, 34px); line-height: 1.04; letter-spacing: -.055em; font-weight: 900; }
+    .quote-card:not(.featured) p { font-size: 22px; line-height: 1.13; }
+    .meaning { margin-top: auto; padding-top: 20px; color: var(--muted); font-size: 14px; }
+    mark { color: #071014; background: linear-gradient(135deg, var(--gold), var(--teal)); border-radius: 9px; padding: 0 .18em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+    .mark-rose { background: linear-gradient(135deg, var(--rose), var(--gold)); }
+    .mark-danger { background: linear-gradient(135deg, var(--danger), var(--amber)); }
+
+    .split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .panel { border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(180deg, rgba(255,255,255,.085), rgba(255,255,255,.035)); padding: 24px; box-shadow: 0 18px 62px rgba(0,0,0,.22); }
+    .panel h3 { margin: 0 0 14px; font-size: 26px; line-height: 1.05; letter-spacing: -.045em; }
+    .panel p { color: var(--muted); margin: 0 0 14px; }
+    .panel ul { margin: 0; padding-left: 18px; color: var(--muted); }
+    .panel li { margin: 8px 0; }
+    .positive { border-color: rgba(116,243,223,.22); }
+    .negative { border-color: rgba(255,107,107,.24); }
+    .positive h3 { color: var(--teal); }
+    .negative h3 { color: var(--danger); }
+
+    .flow { display: grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap: 10px; }
+    .flow-item { min-height: 142px; border: 1px solid var(--line); border-radius: 22px; padding: 15px; background: rgba(255,255,255,.055); display: flex; flex-direction: column; justify-content: space-between; }
+    .flow-item b { font-size: 17px; letter-spacing: -.03em; }
+    .flow-item small { color: var(--muted); }
+    .flow-item:nth-child(1) { border-color: rgba(244,199,107,.35); }
+    .flow-item:nth-child(2) { border-color: rgba(116,243,223,.32); }
+    .flow-item:nth-child(3) { border-color: rgba(255,143,181,.32); }
+    .flow-item:nth-child(4) { border-color: rgba(183,162,255,.32); }
+    .flow-item:nth-child(5) { border-color: rgba(168,245,200,.32); }
+    .flow-item:nth-child(6) { border-color: rgba(244,199,107,.35); }
+
+    .word-wall { display: flex; flex-wrap: wrap; gap: 10px; }
+    .word { border: 1px solid rgba(255,255,255,.13); background: rgba(255,255,255,.06); border-radius: 999px; padding: 10px 13px; color: var(--muted); font-size: 14px; }
+    .word.hot { color: #071014; background: linear-gradient(135deg, var(--gold), var(--teal)); border-color: transparent; font-weight: 900; }
+
+    .final-rule { border: 1px solid rgba(244,199,107,.24); border-radius: calc(var(--radius) + 10px); background: linear-gradient(135deg, rgba(244,199,107,.16), rgba(116,243,223,.08)); padding: clamp(26px, 5vw, 56px); text-align: center; box-shadow: 0 30px 100px rgba(0,0,0,.34); }
+    .final-rule p { margin: 0 auto; max-width: 900px; font-size: clamp(30px, 5vw, 64px); line-height: .98; letter-spacing: -.07em; font-weight: 950; }
+    .final-rule small { display: block; margin-top: 18px; color: var(--muted); font-size: 15px; }
+
+    details { border: 1px solid var(--line); border-radius: var(--radius); background: rgba(255,255,255,.045); overflow: hidden; }
+    summary { cursor: pointer; list-style: none; padding: 20px 22px; display: grid; grid-template-columns: minmax(0,1fr) 40px; gap: 18px; align-items: center; }
+    summary::-webkit-details-marker { display: none; }
+    .summary-copy strong { display: block; font-size: 21px; letter-spacing: -.03em; }
+    .summary-copy span { display: block; color: var(--muted); margin-top: 4px; font-size: 14px; }
+    .chevron { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 999px; background: rgba(255,255,255,.08); color: var(--gold); transition: transform .18s ease; }
+    details[open] .chevron { transform: rotate(180deg); }
+    .source-list { padding: 0 22px 22px; display: grid; gap: 10px; color: var(--muted); }
+    .source-list div { padding: 12px 0; border-top: 1px solid rgba(255,255,255,.1); }
+
+    footer { padding: 34px 0 46px; border-top: 1px solid var(--line); color: var(--soft); font-size: 14px; }
+
+    @media (max-width: 960px) {
+      nav, .section-head { align-items: flex-start; flex-direction: column; }
+      .hero, .split { grid-template-columns: 1fr; }
+      .quote-grid { grid-template-columns: 1fr; }
+      .quote-card.featured { grid-column: span 1; }
+      .flow { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+
+    @media (max-width: 560px) {
+      .shell { width: min(var(--max), calc(100% - 24px)); }
+      header { padding-top: 20px; }
+      h1 { font-size: clamp(45px, 16vw, 70px); }
+      .flow { grid-template-columns: 1fr; }
+      .quote-card, .panel, .control-card { border-radius: 22px; }
+      summary { padding: 18px; grid-template-columns: minmax(0,1fr) 34px; gap: 12px; }
+      .chevron { width: 34px; height: 34px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="shell">
+      <nav aria-label="Primary navigation">
+        <a class="brand" href="/" aria-label="Back to Abba / Hermes gallery">
+          <span class="mark">A/H</span>
+          <span>Abba / Hermes</span>
+        </a>
+        <div class="navlinks">
+          <a class="pill" href="#quotes">Quotes</a>
+          <a class="pill" href="#loop">Reality loop</a>
+          <a class="pill" href="#control">Control rule</a>
+          <a class="pill" href="#sources">Sources</a>
+        </div>
+      </nav>
+
+      <section class="hero">
+        <div>
+          <div class="eyebrow">Public-safe notes artifact · Published 2026-05-21</div>
+          <h1>Imagination <span class="glow">controls</span> reality.</h1>
+          <p class="hero-copy">Not by magic alone. In your notes, imagination controls reality because it controls the <strong>image</strong> you hold, the <strong>feeling</strong> you rehearse, the <strong>identity</strong> you accept, and the <strong>actions</strong> you repeat.</p>
+          <div class="actions">
+            <a class="button primary" href="#loop">See the control loop →</a>
+            <a class="button" href="#quotes">Read the highlighted quotes</a>
+          </div>
+        </div>
+
+        <aside class="control-card" aria-label="Reality control loop summary">
+          <div class="card-label"><strong>The control loop</strong><span>thought becomes behavior</span></div>
+          <div class="loop">
+            <div class="loop-step" style="--accent:var(--gold)"><span>1</span><div><strong>Thought</strong><small>the seed: what the mind returns to</small></div></div>
+            <div class="loop-step" style="--accent:var(--teal)"><span>2</span><div><strong>Image</strong><small>the inner picture of self and future</small></div></div>
+            <div class="loop-step" style="--accent:var(--rose)"><span>3</span><div><strong>Feeling</strong><small>the body rehearses the imagined world</small></div></div>
+            <div class="loop-step" style="--accent:var(--violet)"><span>4</span><div><strong>Identity</strong><small>the image becomes who you believe you are</small></div></div>
+            <div class="loop-step" style="--accent:var(--green)"><span>5</span><div><strong>Action</strong><small>identity chooses repeated behavior</small></div></div>
+          </div>
+          <div class="signal">Reality changes when the image becomes a standard, then a habit, then proof.</div>
+        </aside>
+      </section>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="section" id="quotes" aria-labelledby="quotes-title">
+      <div class="section-head">
+        <div><div class="kicker">01 · Highlighted source lines</div><h2 id="quotes-title">Your imagination doctrine</h2></div>
+        <p>The strongest lines from the notes. The highlighted words show the mechanism: thought, image, feeling, self-image, action, and reality.</p>
+      </div>
+      <div class="quote-grid">
+        <blockquote class="quote-card featured" style="--accent:var(--gold)">
+          <div class="source">IMAGINE AND FEEL</div>
+          <p>Everything that <mark>manifest</mark> was originated from <mark>thought</mark>.</p>
+          <div class="meaning">Meaning: reality begins as an inner seed before it becomes visible behavior or outcome.</div>
+        </blockquote>
+        <blockquote class="quote-card" style="--accent:var(--teal)">
+          <div class="source">What is your vision?</div>
+          <p>Vision is <mark>foresight</mark> inspired by hindsight and guided by insight.</p>
+          <div class="meaning">Meaning: imagination becomes mature when past, future, and learning work together.</div>
+        </blockquote>
+        <blockquote class="quote-card" style="--accent:var(--violet)">
+          <div class="source">Psycho-Cybernetics excerpt</div>
+          <p>We act according to the <mark>image</mark> we create of ourselves.</p>
+          <div class="meaning">Meaning: self-image quietly governs behavior.</div>
+        </blockquote>
+        <blockquote class="quote-card" style="--accent:var(--green)">
+          <div class="source">Psycho-Cybernetics excerpt</div>
+          <p>The human body contains a <mark>success mechanism</mark> that’s driven by imagination.</p>
+          <div class="meaning">Meaning: imagination trains direction, response, and repeated action.</div>
+        </blockquote>
+        <blockquote class="quote-card featured" style="--accent:var(--danger)">
+          <div class="source">We suffer more in imagination than in reality</div>
+          <p>We spend so much time worried about how bad things are going to be, that we actually <mark class="mark-danger">torture ourselves</mark> more than the thing we’re worried about ever could.</p>
+          <div class="meaning">Meaning: imagination can create pain before the event arrives. Fear is also a form of rehearsal.</div>
+        </blockquote>
+        <blockquote class="quote-card" style="--accent:var(--rose)">
+          <div class="source">Art and creativity</div>
+          <p>Art is our <mark class="mark-rose">imagination</mark> brought to life by creativity.</p>
+          <div class="meaning">Meaning: imagination becomes visible through creative expression.</div>
+        </blockquote>
+      </div>
+    </section>
+
+    <section class="section" id="loop" aria-labelledby="loop-title">
+      <div class="section-head">
+        <div><div class="kicker">02 · How imagination controls reality</div><h2 id="loop-title">The reality control loop</h2></div>
+        <p>This is the cleanest synthesis of the notes. It is not fantasy. It is the path from inner picture to lived evidence.</p>
+      </div>
+      <div class="flow" aria-label="Thought to reality flow">
+        <div class="flow-item"><b>Thought</b><small>What the mind repeats.</small></div>
+        <div class="flow-item"><b>Image</b><small>The picture of self, future, risk, or possibility.</small></div>
+        <div class="flow-item"><b>Feeling</b><small>The body reacts to the image as if it has meaning now.</small></div>
+        <div class="flow-item"><b>Identity</b><small>The repeated image becomes what feels believable.</small></div>
+        <div class="flow-item"><b>Action</b><small>Belief selects behavior, courage, avoidance, or practice.</small></div>
+        <div class="flow-item"><b>Reality</b><small>Repeated action becomes proof, then proof rewrites imagination.</small></div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="two-sides-title">
+      <div class="section-head">
+        <div><div class="kicker">03 · Two forms</div><h2 id="two-sides-title">Builder or jailer</h2></div>
+        <p>Your notes are unusually balanced. They praise imagination, but they also warn against imagination becoming fear theatre.</p>
+      </div>
+      <div class="split">
+        <article class="panel positive">
+          <h3>Positive imagination builds reality</h3>
+          <p>It stretches what feels possible, rehearses the stronger self, and makes ambition emotionally available before the world has caught up.</p>
+          <ul>
+            <li>future self rehearsal</li>
+            <li>vision board and becoming cues</li>
+            <li>identity before proof</li>
+            <li>optimism as action fuel</li>
+            <li>creativity as imagination made visible</li>
+          </ul>
+        </article>
+        <article class="panel negative">
+          <h3>Negative imagination manufactures suffering</h3>
+          <p>It rehearses unpleasant futures so intensely that the body starts paying for events that may never happen.</p>
+          <ul>
+            <li>worry before evidence</li>
+            <li>fear of unknown bad outcomes</li>
+            <li>self-image as weakness or failure</li>
+            <li>avoidance disguised as preparation</li>
+            <li>anxiety becoming identity</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="control" aria-labelledby="control-title">
+      <div class="section-head">
+        <div><div class="kicker">04 · Operating standard</div><h2 id="control-title">The mature rule</h2></div>
+        <p>The mature version is not “imagine harder.” It is imagination disciplined into feeling, action, review, and refinement.</p>
+      </div>
+      <div class="panel">
+        <div class="word-wall" aria-label="Important words from the imagination notes">
+          <span class="word hot">thought</span>
+          <span class="word hot">image</span>
+          <span class="word hot">feeling</span>
+          <span class="word hot">self-image</span>
+          <span class="word hot">success mechanism</span>
+          <span class="word">foresight</span>
+          <span class="word">hindsight</span>
+          <span class="word">insight</span>
+          <span class="word">vision</span>
+          <span class="word">identity</span>
+          <span class="word">optimism</span>
+          <span class="word">courage</span>
+          <span class="word">action</span>
+          <span class="word">review</span>
+          <span class="word">reality</span>
+        </div>
+      </div>
+      <div class="final-rule" style="margin-top:16px">
+        <p>Imagine → feel → act → review → refine.</p>
+        <small>Imagination should stretch your life, not trap your nervous system.</small>
+      </div>
+    </section>
+
+    <section class="section" id="sources" aria-labelledby="sources-title">
+      <div class="section-head">
+        <div><div class="kicker">05 · Source basis</div><h2 id="sources-title">Where this came from</h2></div>
+        <p>Public-safe synthesis from Abba's curated Obsidian notes. Raw private logs and local file paths are intentionally excluded.</p>
+      </div>
+      <details>
+        <summary>
+          <span class="summary-copy">
+            <strong>Show source note titles</strong>
+            <span>These are the note titles used as the evidence base for the artifact.</span>
+          </span>
+          <span class="chevron" aria-hidden="true">⌄</span>
+        </summary>
+        <div class="source-list">
+          <div>IMAGINE AND FEEL</div>
+          <div>What is your vision</div>
+          <div>Abba BK's imaginations</div>
+          <div>We suffer more in imagination than in reality</div>
+          <div>Abba BK in future: Personal Notes on the Path to Success</div>
+          <div>Purpose & Vision</div>
+          <div>Optimism, Meaning & Purpose Synthesis</div>
+          <div>We act according to the image we create of ourselves. The human body contains a success mechanism that’s driven by imagination.</div>
+          <div>Art is our imagination brought to life by creativity</div>
+        </div>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">A public-safe HTML artifact by Hermes for Abba Bello Kanwa. Canonical route: <a href="https://abbabk.github.io/imagination/">https://abbabk.github.io/imagination/</a>. Back to <a href="/">Abba / Hermes Gallery</a>.</div>
+  </footer>
+</body>
+</html>
