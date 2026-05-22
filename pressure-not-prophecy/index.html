@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="A public-safe real-time self-regulation script: this is pressure, not prophecy." />
+  <meta property="og:title" content="Pressure, Not Prophecy" />
+  <meta property="og:description" content="Small move. Clean heart. Protect the house." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://abbabk.github.io/pressure-not-prophecy/" />
+  <link rel="icon" href="data:," />
+  <title>Pressure, Not Prophecy</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #07080d;
+      --ink: #f7f4ec;
+      --muted: #b9b1a4;
+      --soft: #81796f;
+      --line: rgba(255,255,255,.14);
+      --panel: rgba(255,255,255,.07);
+      --panel-2: rgba(255,255,255,.105);
+      --gold: #f4c76b;
+      --teal: #71ead8;
+      --rose: #f6a7bf;
+      --blue: #94b9ff;
+      --green: #a7f3d0;
+      --max: 1120px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% -8%, rgba(113,234,216,.22), transparent 34rem),
+        radial-gradient(circle at 82% 0%, rgba(244,199,107,.2), transparent 32rem),
+        radial-gradient(circle at 52% 45%, rgba(246,167,191,.09), transparent 44rem),
+        linear-gradient(180deg, #07080d 0%, #0d1320 46%, #07080d 100%);
+      line-height: 1.6;
+    }
+    body:before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .2;
+      background-image: radial-gradient(rgba(255,255,255,.14) 1px, transparent 1px);
+      background-size: 24px 24px;
+      mask-image: linear-gradient(180deg, #000, transparent 84%);
+    }
+    a { color: inherit; text-decoration: none; }
+    .shell { width: min(var(--max), calc(100% - 34px)); margin: 0 auto; }
+    header { padding: 28px 0 52px; }
+    nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 56px; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; color: var(--muted); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; font-weight: 800; }
+    .mark { width: 42px; height: 42px; border-radius: 16px; display: grid; place-items: center; color: #061014; background: linear-gradient(135deg, var(--gold), var(--teal)); font-weight: 950; box-shadow: 0 18px 54px rgba(113,234,216,.22); }
+    .navlinks { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; }
+    .pill { border: 1px solid var(--line); background: rgba(255,255,255,.045); color: var(--muted); padding: 9px 13px; border-radius: 999px; font-size: 13px; }
+    .hero { display: grid; grid-template-columns: minmax(0, 1.04fr) minmax(300px, .72fr); gap: 28px; align-items: stretch; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--teal); background: rgba(113,234,216,.08); border: 1px solid rgba(113,234,216,.2); padding: 8px 12px; border-radius: 999px; font-size: 13px; margin-bottom: 22px; }
+    h1 { font-size: clamp(48px, 8vw, 92px); line-height: .91; letter-spacing: -.078em; margin: 0 0 24px; max-width: 860px; }
+    h1 em { color: var(--gold); font-style: normal; }
+    .lead { color: var(--muted); font-size: clamp(17px, 2vw, 21px); max-width: 760px; margin: 0; }
+    .hero-card { border: 1px solid var(--line); background: linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.045)); border-radius: 30px; padding: 22px; box-shadow: 0 26px 90px rgba(0,0,0,.38); position: relative; overflow: hidden; }
+    .hero-card:after { content: ""; position: absolute; width: 220px; height: 220px; right: -80px; top: -70px; background: radial-gradient(circle, rgba(244,199,107,.28), transparent 66%); }
+    .anchor-line { position: relative; display: grid; gap: 14px; }
+    .anchor-line span { color: var(--gold); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; font-weight: 950; }
+    .anchor-line strong { display: block; font-size: clamp(25px, 3vw, 38px); line-height: 1.02; letter-spacing: -.055em; }
+    .mantra-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; margin-top: 26px; position: relative; }
+    .mantra { border: 1px solid rgba(255,255,255,.13); background: rgba(255,255,255,.055); border-radius: 20px; padding: 14px; min-height: 104px; }
+    .mantra b { display: block; font-size: 14px; margin-bottom: 8px; }
+    .mantra small { color: var(--muted); }
+    main { padding: 0 0 72px; }
+    .layout { display: grid; grid-template-columns: minmax(0, .78fr) minmax(0, 1.22fr); gap: 22px; align-items: start; }
+    .protocol-card, .exact-card, .raw-card { border: 1px solid var(--line); border-radius: 30px; background: linear-gradient(180deg, rgba(255,255,255,.085), rgba(255,255,255,.035)); box-shadow: 0 18px 62px rgba(0,0,0,.24); }
+    .protocol-card { padding: 22px; position: sticky; top: 18px; }
+    .protocol-card h2, .exact-card h2 { margin: 0 0 12px; font-size: 27px; line-height: 1.05; letter-spacing: -.05em; }
+    .protocol-list { display: grid; gap: 11px; margin-top: 18px; }
+    .step { display: grid; grid-template-columns: 34px minmax(0,1fr); gap: 12px; align-items: start; padding: 13px; border: 1px solid rgba(255,255,255,.11); border-radius: 18px; background: rgba(255,255,255,.04); }
+    .num { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 999px; color: #061014; background: var(--teal); font-weight: 950; }
+    .step strong { display: block; line-height: 1.22; }
+    .step span { color: var(--muted); font-size: 13px; display: block; margin-top: 4px; }
+    .exact-card { padding: clamp(20px, 4vw, 42px); }
+    .exact-copy { max-width: 760px; }
+    .exact-copy p { margin: 0 0 17px; color: #eee8dd; font-size: 17px; }
+    .exact-copy h2 { margin: 34px 0 16px; color: var(--gold); font-size: clamp(27px, 3vw, 38px); }
+    .exact-copy blockquote { margin: 24px 0; padding: 22px 24px; border: 1px solid rgba(244,199,107,.24); border-left: 5px solid var(--gold); border-radius: 22px; background: rgba(244,199,107,.075); font-size: clamp(24px, 3.3vw, 42px); line-height: 1.08; letter-spacing: -.045em; font-weight: 950; color: #fff6d8; }
+    .exact-copy strong { color: #fff6d8; }
+    .exact-copy em { color: var(--teal); font-style: normal; }
+    .exact-copy ul { margin: -4px 0 20px; padding: 0; list-style: none; display: grid; gap: 9px; }
+    .exact-copy li { padding-left: 26px; position: relative; color: #eee8dd; }
+    .exact-copy li:before { content: ""; position: absolute; left: 0; top: .72em; width: 9px; height: 9px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 0 5px rgba(113,234,216,.1); }
+    .raw-card { margin-top: 22px; overflow: hidden; }
+    details summary { cursor: pointer; list-style: none; display: grid; grid-template-columns: minmax(0,1fr) 40px; gap: 14px; align-items: center; padding: 18px 22px; }
+    details summary::-webkit-details-marker { display: none; }
+    .summary-copy strong { display: block; font-size: 18px; letter-spacing: -.02em; }
+    .summary-copy span { display: block; color: var(--muted); font-size: 13px; margin-top: 3px; }
+    .chevron { width: 40px; height: 40px; border-radius: 999px; display: grid; place-items: center; background: rgba(255,255,255,.08); color: var(--gold); transition: transform .18s ease; }
+    details[open] .chevron { transform: rotate(180deg); }
+    pre { margin: 0; padding: 0 22px 22px; white-space: pre-wrap; color: #e6ded0; font: 14px/1.65 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+    .footer-note { margin-top: 26px; color: var(--soft); font-size: 13px; }
+    footer { padding: 34px 0 46px; border-top: 1px solid var(--line); color: var(--soft); font-size: 14px; }
+    @media (max-width: 900px) {
+      nav { align-items: flex-start; flex-direction: column; }
+      .hero, .layout { grid-template-columns: 1fr; }
+      .protocol-card { position: static; }
+      .mantra-grid { grid-template-columns: 1fr; }
+      h1 { font-size: clamp(43px, 13vw, 64px); }
+      .exact-card { border-radius: 24px; }
+      .exact-copy blockquote { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="shell">
+      <nav aria-label="Primary">
+        <a class="brand" href="https://abbabk.github.io/" aria-label="Abba / Hermes HTML Gallery home"><span class="mark">A/H</span><span>Abba / Hermes</span></a>
+        <div class="navlinks"><a class="pill" href="#script">Script</a><a class="pill" href="#exact">Exact text</a><a class="pill" href="/">Gallery</a></div>
+      </nav>
+      <section class="hero">
+        <div>
+          <div class="eyebrow">Real-time self-regulation · exact chat artifact</div>
+          <h1>Pressure, <em>not</em> prophecy.</h1>
+          <p class="lead">A compact script for catching yourself live without turning one hard moment into a verdict on your whole life.</p>
+        </div>
+        <aside class="hero-card" aria-label="Anchor sentence">
+          <div class="anchor-line"><span>Anchor</span><strong>“Small move. Clean heart. Protect the house.”</strong></div>
+          <div class="mantra-grid" aria-label="Three-part protocol">
+            <div class="mantra"><b>Small move</b><small>Choose the next faithful action.</small></div>
+            <div class="mantra"><b>Clean heart</b><small>Do not let pressure become damage.</small></div>
+            <div class="mantra"><b>Protect the house</b><small>Preserve peace, body, family, faith.</small></div>
+          </div>
+        </aside>
+      </section>
+    </div>
+  </header>
+  <main class="shell">
+    <section class="layout" id="script">
+      <aside class="protocol-card" aria-label="Protocol summary">
+        <h2>The five moves</h2>
+        <p class="lead" style="font-size:15px">The artifact keeps the answer exactly, but this side rail makes it usable in the moment.</p>
+        <div class="protocol-list">
+          <div class="step"><span class="num">1</span><div><strong>I am activated.</strong><span>Name the state without making it identity.</span></div></div>
+          <div class="step"><span class="num">2</span><div><strong>My first reading may be wrong.</strong><span>Stress speaks loudly. It does not always speak truth.</span></div></div>
+          <div class="step"><span class="num">3</span><div><strong>Protect the system.</strong><span>Peace, family, body, work, money, Allah.</span></div></div>
+          <div class="step"><span class="num">4</span><div><strong>Choose the smallest protective action.</strong><span>Delay, soften, drink water, pause, write one sentence.</span></div></div>
+          <div class="step"><span class="num">5</span><div><strong>Proof, not performance.</strong><span>One clean steering move counts.</span></div></div>
+        </div>
+      </aside>
+      <article class="exact-card" id="exact" aria-labelledby="exact-title">
+        <h2 id="exact-title">Exact source answer</h2>
+        <div class="exact-copy">
+<p>Tell yourself this:</p>
+<blockquote>“This is pressure, not prophecy.”</blockquote>
+<p>Meaning: what you feel in the moment is real, but it is not always true. Stress is information, not instruction.</p>
+<p>When you catch yourself live, don’t start analyzing your whole life. That’s how the brain turns one problem into a documentary series. Do this instead:</p>
+<h2>The real-time script</h2>
+<p><strong>1. “I am activated.”</strong></p>
+<p>Not “I am failing.”</p>
+<p>Not “everything is bad.”</p>
+<p>Just: my nervous system is up.</p>
+<p><strong>2. “My first reading may be wrong.”</strong></p>
+<p>When you’re tired, ashamed, afraid, broke, misunderstood, or under pressure, your mind becomes a bad judge with great confidence.</p>
+<p><strong>3. “I don’t need to win this moment. I need to protect the system.”</strong></p>
+<p>That system is:</p>
+<ul>
+<li>my peace</li>
+<li>Asiya’s safety</li>
+<li>my daughter’s future</li>
+<li>my body</li>
+<li>my work</li>
+<li>my money</li>
+<li>my relationship with Allah</li>
+</ul>
+<p>This one is big. Your job is not to prove you are right. Your job is to not damage what you are building.</p>
+<p><strong>4. “What is the smallest protective action?”</strong></p>
+<p>Not the perfect action. Smallest.</p>
+<p>Examples:</p>
+<ul>
+<li>lower my voice</li>
+<li>pause before replying</li>
+<li>drink water</li>
+<li>delay the decision</li>
+<li>tell Asiya, “I’m stressed, but I’m with you”</li>
+<li>write one sentence</li>
+<li>stop working for 10 minutes</li>
+<li>check the budget before imagining disaster</li>
+<li>sleep instead of solving life at midnight</li>
+</ul>
+<p><strong>5. “Proof, not performance.”</strong></p>
+<p>You don’t need to become a perfect man in that moment. You need one proof that you are steering.</p>
+<p>One calm sentence is proof.</p>
+<p>One delayed reaction is proof.</p>
+<p>One honest apology is proof.</p>
+<p>One night note is proof.</p>
+<h2>The sentence I’d make your anchor</h2>
+<blockquote>“This moment is not asking me to become everything. It is asking me to choose the next faithful move.”</blockquote>
+<p>That fits you.</p>
+<p>Because your danger is not that you don’t understand life. You understand <em>a lot</em>. Your danger is that under pressure, your mind tries to solve the whole kingdom at once.</p>
+<p>Don’t.</p>
+<p>In real time, tell yourself:</p>
+<blockquote>“Small move. Clean heart. Protect the house.”</blockquote>
+<p>That’s the protocol.</p>
+        </div>
+        <p class="footer-note">Public GitHub Pages artifact. Preserves the original chat answer as an exact source text, with only a visual wrapper around it.</p>
+      </article>
+    </section>
+    <details class="raw-card">
+      <summary><span class="summary-copy"><strong>Raw exact text</strong><span>Collapsed copy block for reuse and comparison.</span></span><span class="chevron" aria-hidden="true">⌄</span></summary>
+      <pre>Tell yourself this:
+
+&gt; **“This is pressure, not prophecy.”**
+
+Meaning: what you feel in the moment is real, but it is not always true. Stress is information, not instruction.
+
+When you catch yourself live, don’t start analyzing your whole life. That’s how the brain turns one problem into a documentary series. Do this instead:
+
+## The real-time script
+
+**1. “I am activated.”**&#32;&#32;
+Not “I am failing.”&#32;&#32;
+Not “everything is bad.”&#32;&#32;
+Just: my nervous system is up.
+
+**2. “My first reading may be wrong.”**&#32;&#32;
+When you’re tired, ashamed, afraid, broke, misunderstood, or under pressure, your mind becomes a bad judge with great confidence.
+
+**3. “I don’t need to win this moment. I need to protect the system.”**&#32;&#32;
+That system is:
+- my peace
+- Asiya’s safety
+- my daughter’s future
+- my body
+- my work
+- my money
+- my relationship with Allah
+
+This one is big. Your job is not to prove you are right. Your job is to not damage what you are building.
+
+**4. “What is the smallest protective action?”**&#32;&#32;
+Not the perfect action. Smallest.
+
+Examples:
+- lower my voice
+- pause before replying
+- drink water
+- delay the decision
+- tell Asiya, “I’m stressed, but I’m with you”
+- write one sentence
+- stop working for 10 minutes
+- check the budget before imagining disaster
+- sleep instead of solving life at midnight
+
+**5. “Proof, not performance.”**&#32;&#32;
+You don’t need to become a perfect man in that moment. You need one proof that you are steering.
+
+One calm sentence is proof.&#32;&#32;
+One delayed reaction is proof.&#32;&#32;
+One honest apology is proof.&#32;&#32;
+One night note is proof.
+
+## The sentence I’d make your anchor
+
+&gt; **“This moment is not asking me to become everything. It is asking me to choose the next faithful move.”**
+
+That fits you.
+
+Because your danger is not that you don’t understand life. You understand *a lot*. Your danger is that under pressure, your mind tries to solve the whole kingdom at once.
+
+Don’t.
+
+In real time, tell yourself:
+
+&gt; **“Small move. Clean heart. Protect the house.”**
+
+That’s the protocol.</pre>
+    </details>
+  </main>
+  <footer><div class="shell">Maintained by Hermes for Abba Bello Kanwa. Canonical public URL: <a href="https://abbabk.github.io/pressure-not-prophecy/">https://abbabk.github.io/pressure-not-prophecy/</a>. Published: 2026-05-22.</div></footer>
+</body>
+</html>
