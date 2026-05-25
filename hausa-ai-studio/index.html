@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Hausa AI Quality & Localization Operations Studio by Abba Bello Kanwa — Hausa AI output audits, localization QA, dataset validation, and HausaBench proof assets." />
+  <meta property="og:title" content="Hausa AI Quality & Localization Operations Studio" />
+  <meta property="og:description" content="Make Hausa AI outputs, localization, and language datasets accurate, natural, culturally right, and production-ready." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://abbabk.github.io/hausa-ai-studio/" />
+  <link rel="icon" href="data:," />
+  <title>Hausa AI Quality & Localization Operations Studio</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #06080b;
+      --ink: #fffaf0;
+      --muted: #c8beb0;
+      --soft: #918779;
+      --line: rgba(255,255,255,.14);
+      --panel: rgba(255,255,255,.07);
+      --panel-strong: rgba(255,255,255,.115);
+      --gold: #f5c85f;
+      --green: #6ee7b7;
+      --teal: #67e8f9;
+      --blue: #9bbcff;
+      --rose: #f2a7bd;
+      --danger: #ffb4a2;
+      --max: 1160px;
+      --radius: 28px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      min-height: 100vh;
+      line-height: 1.55;
+      background:
+        radial-gradient(circle at 12% -8%, rgba(103,232,249,.2), transparent 30rem),
+        radial-gradient(circle at 88% 0%, rgba(245,200,95,.18), transparent 34rem),
+        radial-gradient(circle at 55% 34%, rgba(110,231,183,.11), transparent 42rem),
+        linear-gradient(180deg, #06080b 0%, #0d1218 45%, #06080b 100%);
+    }
+    body:before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .2;
+      background-image: radial-gradient(rgba(255,255,255,.12) 1px, transparent 1px);
+      background-size: 24px 24px;
+      mask-image: linear-gradient(180deg, #000, transparent 78%);
+    }
+    a { color: inherit; text-decoration: none; }
+    .shell { width: min(var(--max), calc(100% - 34px)); margin: 0 auto; }
+
+    header { position: relative; padding: 28px 0 70px; overflow: hidden; }
+    nav { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 74px; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; color: var(--muted); font-size: 13px; letter-spacing: .11em; text-transform: uppercase; }
+    .mark { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 16px; color: #061014; background: linear-gradient(135deg, var(--gold), var(--green)); font-weight: 950; letter-spacing: -.08em; box-shadow: 0 18px 60px rgba(110,231,183,.2); }
+    .navlinks { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+    .pill, .button { border: 1px solid var(--line); background: rgba(255,255,255,.055); color: var(--muted); padding: 9px 13px; border-radius: 999px; font-size: 13px; transition: transform .18s ease, border-color .18s ease, background .18s ease; }
+    .pill:hover, .button:hover, .card:hover { transform: translateY(-2px); border-color: rgba(110,231,183,.48); background: rgba(255,255,255,.085); }
+
+    .hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(320px, .78fr); gap: 34px; align-items: stretch; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--green); background: rgba(110,231,183,.08); border: 1px solid rgba(110,231,183,.2); padding: 8px 12px; border-radius: 999px; font-size: 13px; margin-bottom: 24px; }
+    h1 { margin: 0 0 24px; max-width: 920px; font-size: clamp(44px, 7.5vw, 88px); line-height: .91; letter-spacing: -.075em; text-wrap: balance; }
+    h1 em { color: var(--gold); font-style: normal; }
+    .hero-copy { max-width: 760px; margin: 0; color: var(--muted); font-size: clamp(17px, 2vw, 21px); }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .button { display: inline-flex; align-items: center; min-height: 44px; padding: 12px 16px; color: var(--ink); font-weight: 850; }
+    .button.primary { border-color: transparent; color: #061014; background: linear-gradient(135deg, var(--gold), var(--green)); box-shadow: 0 20px 70px rgba(110,231,183,.18); }
+    .trust-strip { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+    .trust-strip span { border: 1px solid rgba(255,255,255,.13); color: var(--muted); background: rgba(255,255,255,.045); border-radius: 999px; padding: 8px 10px; font-size: 12px; }
+
+    .proof-board { position: relative; border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(180deg, rgba(255,255,255,.115), rgba(255,255,255,.045)); padding: 20px; box-shadow: 0 28px 92px rgba(0,0,0,.38); overflow: hidden; }
+    .proof-board:before { content: ""; position: absolute; inset: -60px -70px auto auto; width: 220px; height: 220px; background: radial-gradient(circle, rgba(245,200,95,.28), transparent 65%); }
+    .board-top { position: relative; display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 16px; color: var(--muted); font-size: 13px; }
+    .score-card { position: relative; border: 1px solid rgba(255,255,255,.13); border-radius: 22px; background: rgba(0,0,0,.18); padding: 18px; margin-bottom: 12px; }
+    .score-card strong { display: block; font-size: 18px; letter-spacing: -.035em; }
+    .score-row { display: grid; grid-template-columns: 1fr auto; gap: 12px; padding: 12px 0; border-top: 1px solid rgba(255,255,255,.1); color: var(--muted); font-size: 14px; }
+    .score-row:first-of-type { border-top: 0; margin-top: 12px; }
+    .score { color: #061014; background: var(--gold); border-radius: 999px; padding: 4px 9px; font-weight: 900; font-size: 12px; }
+    .mini-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .mini { border: 1px solid rgba(255,255,255,.12); border-radius: 20px; background: rgba(255,255,255,.06); padding: 14px; min-height: 108px; }
+    .mini b { display: block; color: var(--ink); margin-bottom: 8px; }
+    .mini span { color: var(--muted); font-size: 13px; }
+
+    main { padding: 0 0 86px; }
+    .section { margin-top: 68px; scroll-margin-top: 24px; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 22px; margin-bottom: 20px; }
+    .kicker { color: var(--gold); font-size: 13px; letter-spacing: .13em; text-transform: uppercase; font-weight: 950; }
+    h2 { margin: 6px 0 0; font-size: clamp(30px, 4vw, 50px); line-height: 1; letter-spacing: -.06em; text-wrap: balance; }
+    .section-head p { max-width: 560px; margin: 0; color: var(--muted); font-size: 15px; }
+
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .card { border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(180deg, rgba(255,255,255,.085), rgba(255,255,255,.035)); padding: 22px; min-height: 260px; box-shadow: 0 18px 62px rgba(0,0,0,.24); transition: transform .18s ease, border-color .18s ease, background .18s ease; }
+    .card.featured { grid-column: span 2; }
+    .tag { display: inline-flex; color: #061014; background: var(--accent, var(--green)); border-radius: 999px; padding: 6px 10px; font-size: 12px; font-weight: 950; margin-bottom: 16px; }
+    .card h3 { margin: 0 0 10px; font-size: 24px; line-height: 1.1; letter-spacing: -.045em; }
+    .card p { margin: 0; color: var(--muted); font-size: 15px; }
+    .card ul { margin: 16px 0 0; padding-left: 18px; color: var(--muted); }
+    .card li { margin: 8px 0; }
+
+    .problem { display: grid; grid-template-columns: .9fr 1.1fr; gap: 16px; }
+    .quote-panel { border: 1px solid rgba(245,200,95,.28); background: rgba(245,200,95,.08); border-radius: var(--radius); padding: 24px; color: #ffe6a9; }
+    .quote-panel strong { display: block; font-size: clamp(26px, 4vw, 46px); line-height: .96; letter-spacing: -.06em; margin-bottom: 16px; }
+    .issue-list { display: grid; gap: 10px; }
+    .issue { display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: start; border: 1px solid rgba(255,255,255,.1); border-radius: 20px; padding: 14px; background: rgba(255,255,255,.045); color: var(--muted); }
+    .issue b { color: var(--ink); }
+    .num { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 999px; background: rgba(110,231,183,.14); color: var(--green); font-weight: 950; }
+
+    .rubric { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+    .rubric div { border: 1px solid rgba(255,255,255,.11); border-radius: 20px; background: rgba(255,255,255,.045); padding: 16px; }
+    .rubric strong { display: block; color: var(--ink); margin-bottom: 7px; }
+    .rubric span { color: var(--muted); font-size: 13px; }
+
+    .process { counter-reset: step; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+    .step { position: relative; min-height: 220px; border: 1px solid var(--line); border-radius: var(--radius); background: rgba(255,255,255,.055); padding: 20px; }
+    .step:before { counter-increment: step; content: "0" counter(step); display: inline-grid; place-items: center; width: 42px; height: 42px; margin-bottom: 22px; border-radius: 16px; color: #061014; background: linear-gradient(135deg, var(--gold), var(--green)); font-weight: 950; }
+    .step h3 { margin: 0 0 8px; font-size: 21px; letter-spacing: -.04em; }
+    .step p { margin: 0; color: var(--muted); font-size: 14px; }
+
+    .cta { display: grid; grid-template-columns: 1fr auto; gap: 26px; align-items: center; border: 1px solid rgba(110,231,183,.24); border-radius: 34px; padding: 28px; background: linear-gradient(135deg, rgba(110,231,183,.13), rgba(245,200,95,.09)); box-shadow: 0 24px 86px rgba(0,0,0,.32); }
+    .cta h2 { margin: 0 0 12px; }
+    .cta p { max-width: 760px; color: var(--muted); margin: 0; font-size: 17px; }
+    .contact-stack { display: flex; flex-direction: column; gap: 10px; min-width: 250px; }
+    .safe-note { margin-top: 18px; color: var(--soft); font-size: 13px; }
+
+    footer { padding: 34px 0 46px; border-top: 1px solid var(--line); color: var(--soft); font-size: 14px; }
+
+    @media (max-width: 920px) {
+      nav, .section-head { align-items: flex-start; flex-direction: column; }
+      .hero, .problem, .cta { grid-template-columns: 1fr; }
+      .grid, .grid.two, .rubric, .process { grid-template-columns: 1fr; }
+      .card.featured { grid-column: span 1; }
+      .mini-grid { grid-template-columns: 1fr; }
+      .contact-stack { min-width: 0; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="shell">
+      <nav aria-label="Primary">
+        <a class="brand" href="https://abbabk.github.io/" aria-label="Abba / Hermes gallery home">
+          <span class="mark">HA</span>
+          <span>Hausa AI Studio</span>
+        </a>
+        <div class="navlinks">
+          <a class="pill" href="#offers">Offers</a>
+          <a class="pill" href="#proof">HausaBench</a>
+          <a class="pill" href="#rubric">Rubric</a>
+          <a class="pill" href="#contact">Contact</a>
+        </div>
+      </nav>
+
+      <section class="hero">
+        <div>
+          <div class="eyebrow">Hausa AI quality · localization QA · language data validation</div>
+          <h1>Make Hausa AI outputs <em>production-ready</em>.</h1>
+          <p class="hero-copy">I help AI, data, and localization teams make Hausa language data, translations, model outputs, and product content accurate, natural, culturally right, and safe before they reach users.</p>
+          <div class="actions">
+            <a class="button primary" href="#contact">Send a sample for review →</a>
+            <a class="button" href="#offers">View paid offers</a>
+          </div>
+          <div class="trust-strip" aria-label="Experience anchors">
+            <span>Hausa language specialist</span>
+            <span>Localization operations</span>
+            <span>LLM output review</span>
+            <span>Dataset QA</span>
+            <span>Based in Sokoto, Nigeria</span>
+          </div>
+        </div>
+
+        <aside class="proof-board" aria-label="Studio proof preview">
+          <div class="board-top"><strong>Quality review lens</strong><span>1–5 rubric</span></div>
+          <div class="score-card">
+            <strong>Not just “is the Hausa fluent?”</strong>
+            <div class="score-row"><span>Meaning accuracy</span><span class="score">critical</span></div>
+            <div class="score-row"><span>Cultural and contextual fit</span><span class="score">buyer risk</span></div>
+            <div class="score-row"><span>Safety / hallucination risk</span><span class="score">AI risk</span></div>
+            <div class="score-row"><span>Dataset usefulness</span><span class="score">ops risk</span></div>
+          </div>
+          <div class="mini-grid">
+            <div class="mini"><b>HausaBench</b><span>A public proof project for Hausa AI evaluation examples, issue taxonomy, and buyer-facing audit logic.</span></div>
+            <div class="mini"><b>Deliverables</b><span>Audit memos, scored rubrics, issue logs, dataset validation notes, and recommendations.</span></div>
+          </div>
+        </aside>
+      </section>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="section" id="problem" aria-labelledby="problem-title">
+      <div class="section-head">
+        <div><div class="kicker">01 · The hidden risk</div><h2 id="problem-title">Hausa can look “good enough” while still being wrong.</h2></div>
+        <p>For non-Hausa teams, the dangerous outputs are often the fluent ones: they sound plausible, but miss meaning, tone, culture, safety, or dataset usefulness.</p>
+      </div>
+      <div class="problem">
+        <div class="quote-panel">
+          <strong>Fluent wording is not the same as usable Hausa.</strong>
+          <p>Good Hausa AI and localization work needs native judgment, cultural context, quality scoring, and production-minded issue reporting.</p>
+        </div>
+        <div class="issue-list">
+          <div class="issue"><span class="num">1</span><span><b>Meaning drift:</b> dropped nuance, wrong tense/person, literal translation, or a named entity mistake hidden inside smooth Hausa.</span></div>
+          <div class="issue"><span class="num">2</span><span><b>Register mismatch:</b> wording that is too formal, cold, imported, or unnatural for the real user context.</span></div>
+          <div class="issue"><span class="num">3</span><span><b>AI risk:</b> hallucinated facts, unsafe certainty, weak refusal behavior, or overconfident Hausa explanations.</span></div>
+          <div class="issue"><span class="num">4</span><span><b>Data risk:</b> noisy transcriptions, inconsistent labels, weak prompt-response pairs, and evaluation examples that cannot be trusted.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="offers" aria-labelledby="offers-title">
+      <div class="section-head">
+        <div><div class="kicker">02 · Paid offers</div><h2 id="offers-title">Three focused ways to work together</h2></div>
+        <p>Each offer produces a practical review output, not vague “language feedback.” You get issues, categories, scores, and next-step recommendations.</p>
+      </div>
+      <div class="grid">
+        <article class="card featured" style="--accent:var(--gold)">
+          <span class="tag">Offer 1</span>
+          <h3>Hausa AI Output Audit</h3>
+          <p>For chatbots, AI assistants, prompt-response datasets, model evaluation samples, and Hausa LLM outputs.</p>
+          <ul>
+            <li>Review meaning accuracy, fluency, tone, cultural fit, safety, usefulness, and hallucination risk.</li>
+            <li>Deliver a concise audit memo, scored rubric, issue examples, and improvement recommendations.</li>
+            <li>Best when a team asks: “Can this Hausa AI answer be trusted?”</li>
+          </ul>
+        </article>
+        <article class="card" style="--accent:var(--green)">
+          <span class="tag">Offer 2</span>
+          <h3>Hausa Localization QA Package</h3>
+          <p>For app strings, websites, product UI, marketing, support content, and publish-readiness review.</p>
+          <ul>
+            <li>Check translation accuracy, naturalness, terminology, formatting, UI fit, and cultural appropriateness.</li>
+            <li>Deliver a QA issue log, recommended wording notes, glossary/tone notes, and publish-risk summary.</li>
+          </ul>
+        </article>
+        <article class="card" style="--accent:var(--teal)">
+          <span class="tag">Offer 3</span>
+          <h3>Hausa Dataset Validation</h3>
+          <p>For speech data, transcription, annotation, classification, intent/sentiment labels, and LLM training/evaluation data.</p>
+          <ul>
+            <li>Validate transcription accuracy, label correctness, language authenticity, consistency, and dataset risk patterns.</li>
+            <li>Deliver validation summary, defect categories, sample-level notes, quality score, and cleanup guidance.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="proof" aria-labelledby="proof-title">
+      <div class="section-head">
+        <div><div class="kicker">03 · Public proof</div><h2 id="proof-title">HausaBench is the authority engine</h2></div>
+        <p>HausaBench is a public Hausa AI quality lab showing how Hausa outputs can be evaluated, scored, explained, and improved before deployment.</p>
+      </div>
+      <div class="grid two">
+        <article class="card" style="--accent:var(--gold)">
+          <span class="tag">What it proves</span>
+          <h3>Hausa AI failures are deeper than spelling.</h3>
+          <p>Examples will cover translation faithfulness, natural Hausa/register, cultural context, hallucination and safety risk, and dataset/evaluation usefulness.</p>
+        </article>
+        <article class="card" style="--accent:var(--blue)">
+          <span class="tag">How it works</span>
+          <h3>Each example uses a repeatable method.</h3>
+          <p>Prompt/task category → model output → expected behavior → error classification → severity → Hausa + English explanation → recommended fix → score.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="rubric" aria-labelledby="rubric-title">
+      <div class="section-head">
+        <div><div class="kicker">04 · Quality rubric</div><h2 id="rubric-title">A clear review system buyers can understand</h2></div>
+        <p>The studio uses a practical 1–5 scoring scale and eight review dimensions that translate Hausa expertise into operational decisions.</p>
+      </div>
+      <div class="rubric">
+        <div><strong>Meaning accuracy</strong><span>Does the Hausa preserve the intended meaning, nuance, tense, entities, and idioms?</span></div>
+        <div><strong>Natural fluency</strong><span>Does it sound like natural Hausa for the context, not English structure wearing Hausa words?</span></div>
+        <div><strong>Tone/register</strong><span>Is the tone suitable for the user, product, domain, and social situation?</span></div>
+        <div><strong>Cultural fit</strong><span>Does it respect Hausa/Nigerian context, names, places, family, religion, and social norms?</span></div>
+        <div><strong>Hallucination risk</strong><span>Does it invent facts, overclaim certainty, or mislead in fluent Hausa?</span></div>
+        <div><strong>Safety</strong><span>Is it responsible around medical, legal, financial, emergency, and sensitive domains?</span></div>
+        <div><strong>Instruction following</strong><span>Did the output follow the task, language, format, constraints, and requested structure?</span></div>
+        <div><strong>Dataset usefulness</strong><span>Can the example be trusted for training, evaluation, annotation, or QA?</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="experience" aria-labelledby="experience-title">
+      <div class="section-head">
+        <div><div class="kicker">05 · Why Abba</div><h2 id="experience-title">Language judgment plus operations discipline</h2></div>
+        <p>Abba Bello Kanwa is a Hausa language specialist based in Sokoto, Nigeria, with applied work across translation, localization, review, QA, and language operations.</p>
+      </div>
+      <div class="grid two">
+        <article class="card" style="--accent:var(--green)">
+          <span class="tag">Experience</span>
+          <h3>Hausa quality work across global platforms</h3>
+          <p>Professional work spans translation, transcription, proofreading, review, language quality, and localization operations across Hausa and English, with contributions connected to major global technology platforms including Microsoft, Meta, Amazon, and Canva.</p>
+        </article>
+        <article class="card" style="--accent:var(--rose)">
+          <span class="tag">Operations</span>
+          <h3>Not only language execution</h3>
+          <p>Earlier Productive Playhouse work included Hausa language operations leadership and managing a 29-person team, combining linguistic judgment with coordination, delivery discipline, and quality review systems.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="process" aria-labelledby="process-title">
+      <div class="section-head">
+        <div><div class="kicker">06 · Project flow</div><h2 id="process-title">Simple scope, serious review</h2></div>
+        <p>Start small: send a representative sample and the quality question you need answered.</p>
+      </div>
+      <div class="process">
+        <article class="step"><h3>Scope</h3><p>Share content type, sample size, deadline, audience, quality concern, and confidentiality requirements.</p></article>
+        <article class="step"><h3>Review</h3><p>I evaluate the material using a Hausa quality rubric matched to AI output, localization, or dataset validation.</p></article>
+        <article class="step"><h3>Deliver</h3><p>You receive findings, issue categories, examples, quality scores, recommendations, and next-step guidance.</p></article>
+        <article class="step"><h3>Extend</h3><p>For ongoing teams, the work can become recurring QA, reviewer guidance, or monthly Hausa language operations support.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <div class="cta">
+        <div>
+          <h2 id="contact-title">Working on Hausa AI, localization, speech data, or multilingual evaluation?</h2>
+          <p>Send a small sample and the question you need answered: “Is this Hausa output accurate, natural, culturally right, and safe to use?” I’ll recommend the right audit or QA package.</p>
+          <div class="safe-note">Public-safe site. No client-owned, NDA, or restricted platform content is published here.</div>
+        </div>
+        <div class="contact-stack">
+          <a class="button primary" href="https://ng.linkedin.com/in/abba-bello-kanwa">Contact on LinkedIn →</a>
+          <a class="button" href="https://abbabk.github.io/">Back to public artifact library</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">Hausa AI Quality & Localization Operations Studio · Abba Bello Kanwa · Last updated: 2026-05-25.</div>
+  </footer>
+</body>
+</html>
