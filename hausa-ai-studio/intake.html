@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Hausa AI Studio intake form for Hausa AI output audit, localization QA, transcript QA, and dataset validation." />
+  <title>Hausa AI Studio Intake Form</title>
+  <style>
+    :root{--bg:#06080b;--panel:rgba(255,255,255,.075);--line:rgba(255,255,255,.16);--ink:#fffaf0;--muted:#c8beb0;--gold:#f5c85f;--green:#6ee7b7;--teal:#67e8f9;--radius:22px;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color-scheme:dark}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 20% -10%,rgba(103,232,249,.22),transparent 30rem),linear-gradient(180deg,#06080b,#0d1218 50%,#06080b);color:var(--ink);line-height:1.55}.shell{width:min(920px,calc(100% - 34px));margin:0 auto;padding:34px 0 70px}a{color:inherit}.brand{display:inline-flex;align-items:center;gap:12px;color:var(--muted);font-size:13px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;margin-bottom:40px}.mark{width:42px;height:42px;display:grid;place-items:center;border-radius:15px;color:#061014;background:linear-gradient(135deg,var(--gold),var(--green));font-weight:950}h1{font-size:clamp(38px,6vw,70px);line-height:.95;letter-spacing:-.06em;margin:0 0 18px}p{color:var(--muted)}.panel{border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.04));border-radius:var(--radius);padding:24px;margin-top:24px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.field{display:flex;flex-direction:column;gap:7px;margin-bottom:16px}label{font-size:13px;color:var(--muted);font-weight:800}input,select,textarea{width:100%;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.06);color:var(--ink);padding:12px 13px;font:inherit}textarea{min-height:110px;resize:vertical}.full{grid-column:1/-1}.button{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:999px;padding:13px 18px;font-weight:900;color:#061014;background:linear-gradient(135deg,var(--gold),var(--green));cursor:pointer;text-decoration:none}.button.secondary{color:var(--ink);background:rgba(255,255,255,.08);border:1px solid var(--line)}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}.safe{font-size:13px;color:var(--muted);border-left:3px solid var(--green);padding-left:12px;margin-top:18px}@media(max-width:720px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <a class="brand" href="./index.html"><span class="mark">HA</span><span>Hausa AI Studio</span></a>
+    <h1>Start a Hausa AI quality pilot.</h1>
+    <p>Use this form to share scope only. Do not paste confidential, NDA, restricted, or client-owned data here. If NDA is needed, say so and we will handle that before sample sharing.</p>
+    <section class="panel" aria-label="Intake form">
+      <form id="intakeForm">
+        <div class="grid">
+          <div class="field"><label for="name">Name</label><input id="name" name="Name" required></div>
+          <div class="field"><label for="email">Work email</label><input id="email" name="Work email" type="email" required></div>
+          <div class="field"><label for="company">Company or team</label><input id="company" name="Company or team"></div>
+          <div class="field"><label for="role">Role</label><input id="role" name="Role"></div>
+          <div class="field"><label for="projectType">Project type</label><select id="projectType" name="Project type"><option>Hausa AI Output Audit</option><option>Hausa Speech or Transcript QA</option><option>Hausa Dataset Validation</option><option>Hausa Localization QA</option><option>Not sure yet</option></select></div>
+          <div class="field"><label for="contentType">Content type</label><select id="contentType" name="Content type"><option>Prompts and responses</option><option>Model outputs</option><option>Transcripts</option><option>Speech or ASR data</option><option>Annotations or labels</option><option>Translations or UI strings</option><option>Other</option></select></div>
+          <div class="field"><label for="size">Approximate sample size</label><input id="size" name="Approximate sample size" placeholder="Example: 50 responses, 200 rows, 45 minutes"></div>
+          <div class="field"><label for="deadline">Deadline</label><input id="deadline" name="Deadline" placeholder="Example: 3 business days, next week"></div>
+          <div class="field"><label for="nda">Is NDA needed?</label><select id="nda" name="NDA needed"><option>Not sure</option><option>Yes, before sample sharing</option><option>No</option></select></div>
+          <div class="field"><label for="budget">Budget range, optional</label><input id="budget" name="Budget range" placeholder="Optional"></div>
+          <div class="field full"><label for="building">What are you building or reviewing?</label><textarea id="building" name="What are you building or reviewing" required></textarea></div>
+          <div class="field full"><label for="decision">What decision do you need after the review?</label><textarea id="decision" name="Decision needed" placeholder="Example: decide if this is ready for evaluation, training, pilot, or release"></textarea></div>
+          <div class="field full"><label for="notes">Notes or public link, optional</label><textarea id="notes" name="Notes or public link"></textarea></div>
+        </div>
+        <div class="actions">
+          <button class="button" type="submit">Prepare email intake</button>
+          <a class="button secondary" href="mailto:abba@hausaai.studio?subject=Hausa%20AI%20Studio%20pilot%20intake">Email directly</a>
+        </div>
+        <div class="safe">The button opens your email app with the intake details addressed to abba@hausaai.studio. If it does not open, copy the form answers and email them manually.</div>
+      </form>
+    </section>
+  </main>
+  <script>
+    document.getElementById('intakeForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const data = new FormData(e.currentTarget);
+      const lines = ['Hausa AI Studio pilot intake', ''];
+      for (const [k,v] of data.entries()) { lines.push(k + ': ' + (v || '').trim()); }
+      lines.push('', 'Safety note: I have not included confidential or NDA-covered sample content in this form.');
+      const subject = encodeURIComponent('Hausa AI Studio pilot intake');
+      const body = encodeURIComponent(lines.join('
+'));
+      window.location.href = 'mailto:abba@hausaai.studio?subject=' + subject + '&body=' + body;
+    });
+  </script>
+</body>
+</html>

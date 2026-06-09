@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Hausa AI Quality & Localization Operations Studio by Abba Bello Kanwa — Hausa AI output audits, localization QA, dataset validation, and HausaBench proof assets." />
-  <meta property="og:title" content="Hausa AI Quality & Localization Operations Studio" />
-  <meta property="og:description" content="Make Hausa AI outputs, localization, and language datasets accurate, natural, culturally right, and production-ready." />
+  <meta name="description" content="Hausa AI Studio helps AI, data, speech, and localization teams with Hausa AI output audit, localization QA, transcript QA, and dataset validation." />
+  <meta property="og:title" content="Hausa AI Studio" />
+  <meta property="og:description" content="Hausa AI output audit, localization QA, transcript QA, and dataset validation for AI teams." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://abbabk.github.io/hausa-ai-studio/" />
+  <meta property="og:url" content="https://hausaai.studio/" />
   <link rel="icon" href="data:," />
-  <title>Hausa AI Quality & Localization Operations Studio</title>
+  <title>Hausa AI Studio</title>
   <style>
     :root {
       color-scheme: dark;
@@ -141,54 +141,60 @@
       .mini-grid { grid-template-columns: 1fr; }
       .contact-stack { min-width: 0; }
     }
+  
+    .pilot-meta{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+    .pilot-meta span{border:1px solid var(--line);border-radius:999px;padding:6px 9px;color:var(--muted);font-size:12px;background:rgba(255,255,255,.05)}
+    .note-panel{border:1px solid rgba(110,231,183,.25);background:rgba(110,231,183,.07);border-radius:var(--radius);padding:22px;color:var(--muted)}
+    .note-panel strong{color:var(--ink)}
+    .small-list li{margin-bottom:7px}
   </style>
 </head>
 <body>
   <header>
     <div class="shell">
       <nav aria-label="Primary">
-        <a class="brand" href="https://abbabk.github.io/" aria-label="Abba / Hermes gallery home">
+        <a class="brand" href="https://hausaai.studio/" aria-label="Hausa AI Studio home">
           <span class="mark">HA</span>
           <span>Hausa AI Studio</span>
         </a>
         <div class="navlinks">
-          <a class="pill" href="#offers">Offers</a>
-          <a class="pill" href="#proof">HausaBench</a>
-          <a class="pill" href="#rubric">Rubric</a>
-          <a class="pill" href="#contact">Contact</a>
+          <a class="pill" href="#offers">Pilots</a>
+          <a class="pill" href="#turnaround">Turnaround</a>
+          <a class="pill" href="#proof">Proof</a>
+          <a class="pill" href="intake.html">Intake</a>
         </div>
       </nav>
 
       <section class="hero">
         <div>
-          <div class="eyebrow">Hausa AI quality · localization QA · language data validation</div>
-          <h1>Make Hausa AI outputs <em>production-ready</em>.</h1>
-          <p class="hero-copy">I help AI, data, and localization teams make Hausa language data, translations, model outputs, and product content accurate, natural, culturally right, and safe before they reach users.</p>
+          <div class="eyebrow">Hausa AI output audit · localization QA · dataset validation</div>
+          <h1>Make Hausa AI outputs <em>ready before users see them</em>.</h1>
+          <p class="hero-copy">Hausa AI Studio supports AI, data, speech, and localization teams that need native Hausa quality review before training, evaluation, pilots, or customer-facing workflows.</p>
           <div class="actions">
-            <a class="button primary" href="#contact">Send a sample for review →</a>
-            <a class="button" href="#offers">View paid offers</a>
+            <a class="button primary" href="intake.html">Start a pilot intake →</a>
+            <a class="button" href="#offers">View pilot menu</a>
           </div>
-          <div class="trust-strip" aria-label="Experience anchors">
-            <span>Hausa language specialist</span>
-            <span>Localization operations</span>
-            <span>LLM output review</span>
-            <span>Dataset QA</span>
-            <span>Based in Sokoto, Nigeria</span>
+          <div class="trust-strip" aria-label="Service anchors">
+            <span>Hausa AI Output Audit</span>
+            <span>Localization QA</span>
+            <span>Transcript QA</span>
+            <span>Dataset Validation</span>
+            <span>Severity-coded reports</span>
           </div>
         </div>
 
         <aside class="proof-board" aria-label="Studio proof preview">
-          <div class="board-top"><strong>Quality review lens</strong><span>1–5 rubric</span></div>
+          <div class="board-top"><strong>Small pilot promise</strong><span>48 to 72 hours</span></div>
           <div class="score-card">
-            <strong>Not just “is the Hausa fluent?”</strong>
-            <div class="score-row"><span>Meaning accuracy</span><span class="score">critical</span></div>
-            <div class="score-row"><span>Cultural and contextual fit</span><span class="score">buyer risk</span></div>
-            <div class="score-row"><span>Safety / hallucination risk</span><span class="score">AI risk</span></div>
-            <div class="score-row"><span>Dataset usefulness</span><span class="score">ops risk</span></div>
+            <strong>You get a clear readiness decision.</strong>
+            <div class="score-row"><span>What is wrong?</span><span class="score">issue log</span></div>
+            <div class="score-row"><span>How serious is it?</span><span class="score">severity</span></div>
+            <div class="score-row"><span>What should be fixed?</span><span class="score">recommendations</span></div>
+            <div class="score-row"><span>Can it move forward?</span><span class="score">ready or revise</span></div>
           </div>
           <div class="mini-grid">
-            <div class="mini"><b>HausaBench</b><span>A public proof project for Hausa AI evaluation examples, issue taxonomy, and buyer-facing audit logic.</span></div>
-            <div class="mini"><b>Deliverables</b><span>Audit memos, scored rubrics, issue logs, dataset validation notes, and recommendations.</span></div>
+            <div class="mini"><b>One-page sample audit</b><span>Buyer-facing proof asset showing the kind of errors and recommendations Hausa AI Studio catches.</span></div>
+            <div class="mini"><b>Scope first</b><span>Use the intake page to describe your dataset, transcript, localization, or model-output sample.</span></div>
           </div>
         </aside>
       </section>
@@ -198,145 +204,58 @@
   <main class="shell">
     <section class="section" id="problem" aria-labelledby="problem-title">
       <div class="section-head">
-        <div><div class="kicker">01 · The hidden risk</div><h2 id="problem-title">Hausa can look “good enough” while still being wrong.</h2></div>
-        <p>For non-Hausa teams, the dangerous outputs are often the fluent ones: they sound plausible, but miss meaning, tone, culture, safety, or dataset usefulness.</p>
+        <div><div class="kicker">01 · The hidden risk</div><h2 id="problem-title">Hausa can look fluent while still being wrong.</h2></div>
+        <p>For non-Hausa teams, the dangerous outputs are often the fluent ones. They sound plausible, but miss meaning, tone, culture, safety, or dataset usefulness.</p>
       </div>
       <div class="problem">
-        <div class="quote-panel">
-          <strong>Fluent wording is not the same as usable Hausa.</strong>
-          <p>Good Hausa AI and localization work needs native judgment, cultural context, quality scoring, and production-minded issue reporting.</p>
-        </div>
+        <div class="quote-panel"><strong>Fluent wording is not the same as usable Hausa.</strong><p>Good Hausa AI and localization work needs native judgment, cultural context, quality scoring, and production-minded issue reporting.</p></div>
         <div class="issue-list">
-          <div class="issue"><span class="num">1</span><span><b>Meaning drift:</b> dropped nuance, wrong tense/person, literal translation, or a named entity mistake hidden inside smooth Hausa.</span></div>
+          <div class="issue"><span class="num">1</span><span><b>Meaning drift:</b> dropped nuance, wrong tense, literal transfer, or named entity mistakes hidden inside smooth Hausa.</span></div>
           <div class="issue"><span class="num">2</span><span><b>Register mismatch:</b> wording that is too formal, cold, imported, or unnatural for the real user context.</span></div>
           <div class="issue"><span class="num">3</span><span><b>AI risk:</b> hallucinated facts, unsafe certainty, weak refusal behavior, or overconfident Hausa explanations.</span></div>
-          <div class="issue"><span class="num">4</span><span><b>Data risk:</b> noisy transcriptions, inconsistent labels, weak prompt-response pairs, and evaluation examples that cannot be trusted.</span></div>
+          <div class="issue"><span class="num">4</span><span><b>Data risk:</b> noisy transcripts, inconsistent labels, weak prompt-response pairs, and evaluation examples that cannot be trusted.</span></div>
         </div>
       </div>
     </section>
 
     <section class="section" id="offers" aria-labelledby="offers-title">
       <div class="section-head">
-        <div><div class="kicker">02 · Paid offers</div><h2 id="offers-title">Three focused ways to work together</h2></div>
-        <p>Each offer produces a practical review output, not vague “language feedback.” You get issues, categories, scores, and next-step recommendations.</p>
+        <div><div class="kicker">02 · Pilot menu</div><h2 id="offers-title">Four focused ways to start</h2></div>
+        <p>Each pilot produces a practical review output: issue categories, severity, examples, recommendations, and a readiness decision.</p>
       </div>
       <div class="grid">
-        <article class="card featured" style="--accent:var(--gold)">
-          <span class="tag">Offer 1</span>
-          <h3>Hausa AI Output Audit</h3>
-          <p>For chatbots, AI assistants, prompt-response datasets, model evaluation samples, and Hausa LLM outputs.</p>
-          <ul>
-            <li>Review meaning accuracy, fluency, tone, cultural fit, safety, usefulness, and hallucination risk.</li>
-            <li>Deliver a concise audit memo, scored rubric, issue examples, and improvement recommendations.</li>
-            <li>Best when a team asks: “Can this Hausa AI answer be trusted?”</li>
-          </ul>
-        </article>
-        <article class="card" style="--accent:var(--green)">
-          <span class="tag">Offer 2</span>
-          <h3>Hausa Localization QA Package</h3>
-          <p>For app strings, websites, product UI, marketing, support content, and publish-readiness review.</p>
-          <ul>
-            <li>Check translation accuracy, naturalness, terminology, formatting, UI fit, and cultural appropriateness.</li>
-            <li>Deliver a QA issue log, recommended wording notes, glossary/tone notes, and publish-risk summary.</li>
-          </ul>
-        </article>
-        <article class="card" style="--accent:var(--teal)">
-          <span class="tag">Offer 3</span>
-          <h3>Hausa Dataset Validation</h3>
-          <p>For speech data, transcription, annotation, classification, intent/sentiment labels, and LLM training/evaluation data.</p>
-          <ul>
-            <li>Validate transcription accuracy, label correctness, language authenticity, consistency, and dataset risk patterns.</li>
-            <li>Deliver validation summary, defect categories, sample-level notes, quality score, and cleanup guidance.</li>
-          </ul>
-        </article>
+        <article class="card featured" style="--accent:var(--gold)"><span class="tag">Pilot 1</span><h3>Hausa AI Output Audit</h3><p>For chatbots, AI assistants, prompt-response datasets, model evaluation samples, and Hausa LLM outputs.</p><div class="pilot-meta"><span>30 to 50 items</span><span>48 to 72 hours</span></div><ul><li>Meaning accuracy, fluency, tone, cultural fit, safety, instruction following, and hallucination risk.</li><li>Deliver severity-coded issue log, quality summary, examples, recommendations, and readiness decision.</li></ul></article>
+        <article class="card" style="--accent:var(--green)"><span class="tag">Pilot 2</span><h3>Hausa Speech or Transcript QA</h3><p>For ASR output, conversation transcripts, speech datasets, and voice assistant evaluation.</p><div class="pilot-meta"><span>30 to 60 minutes</span><span>3 to 5 business days</span></div><ul><li>Checks transcription accuracy, segmentation, speaker variation, terminology, named entities, and meaning drift.</li><li>Deliver transcript QA issue log, recurring error patterns, and cleanup guidance.</li></ul></article>
+        <article class="card" style="--accent:var(--teal)"><span class="tag">Pilot 3</span><h3>Hausa Dataset Validation</h3><p>For training data, evaluation data, annotations, labels, classification, and translation pairs.</p><div class="pilot-meta"><span>100 to 300 rows</span><span>3 to 5 business days</span></div><ul><li>Validates label correctness, Hausa authenticity, consistency, cultural fit, duplicates, and risky examples.</li><li>Deliver validation summary, sample notes, defect taxonomy, quality score, and cleanup recommendation.</li></ul></article>
+        <article class="card" style="--accent:var(--blue)"><span class="tag">Pilot 4</span><h3>Hausa Localization QA</h3><p>For app strings, product UI, websites, support content, onboarding flows, and marketing content.</p><div class="pilot-meta"><span>50 to 200 strings</span><span>48 to 72 hours</span></div><ul><li>Checks accuracy, naturalness, UI fit, formatting, terminology consistency, and cultural appropriateness.</li><li>Deliver QA issue log, recommended wording notes, glossary and tone notes, and publish-risk summary.</li></ul></article>
+      </div>
+    </section>
+
+    <section class="section" id="turnaround" aria-labelledby="turnaround-title">
+      <div class="section-head"><div><div class="kicker">03 · Commercial clarity</div><h2 id="turnaround-title">Simple scope, clear turnaround</h2></div><p>Start with a small representative slice. If the first pilot is useful, the work can become recurring QA support.</p></div>
+      <div class="grid two">
+        <article class="card" style="--accent:var(--green)"><span class="tag">Turnaround</span><h3>Fast pilot windows</h3><ul class="small-list"><li>Small AI output audit: 48 to 72 hours.</li><li>Small localization QA pilot: 48 to 72 hours.</li><li>Transcript, speech, or dataset slice: 3 to 5 business days.</li><li>Rush work depends on volume and risk.</li></ul></article>
+        <article class="card" style="--accent:var(--gold)"><span class="tag">How to start</span><h3>Use the intake form</h3><p>Share project type, sample size, deadline, target users, quality concern, and whether NDA is needed. Do not paste confidential data into the form.</p><div class="actions"><a class="button primary" href="intake.html">Open intake form →</a></div></article>
       </div>
     </section>
 
     <section class="section" id="proof" aria-labelledby="proof-title">
-      <div class="section-head">
-        <div><div class="kicker">03 · Public proof</div><h2 id="proof-title">HausaBench is the authority engine</h2></div>
-        <p>HausaBench is a public Hausa AI quality lab showing how Hausa outputs can be evaluated, scored, explained, and improved before deployment.</p>
-      </div>
+      <div class="section-head"><div><div class="kicker">04 · Public proof</div><h2 id="proof-title">What the review catches</h2></div><p>Public examples stay client-safe. They explain issue types, severity logic, and how Hausa quality problems affect model or product readiness.</p></div>
       <div class="grid two">
-        <article class="card" style="--accent:var(--gold)">
-          <span class="tag">What it proves</span>
-          <h3>Hausa AI failures are deeper than spelling.</h3>
-          <p>Examples will cover translation faithfulness, natural Hausa/register, cultural context, hallucination and safety risk, and dataset/evaluation usefulness.</p>
-        </article>
-        <article class="card" style="--accent:var(--blue)">
-          <span class="tag">How it works</span>
-          <h3>Each example uses a repeatable method.</h3>
-          <p>Prompt/task category → model output → expected behavior → error classification → severity → Hausa + English explanation → recommended fix → score.</p>
-        </article>
+        <article class="card" style="--accent:var(--gold)"><span class="tag">Proof asset</span><h3>One-page sample audit</h3><p>A buyer-ready sample format shows how Hausa AI issues are categorized, explained, and turned into practical recommendations.</p></article>
+        <article class="card" style="--accent:var(--blue)"><span class="tag">Educational proof</span><h3>Upcoming public posts</h3><p>Short posts will explain fluent-but-wrong Hausa, Hausa output audit checks, and transcript QA risk for speech AI.</p></article>
       </div>
     </section>
 
     <section class="section" id="rubric" aria-labelledby="rubric-title">
-      <div class="section-head">
-        <div><div class="kicker">04 · Quality rubric</div><h2 id="rubric-title">A clear review system buyers can understand</h2></div>
-        <p>The studio uses a practical 1–5 scoring scale and eight review dimensions that translate Hausa expertise into operational decisions.</p>
-      </div>
-      <div class="rubric">
-        <div><strong>Meaning accuracy</strong><span>Does the Hausa preserve the intended meaning, nuance, tense, entities, and idioms?</span></div>
-        <div><strong>Natural fluency</strong><span>Does it sound like natural Hausa for the context, not English structure wearing Hausa words?</span></div>
-        <div><strong>Tone/register</strong><span>Is the tone suitable for the user, product, domain, and social situation?</span></div>
-        <div><strong>Cultural fit</strong><span>Does it respect Hausa/Nigerian context, names, places, family, religion, and social norms?</span></div>
-        <div><strong>Hallucination risk</strong><span>Does it invent facts, overclaim certainty, or mislead in fluent Hausa?</span></div>
-        <div><strong>Safety</strong><span>Is it responsible around medical, legal, financial, emergency, and sensitive domains?</span></div>
-        <div><strong>Instruction following</strong><span>Did the output follow the task, language, format, constraints, and requested structure?</span></div>
-        <div><strong>Dataset usefulness</strong><span>Can the example be trusted for training, evaluation, annotation, or QA?</span></div>
-      </div>
-    </section>
-
-    <section class="section" id="experience" aria-labelledby="experience-title">
-      <div class="section-head">
-        <div><div class="kicker">05 · Why Abba</div><h2 id="experience-title">Language judgment plus operations discipline</h2></div>
-        <p>Abba Bello Kanwa is a Hausa language specialist based in Sokoto, Nigeria, with applied work across translation, localization, review, QA, and language operations.</p>
-      </div>
-      <div class="grid two">
-        <article class="card" style="--accent:var(--green)">
-          <span class="tag">Experience</span>
-          <h3>Hausa quality work across global platforms</h3>
-          <p>Professional work spans translation, transcription, proofreading, review, language quality, and localization operations across Hausa and English, with contributions connected to major global technology platforms including Microsoft, Meta, Amazon, and Canva.</p>
-        </article>
-        <article class="card" style="--accent:var(--rose)">
-          <span class="tag">Operations</span>
-          <h3>Not only language execution</h3>
-          <p>Earlier Productive Playhouse work included Hausa language operations leadership and managing a 29-person team, combining linguistic judgment with coordination, delivery discipline, and quality review systems.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="process" aria-labelledby="process-title">
-      <div class="section-head">
-        <div><div class="kicker">06 · Project flow</div><h2 id="process-title">Simple scope, serious review</h2></div>
-        <p>Start small: send a representative sample and the quality question you need answered.</p>
-      </div>
-      <div class="process">
-        <article class="step"><h3>Scope</h3><p>Share content type, sample size, deadline, audience, quality concern, and confidentiality requirements.</p></article>
-        <article class="step"><h3>Review</h3><p>I evaluate the material using a Hausa quality rubric matched to AI output, localization, or dataset validation.</p></article>
-        <article class="step"><h3>Deliver</h3><p>You receive findings, issue categories, examples, quality scores, recommendations, and next-step guidance.</p></article>
-        <article class="step"><h3>Extend</h3><p>For ongoing teams, the work can become recurring QA, reviewer guidance, or monthly Hausa language operations support.</p></article>
-      </div>
+      <div class="section-head"><div><div class="kicker">05 · Quality rubric</div><h2 id="rubric-title">A review system buyers can understand</h2></div><p>The studio uses practical severity levels and review dimensions that turn Hausa expertise into operational decisions.</p></div>
+      <div class="rubric"><div><strong>Meaning accuracy</strong><span>Does the Hausa preserve the intended meaning, nuance, tense, entities, and idioms?</span></div><div><strong>Natural fluency</strong><span>Does it sound like natural Hausa for the context?</span></div><div><strong>Tone/register</strong><span>Is the tone suitable for the user, product, domain, and social situation?</span></div><div><strong>Cultural fit</strong><span>Does it respect Hausa and Nigerian context, names, places, family, religion, and social norms?</span></div><div><strong>Hallucination risk</strong><span>Does it invent facts, overclaim certainty, or mislead in fluent Hausa?</span></div><div><strong>Safety</strong><span>Is it responsible around medical, legal, financial, emergency, and sensitive domains?</span></div><div><strong>Instruction following</strong><span>Did it follow the task, language, format, constraints, and requested structure?</span></div><div><strong>Dataset usefulness</strong><span>Can the example be trusted for training, evaluation, annotation, or QA?</span></div></div>
     </section>
 
     <section class="section" id="contact" aria-labelledby="contact-title">
-      <div class="cta">
-        <div>
-          <h2 id="contact-title">Working on Hausa AI, localization, speech data, or multilingual evaluation?</h2>
-          <p>Send a small sample and the question you need answered: “Is this Hausa output accurate, natural, culturally right, and safe to use?” I’ll recommend the right audit or QA package.</p>
-          <div class="safe-note">Public-safe site. No client-owned, NDA, or restricted platform content is published here.</div>
-        </div>
-        <div class="contact-stack">
-          <a class="button primary" href="https://ng.linkedin.com/in/abba-bello-kanwa">Contact on LinkedIn →</a>
-          <a class="button" href="https://abbabk.github.io/">Back to public artifact library</a>
-        </div>
-      </div>
+      <div class="cta"><div><h2 id="contact-title">Working on Hausa AI, localization, speech data, or multilingual evaluation?</h2><p>Use the intake form to describe your pilot. I will recommend the right scope, turnaround, and next step.</p><div class="safe-note">Public-safe site. No client-owned, NDA, or restricted platform content is published here.</div></div><div class="contact-stack"><a class="button primary" href="intake.html">Start pilot intake →</a><a class="button" href="mailto:abba@hausaai.studio?subject=Hausa%20AI%20Studio%20pilot%20inquiry">Email abba@hausaai.studio</a><a class="button" href="https://www.linkedin.com/in/abba-bello-kanwa">LinkedIn</a></div></div>
     </section>
   </main>
-
-  <footer>
-    <div class="shell">Hausa AI Quality & Localization Operations Studio · Abba Bello Kanwa · Last updated: 2026-05-25.</div>
-  </footer>
+  <footer><div class="shell">Hausa AI Studio · Abba Bello Kanwa · Hausa AI output audit, localization QA, transcript QA, and dataset validation · Last updated: 2026-06-09.</div></footer>
 </body>
 </html>
